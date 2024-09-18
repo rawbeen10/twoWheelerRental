@@ -40,108 +40,205 @@ nav ul {
     color: #24ccff;
 }
 
-h1{
-    font-size: 50px;
-    text-align: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #333;
+  font-weight: 700;
+}
+
+.about-us h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+/* Paragraphs */
+ .about-us p, .our-mission p{
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* About Us Section */
+.about-us, .our-mission {
+  background-color: #fff;
+  padding: 50px 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.our-mission{
+  margin-bottom: 0;
+}
+
+/* Team Section */
+.team {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.member {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 380px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.member:hover {
+  transform: translateY(-10px);
+}
+
+.member img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.member h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.member p {
+  color: #777;
+  font-size: 1em;
+}
+
+/* Our Mission Section */
+.our-mission h2 {
+  color: #0056b3;
+}
+
+.key-points {
+  text-align: left;
+  margin: 20px 0;
+  list-style: disc inside;
+  padding-left: 15px;
+}
+
+.key-points li {
+  color: #444;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+ul.key-points li::marker {
+  color: #0056b3;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
 footer {
-    margin-top: 50vh;
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .footer-section {
-    flex: 1;
-    min-width: 250px;
-    margin: 20px;
-  }
-  
-  .footer-section h3 {
-    font-size: 18px;
-    color: white;
-    /* margin-bottom: 10px; */
-  }
-  
-  .footer-section p, 
-  .footer-section ul {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section li {
-    margin-bottom: 8px;
-  }
-  
-  .footer-section a {
-    color: #aaa;
-    text-decoration: none;
-  }
-  
-  .footer-section a:hover {
-    color: white;
-  }
-  
-  .social-icons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .social-icon img {
-    padding: 10px;
-    border-radius: 50%;
-    text-align: center;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-  }
-  
-  .social-icon:hover {
-    background-color: #66666681;
-    border-radius: 50%;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 14px;
-    color: #d6d6d6;
-  }
-  
-  footer hr{
-    border: 1px solid grey;
-    margin: 0 15px;
-  }
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footer-section p, 
+.footer-section ul {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: white;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon img {
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+}
+
+.social-icon:hover {
+  background-color: #66666681;
+  border-radius: 50%;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #d6d6d6;
+}
+
+footer hr{
+  border: 1px solid grey;
+  margin: 0 15px;
+}
   
