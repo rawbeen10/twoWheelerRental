@@ -54,13 +54,21 @@
 
     
     <div id="loginPopup" class="popup-container">
+<<<<<<< HEAD
       <div class="form-container">
+=======
+      <div class="container">
+>>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
         <span class="close-btn" id="closeBtn">&times;</span>
         <h2>Login</h2>
         <form action="">
           <input type="text" name="username" id="username" placeholder="Username" required>
           <input type="password" name="password" id="password" placeholder="Enter Your Password." required>
+<<<<<<< HEAD
           <input type="checkbox" name="remember" id="remember" value="remember-me">Remember me 
+=======
+          <input type="checkbox" name="remember" id="remember" value="remember-me">Remember me
+>>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
           <a href="#" id="forgot">Forgot Password?</a> <br>
           <button type="submit">Login</button>
           <h4 class="center-text sign">Don't have an account? <a href="#" id="sign">Sign Up</a></h4>

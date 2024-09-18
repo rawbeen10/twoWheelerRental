@@ -13,15 +13,24 @@
         </div>
         <nav>
             <ul class="nav-menu">
+<<<<<<< HEAD
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="rent.php">Rent</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="login.php">Login</a></li>
+=======
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="rent.html">Rent</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+>>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
             </ul>
         </nav>
     </header>
 
+<<<<<<< HEAD
     <section class="about-us">
       <div class="container">
           <h1>About Us</h1>
@@ -79,6 +88,14 @@
 
     <div id="loginPopup" class="popup-container">
       <div class="form-container">
+=======
+    <section id="about">
+        <h1>About Us</h1>
+    </section>
+
+    <div id="loginPopup" class="popup-container">
+      <div class="container">
+>>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
         <span class="close-btn" id="closeBtn">&times;</span>
         <h2>Login</h2>
         <form action="">
