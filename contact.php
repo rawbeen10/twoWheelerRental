@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="styles/login.css">
-
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles/contact.css">
 </head>
 <body>
     <header>
@@ -14,16 +13,47 @@
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="rent.html">Rent</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="rent.php">Rent</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="login.php">Login</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
+    <section class="contact">
+      <h1>Contact Us</h1>
+      <p>If you have any questions or inquiries, feel free to get in touch with us.</p>
+      
+      <div class="contact-form">
+          <form action="#" method="post">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" placeholder="abc@xyz.com" required>
+
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+
+              <center><button type="submit">Submit</button></center>
+          </form>
+      </div>
+      <div class="contact-info">
+          <h2>Contact Information</h2>
+          <p style="font-size: 20px;"><strong>Hamro Ride Pvt. Ltd.</strong></p>
+          <p>Chabahil</p>
+          <p>Kathmandu, Nepal</p>
+          <p>Email: contact@twowheeler.com</p>
+          <p>Phone: 01-434343</p>
+      </div>
+  </section>
+
+
+  <div id="loginPopup" class="popup-container">
+    <div class="form-container">
+      <span class="close-btn" id="closeBtn">&times;</span>
       <h2>Login</h2>
       <form action="">
         <input type="text" name="username" id="username" placeholder="Username" required>
@@ -36,16 +66,13 @@
           <span class="connect-with">or connect with</span>
           <hr class="line">
         </div>
-        
         <div class="con-icons">
           <a href="#" class="icons"><img src="media/fb-color.png" alt="fb" title="Connect with Facebook"></a>
           <a href="#" class="icons"><img src="media/gmail.webp" alt="gmail" title="Connect with Google"></a>
         </div>
       </form>
     </div>
-
-
-
+  </div>
 
     <footer>
         <div class="footer-container">
@@ -91,6 +118,23 @@
           <p>Designed and Developed by Rabin and Kushal.</p>
         </div>
       </footer>
+
+      <script>
+        window.onload = function() {
+    setTimeout(showPopup, 2000);
+
+    const closeBtn = document.getElementById("closeBtn");
+    const popup = document.getElementById("loginPopup");
+
+    closeBtn.addEventListener("click", function() {
+        popup.style.display = "none";
+    });
+}
+
+function showPopup() {
+    document.getElementById("loginPopup").style.display = "flex";
+}
+      </script>
 
     
 </body>
