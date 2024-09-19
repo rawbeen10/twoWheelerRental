@@ -52,11 +52,7 @@
 
 
   <div id="loginPopup" class="popup-container">
-<<<<<<< HEAD
     <div class="form-container">
-=======
-    <div class="container">
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
       <span class="close-btn" id="closeBtn">&times;</span>
       <h2>Login</h2>
       <form action="">

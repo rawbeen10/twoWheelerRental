@@ -157,10 +157,6 @@ button:hover {
 
 
 
-<<<<<<< HEAD
-=======
-/* Button used to open the contact form - fixed at the bottom of the page */
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
 .open-button {
   background-color: #555;
   color: white;
@@ -187,11 +183,7 @@ button:hover {
   z-index: 1000;
 }
 
-<<<<<<< HEAD
 .form-container {
-=======
-.container {
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
   margin: 20px auto;
   border: 1px solid rgb(184, 184, 184);
   border-radius: 13px;
@@ -215,11 +207,7 @@ button:hover {
   color: red;
 }
 
-<<<<<<< HEAD
 .form-container{
-=======
-.container{
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
   margin: 20px auto;
   border: 1px solid rgb(184, 184, 184);
   border-radius: 13px;
@@ -230,11 +218,7 @@ button:hover {
   padding: 20px;
   }
   
-<<<<<<< HEAD
   .form-container h2{
-=======
-  .container h2{
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
     font-size: 30px;
     text-align: center;
   }

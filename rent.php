@@ -13,19 +13,11 @@
         </div>
         <nav>
             <ul class="nav-menu">
-<<<<<<< HEAD
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="rent.php">Rent</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="login.php">Login</a></li>
-=======
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="rent.html">Rent</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html">Login</a></li>
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
             </ul>
         </nav>
     </header>
@@ -34,44 +26,28 @@
       <h1>Rent Your Ride</h1>
       <div class="bike-container">
           <div class="bike-item">
-<<<<<<< HEAD
               <img src="media/bike.jpg" alt="Bike 1" class="bike-img">
-=======
-              <img src="media/placeholder.png" alt="Bike 1" class="bike-img">
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
               <h3>Bike Name 1</h3>
               <p>Description for Bike 1</p>
               <button class="btn rent-btn">Rent</button>
               <button class="btn view-more-btn">View More</button>
           </div>
           <div class="bike-item">
-<<<<<<< HEAD
               <img src="media/bike.jpg" alt="Bike 2" class="bike-img">
-=======
-              <img src="media/placeholder.png" alt="Bike 2" class="bike-img">
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
               <h3>Bike Name 2</h3>
               <p>Description for Bike 2</p>
               <button class="btn rent-btn">Rent</button>
               <button class="btn view-more-btn">View More</button>
           </div>
           <div class="bike-item">
-<<<<<<< HEAD
               <img src="media/bike.jpg" alt="Bike 3" class="bike-img">
-=======
-              <img src="media/placeholder.png" alt="Bike 3" class="bike-img">
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
               <h3>Bike Name 3</h3>
               <p>Description for Bike 3</p>
               <button class="btn rent-btn">Rent</button>
               <button class="btn view-more-btn">View More</button>
           </div>
           <div class="bike-item">
-<<<<<<< HEAD
               <img src="media/bike.jpg" alt="Bike 4" class="bike-img">
-=======
-              <img src="media/placeholder.png" alt="Bike 4" class="bike-img">
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
               <h3>Bike Name 4</h3>
               <p>Description for Bike 4</p>
               <button class="btn rent-btn">Rent</button>
@@ -83,11 +59,7 @@
   
 
     <div id="loginPopup" class="popup-container">
-<<<<<<< HEAD
       <div class="form-container">
-=======
-      <div class="container">
->>>>>>> ca775d02ac9e3d411d1c5ad2626acfc1a8ed3eb1
         <span class="close-btn" id="closeBtn">&times;</span>
         <h2>Login</h2>
         <form action="">
