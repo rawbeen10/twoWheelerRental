@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rent form</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .rent-form{
+           margin: 30px auto;
+           padding: 20px;
+           width: 500px;
+           border: 1px solid grey;
+           border-radius: 23px;
+           display: flex;
+           flex-wrap: wrap;
+           flex-direction: column;
+        }
+
+        .rent-form p, h2{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        label{
+            font-size: 22px;
+            font-weight:500;
+        }
+
+        .input-class{
+            margin-bottom: 10px;
+        }
+
+        #name input{
+            width: 30%;
+        }
+
+        .input-class input{
+            margin-bottom: 3px;
+            width: 100%;
+            height: 30px;
+            padding-left: 7px;
+            font-size: 17px;
+        }
+
+        .id-type{
+            font-size: 17px;
+            display: inline;
+        }
+
+         input[type=radio]{
+            margin: 4px 4px;
+        }
+
+        .submit-btn{
+            padding: 7px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="rent-form">
+        <p>Please fill out this form to book your vehicle for Rent.</p>
+        <p>Our hq will verify your details and confirm your booking</p>
+        <p>Thank you!</p>
+        <h2>Rental Form</h2>
+        <form action="">
+            <div class="input-class" id="name">
+                <label for="fullname">Enter Your Name:</label><br>
+                <label for="fname" hidden>First Name:</label>
+                <input type="text" name="fname" placeholder="First Name">
+    
+                <label for="mname" hidden>Middle Name:</label>
+                <input type="text" name="mname" placeholder="Middle Name">
+    
+                <label for="lname" hidden>Last Name:</label>
+                <input type="text" name="lname" placeholder="Last Name">
+            </div>
+
+            <div class="input-class">
+                <label for="email">Enter your Email</label><br>
+                <input type="email" name="email" placeholder="abcd@gmail.com">
+            </div>
+
+            <div class="input-class">
+                <label for="Phone">Enter Your Phone Number</label><br>
+                <input type="number" name="phone">
+            </div>
+
+            <div class="id-type">
+                <label for="id-type">Type of ID</label><br>
+                <input type="radio" name="id-type" id="citizenship" value="citizenship">Citizenship <br>
+                <input type="radio" name="id-type" id="license" value="license">Driving License <br>
+                <input type="radio" name="id-type" id="nid" value="nid">National ID <br>
+                <input type="radio" name="id-type" id="voter" value="voter">Voter Card <br>
+                <input type="radio" name="id-type" id="others" value="others">Others <br>
+            </div>
+
+            <div class="input-class">
+                <label for="license">Upload your ID</label><br>
+                Front:<input type="file" name="front" id="front"><br>
+                Back:<input type="file" name="back" id="back">
+            </div>
+
+            <div class="form-btn">
+                <input class="submit-btn" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
