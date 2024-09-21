@@ -66,8 +66,17 @@ input[type=text],[type=password]{
   margin: 15px 0;
   padding-left: 10px;
   font-size: 14px;
-  border-radius: 7px;
-  border: 0.5px solid gray;
+  border-radius: 12px;
+  outline: none;
+  background-color: #e2e2e2;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+input[type=text]:focus{
+  border: 1px solid rgb(192,192,192);
+}
+input[type=password]:focus{
+  border: 1px solid rgb(192,192,192);
 }
 
 input[type=checkbox]{
@@ -83,12 +92,28 @@ input[type=checkbox]{
   font-size: 20px;
   margin: 10px;
 }
+.log-in{
+  font-size: 20px;
+  margin: 10px;
+}
 
-#forgot, #sign{
+#forgot, #sign, #log-in, #terms{
   text-decoration: none;
   color: #0A58CD;
 }
-#forgot, #sign:hover{
+#forgot:hover{
+  color: #007de4;
+}
+
+#terms:hover{
+  color: #007de4;
+
+}
+
+ #sign:hover{
+  color: #007de4;
+}
+#log-in:hover{
   color: #007de4;
 }
 
