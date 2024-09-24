@@ -17,7 +17,7 @@
   border-radius: 12px;
   outline: none;
   background-color: #e2e2e2;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid azure;
   }
 </style>
 
@@ -28,7 +28,7 @@ require("layout/header.php");
 ?>
 
     <div class="container">
-      <h2>Signup</h2>
+      <h1>Signup</h1>
       <form action="">
         <input type="text" name="username" id="username" placeholder="Username" required>
         <input type="email" name="email" id="email" placeholder="Enter Your Email" required>

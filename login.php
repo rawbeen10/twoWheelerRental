@@ -15,7 +15,7 @@ require("layout/header.php");
 ?>
 
     <div class="container">
-      <h2>Login...</h2>
+      <h1>Login</h1>
       <form action="">
         <input type="text" name="username" id="username" placeholder="Username/Email" required>
         <input type="password" name="password" id="password" placeholder="Enter Your Password." required>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Two Wheeler Rental</title>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="./layout/layout.css">
+    <link rel="stylesheet" href="layout/layout.css">
 </head>
 <body>
 <?php
@@ -15,7 +15,7 @@ require("layout/header.php");
 
     <section id="home">
         <div class="home-txt">
-            <h2>Welcome to Two Wheeler Rental System</h2>
+            <h1>Welcome to UTHAOO</h1>
             <p>Explore Kathmandu on our modern bikes and scooters. The best rates, the best bikes!</p>
             <a href="rent.html"><button id="btn" type="button">Explore</button></a>
         </div>
@@ -66,17 +66,10 @@ require("layout/header.php");
       </div>
     </div>
     
-
-
-
  <?php
     require("layout/footer.php");
     ?>
    
-
-
-
-
 
       <script>
         document.getElementById('vehicleBookingForm').addEventListener('submit', function(event) {

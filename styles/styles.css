@@ -7,34 +7,35 @@
 
 .home-txt {
     width: 100%;
-    height: 400px;
+    height: 500px;
     text-align: center;
     padding: 15px;
     color: white;
-    background-image: url('../media/tires.jpg'); /* Set the image as the background */
-    background-size: cover; /* Make sure the image covers the entire section */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-image: url('../media/pic.webp'); /* Set the image as the background */
+    background-size:cover; /* Make sure the image covers the entire section */
+    background-position:center; /* Center the image */
+    background-repeat:repeat-y; /* Prevent the image from repeating */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Vertically center the text */
 }
 
-.home-txt h2 {
-    font-size: 2rem;
+.home-txt h1 {
+    font-size: 5rem;
     background-color: rgba(0, 0, 0, 0.637); /* Add a semi-transparent background to improve readability */
     padding: 10px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .home-txt p {
-    font-size: 1rem;
+    font-size: 2.5rem;
     background-color: rgba(0, 0, 0, 0.637); /* Same for the paragraph */
     padding: 10px;
 }
 
 .home-txt button{
     width: fit-content;
-    background-color: #004080cc;
+    background-color: #004080e7;
     border: none;
     border-radius: 7px;
     padding: 10px 20px;
