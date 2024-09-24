@@ -1,27 +1,38 @@
-
-
-.contact {
+.contact-form {
+  width: 50vw;
+  max-width: 450px;
   background-color: #fff;
-  text-align: center;
   padding: 20px;
   margin: 20px auto;
-  margin-top: 40px;
-  max-width: 500px;
+  /* margin-top: 40px; */
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.contact h1 {
+.contact-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact-image{
+  margin: 20px auto;
+  padding-top: 20px;
+}
+
+.contact-image img{
+  width: 50vw;
+  height: auto;
+}
+
+.contact-form h1 {
+  text-align: center;
   font-family:'Bree Serif', serif ;
   padding: 10px;
   font-size: 40px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
-.contact p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
 
 .contact-form {
   text-align: left;
@@ -30,11 +41,12 @@
 .contact-form label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
+.contact-form input[type=text],
+.contact-form input[type=number],
+.contact-form input[type=email],
 .contact-form textarea {
   width: 100%;
   padding: 10px;
@@ -61,25 +73,6 @@
 .contact-form button:hover {
   background-color: #003060;
 
-}
-
-.contact-info {
-  margin-top: 10px;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(80, 80, 80, 0.418);
-}
-
-.contact-info h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.contact-info p {
-  font-size: 16px;
-  margin-bottom: 10px;
 }
 
 
@@ -151,7 +144,7 @@
     text-align: center;
   }
   
-  input[type=text],[type=password]{
+  .form-container input[type=text],[type=password]{
     display: flex;
     width: 100%;
     height: 40px;

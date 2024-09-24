@@ -13,14 +13,20 @@
 require("layout/header.php");
 ?>
 
-    <section class="contact">
-      <h1>Contact Us</h1>
-      <p>If you have any questions or inquiries, feel free to get in touch with us.</p>
-      
-      <div class="contact-form">
+
+    <div class="contact-container">
+    <div class="contact-image">
+      <img src="media/contact.jpg" alt="contact-img">
+    </div>
+    
+    <div class="contact-form">
+        <h1>CONTACT US</h1>
           <form action="#" method="post">
               <label for="name">Name:</label>
               <input type="text" id="name" name="name" required>
+
+              <label for="phone">Phone:</label>
+              <input type="number" id="phone" name="phone" required>
 
               <label for="email">Email:</label>
               <input type="email" id="email" name="email" placeholder="abc@xyz.com" required>
@@ -31,15 +37,7 @@ require("layout/header.php");
               <center><button type="submit">Submit</button></center>
           </form>
       </div>
-      <div class="contact-info">
-          <h2>Contact Information</h2>
-          <p style="font-size: 20px;"><strong>Hamro Ride Pvt. Ltd.</strong></p>
-          <p>Chabahil</p>
-          <p>Kathmandu, Nepal</p>
-          <p>Email: contact@twowheeler.com</p>
-          <p>Phone: 01-434343</p>
-      </div>
-  </section>
+    </div>
 
 
   <div id="loginPopup" class="popup-container">
@@ -59,7 +57,7 @@ require("layout/header.php");
         </div>
         <div class="con-icons">
           <a href="#" class="icons"><img src="media/fb-color.png" alt="fb" title="Connect with Facebook"></a>
-          <a href="#" class="icons"><img src="media/gmail.webp" alt="gmail" title="Connect with Google"></a>
+          <a href="#" class="  icons"><img src="media/gmail.webp" alt="gmail" title="Connect with Google"></a>
         </div>
       </form>
     </div>
