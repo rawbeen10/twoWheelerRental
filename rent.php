@@ -6,6 +6,7 @@
     <title>Rent</title>
     <link rel="stylesheet" href="styles/rent.css">
     <link rel="stylesheet" href="./layout/layout.css">
+    <link rel="stylesheet" href="styles/fonts.css">
 
 </head>
 <body>

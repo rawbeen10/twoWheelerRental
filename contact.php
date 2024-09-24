@@ -6,7 +6,7 @@
     <title>Contact</title>
     <link rel="stylesheet" href="styles/contact.css">
     <link rel="stylesheet" href="./layout/layout.css">
-
+    <link rel="stylesheet" href="styles/fonts.css">
 </head>
 <body>
 <?php

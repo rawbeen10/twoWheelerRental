@@ -7,6 +7,8 @@
     <title>Two Wheeler Rental</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="layout/layout.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+
 </head>
 <body>
 <?php

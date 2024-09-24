@@ -6,6 +6,8 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="./layout/layout.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+
 <style>
   #email{
     display: flex;
