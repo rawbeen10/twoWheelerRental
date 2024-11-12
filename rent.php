@@ -1,3 +1,23 @@
+<?php
+// Step 1: Connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "twowheelerrental";  // Replace with your actual database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Step 2: Fetch vehicle data from the database
+$sql = "SELECT * FROM vehicles";  // Replace 'vehicles' with your table name
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,62 +45,27 @@
     <section id="rent">
       <h1>Rent Your Ride</h1>
       <div class="bike-container">
-          <div class="bike-item">
-              <img src="media/bike.jpg" alt="Bike 1" class="bike-img">
-              <h3>Bike Name 1</h3>
-              <p>Description for Bike 1</p>
-              <button class="btn rent-btn">Rent</button>
-              <button class="btn view-more-btn">View More</button>
-          </div>
-          <div class="bike-item">
-              <img src="media/bike.jpg" alt="Bike 2" class="bike-img">
-              <h3>Bike Name 2</h3>
-              <p>Description for Bike 2</p>
-              <button class="btn rent-btn">Rent</button>
-              <button class="btn view-more-btn">View More</button>
-          </div>
-          <div class="bike-item">
-              <img src="media/bike.jpg" alt="Bike 3" class="bike-img">
-              <h3>Bike Name 3</h3>
-              <p>Description for Bike 3</p>
-              <button class="btn rent-btn">Rent</button>
-              <button class="btn view-more-btn">View More</button>
-          </div>
-          <div class="bike-item">
-              <img src="media/bike.jpg" alt="Bike 4" class="bike-img">
-              <h3>Bike Name 4</h3>
-              <p>Description for Bike 4</p>
-              <button class="btn rent-btn">Rent</button>
-              <button class="btn view-more-btn">View More</button>
-          </div>
+          <?php
+          // Step 3: Display the vehicle data
+          if ($result->num_rows > 0) {
+              // Output each vehicle data as a bike item
+              while($row = $result->fetch_assoc()) {
+                  echo "<div class='bike-item'>";
+                  echo "<img src='admin/uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img'>";
+
+                  echo "<h3>" . $row['vehicle_name'] . "</h3>";
+                  echo "<p>Description: " . $row['category'] . "</p>"; 
+                  echo "<button class='btn rent-btn'>Rent</button>";
+                  echo "<button class='btn view-more-btn'>View More</button>";
+                  echo "</div>";
+              }
+          } else {
+              echo "<p>No vehicles available for rent at the moment.</p>";
+          }
+          $conn->close();
+          ?>
       </div>
   </section>
-  
-  
-
-    <div id="loginPopup" class="popup-container">
-      <div class="form-container">
-        <span class="close-btn" id="closeBtn">&times;</span>
-        <h2>Login</h2>
-        <form action="">
-          <input type="text" name="username" id="username" placeholder="Username" required>
-          <input type="password" name="password" id="password" placeholder="Enter Your Password." required>
-          <input type="checkbox" name="remember" id="remember" value="remember-me">Remember me
-          <a href="#" id="forgot">Forgot Password?</a> <br>
-          <button type="submit">Login</button>
-          <h4 class="center-text sign">Don't have an account? <a href="#" id="sign">Sign Up</a></h4>
-          <div class="center-text">
-            <span class="connect-with">or connect with</span>
-            <hr class="line">
-          </div>
-          <div class="con-icons">
-            <a href="#" class="icons"><img src="media/fb-color.png" alt="fb" title="Connect with Facebook"></a>
-            <a href="#" class="icons"><img src="media/gmail.webp" alt="gmail" title="Connect with Google"></a>
-          </div>
-        </form>
-      </div>
-    </div>
-
 
     <footer>
         <div class="footer-container">
@@ -128,25 +113,20 @@
       </footer>
 
       <script>
-
-
-
-
         window.onload = function() {
-    setTimeout(showPopup, 2000);
+            setTimeout(showPopup, 2000);
 
-    const closeBtn = document.getElementById("closeBtn");
-    const popup = document.getElementById("loginPopup");
+            const closeBtn = document.getElementById("closeBtn");
+            const popup = document.getElementById("loginPopup");
 
-    closeBtn.addEventListener("click", function() {
-        popup.style.display = "none";
-    });
-}
+            closeBtn.addEventListener("click", function() {
+                popup.style.display = "none";
+            });
+        }
 
-function showPopup() {
-    document.getElementById("loginPopup").style.display = "flex";
-}
+        function showPopup() {
+            document.getElementById("loginPopup").style.display = "flex";
+        }
       </script>
-    
 </body>
 </html>
