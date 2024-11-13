@@ -11,14 +11,13 @@
     <section id="manage-vehicles">
         <h2>Manage Vehicles</h2>
         
-        <!-- Buttons -->
+        
         <button id="addVehicleBtn">Add Vehicle</button>
         <a href="view_vehicles.php"><button id="viewVehiclesBtn">View Vehicles</button></a>
 
-        <!-- Add Vehicle Popup Form -->
         <div class="popup-container" id="addVehiclePopup">
             <div class="form-container">
-                <!-- Cross Button to Close Popup -->
+                
                 <button id="closePopupBtn" class="close-btn">&times;</button>
 
                 <h2>Add New Vehicle</h2>

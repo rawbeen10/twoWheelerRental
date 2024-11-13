@@ -1,49 +1,44 @@
 <?php
-// Include the database connection
 include('db_connect.php');
 
-// Handle form submission for adding a new vehicle
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
     // Get POST data
     $vehicle_name = $_POST['vehicle_name'];
     $description = $_POST['description'];
-    $price_per_day = $_POST['price']; // Use price_per_day here
-    $category = $_POST['category']; // Get category
+    $price_per_day = $_POST['price']; 
+    $category = $_POST['category']; 
 
-    // Handle image upload
+  
     if (isset($_FILES['vehicle_image']) && $_FILES['vehicle_image']['error'] === 0) {
         $image_name = $_FILES['vehicle_image']['name'];
         $image_tmp_name = $_FILES['vehicle_image']['tmp_name'];
         $image_size = $_FILES['vehicle_image']['size'];
         $image_type = $_FILES['vehicle_image']['type'];
 
-        // Check if the file is an image (optional)
+        
         $allowed_extensions = ['image/jpeg', 'image/png', 'image/gif'];
         if (in_array($image_type, $allowed_extensions)) {
-            // Set the destination folder and generate a new file name
-            $upload_dir = __DIR__ . '/../uploads/'; // Get the absolute path to the uploads folder
+            
+            $upload_dir = __DIR__ . '/../uploads/'; 
             $new_image_name = time() . '_' . $image_name;
             $upload_path = $upload_dir . $new_image_name;
 
-            // Move the uploaded image to the destination folder
             if (move_uploaded_file($image_tmp_name, $upload_path)) {
-                // Prepare the SQL statement with price_per_day
+               
                 $stmt = mysqli_prepare($conn, "INSERT INTO vehicles (vehicle_name, description, price_per_day, category, image) 
                                                VALUES (?, ?, ?, ?, ?)");
 
-                // Bind parameters to the prepared statement
-                mysqli_stmt_bind_param($stmt, "ssdis", $vehicle_name, $description, $price_per_day, $category, $new_image_name);
+                mysqli_stmt_bind_param($stmt, "ssdsd", $vehicle_name, $description, $price_per_day, $category, $new_image_name);
 
-                // Execute the statement
+              
                 if (mysqli_stmt_execute($stmt)) {
                     echo "New vehicle added successfully!";
-                    header("Location: manage_vehicles.php"); // Redirect to manage vehicles
-                    exit(); // Ensure the script stops
+                    header("Location: manage_vehicles.php"); 
+                    exit(); 
                 } else {
                     echo "Error: " . mysqli_error($conn);
                 }
 
-                // Close the statement
                 mysqli_stmt_close($stmt);
             } else {
                 echo "Error uploading image.";

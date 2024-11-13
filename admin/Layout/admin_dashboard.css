@@ -29,7 +29,9 @@
     padding-left: 0;
 }
 
+/* General Sidebar Styling */
 .sidebar ul li {
+    position: relative;
     margin-bottom: 15px;
 }
 
@@ -37,21 +39,64 @@
     text-decoration: none;
     color: white;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 .sidebar ul li a:hover {
     color: #3498db;
 }
 
-/* Main Content */
+/* Dropdown Styling */
+.dropdown {
+    display: none; /* Initially hidden */
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.dropdown li a {
+    font-size: 16px; 
+    color: #bdc3c7; 
+    padding: 4px 0;
+}
+
+.dropdown li::before {
+    content: '• '; 
+    color: #bdc3c7;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+
+.arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+
+.arrow.rotate {
+    transform: rotate(180deg);
+}
+
+
+.dropdown li a:hover {
+    color: #3498db;
+}
+
+
+
 .main-content {
     flex: 1;
     padding: 20px;
     background-color: #ecf0f1;
 }
 
-/* Navbar */
-/* Navbar */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -59,51 +104,6 @@
     background-color: #34495e;
     color: white;
     padding: 10px 20px;
-}
-
-/* Notification Button */
-#notification-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    position: relative;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-/* SVG Icon */
-#notification-btn svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-    transition: fill 0.2s ease;
-}
-
-/* Hover Effect */
-#notification-btn:hover {
-    transform: scale(1.1);  /* Slightly enlarge the button */
-}
-
-#notification-btn:hover svg {
-    fill: #f39c12;  /* Change icon color on hover */
-}
-
-/* Notification Badge */
-#notification-btn .badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    border-radius: 50%;
-    padding: 2px 5px;
-    transition: background-color 0.2s ease;
-}
-
-/* Change badge color on hover */
-#notification-btn:hover .badge {
-    background-color: #e74c3c;  /* Slightly darker red on hover */
 }
 
 .navbar .left h1 {
@@ -129,24 +129,63 @@
     background-color: #2980b9;
 }
 
-/* Content Section */
+
+#notification-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#notification-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+    transition: fill 0.2s ease;
+}
+
+#notification-btn:hover {
+    transform: scale(1.1); 
+}
+
+#notification-btn:hover svg {
+    fill: #f39c12; 
+}
+
+#notification-btn .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 5px;
+    transition: background-color 0.2s ease;
+}
+
+#notification-btn:hover .badge {
+    background-color: #e74c3c;
+}
+
+
 .content {
     margin-top: 20px;
     font-size: 18px;
 }
 
-/* Make it responsive */
+
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
     }
-
     .sidebar {
         width: 100%;
         height: auto;
         position: relative;
     }
-
     .main-content {
         padding: 10px;
     }

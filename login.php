@@ -47,19 +47,7 @@
         <!-- Footer content here -->
     </footer>
 
-    <script>
-     function validateLogin() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if (username === "admin" && password === "admin") {
-        window.location.href = "admin/Layout/admin_dashboard.php"; 
-        return false; 
-    } 
-  
-    return true;
-}
-
+    
     </script>
 </body>
 </html>
