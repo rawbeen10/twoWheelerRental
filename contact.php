@@ -5,31 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="styles/contact.css">
+    <link rel="stylesheet" href="./layout/layout.css">
+    <link rel="stylesheet" href="styles/fonts.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>Two Wheeler System</h1>
-        </div>
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="rent.php">Rent</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="login.php">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+<?php
+require("layout/header.php");
+?>
 
-    <section class="contact">
-      <h1>Contact Us</h1>
-      <p>If you have any questions or inquiries, feel free to get in touch with us.</p>
-      
-      <div class="contact-form">
+
+    <div class="contact-container">
+    <div class="contact-image">
+      <img src="media/contact.jpg" alt="contact-img">
+    </div>
+    
+    <div class="contact-form">
+        <h1>CONTACT US</h1>
           <form action="#" method="post">
               <label for="name">Name:</label>
               <input type="text" id="name" name="name" required>
+
+              <label for="phone">Phone:</label>
+              <input type="number" id="phone" name="phone" required>
 
               <label for="email">Email:</label>
               <input type="email" id="email" name="email" placeholder="abc@xyz.com" required>
@@ -40,15 +37,7 @@
               <center><button type="submit">Submit</button></center>
           </form>
       </div>
-      <div class="contact-info">
-          <h2>Contact Information</h2>
-          <p style="font-size: 20px;"><strong>Hamro Ride Pvt. Ltd.</strong></p>
-          <p>Chabahil</p>
-          <p>Kathmandu, Nepal</p>
-          <p>Email: contact@twowheeler.com</p>
-          <p>Phone: 01-434343</p>
-      </div>
-  </section>
+    </div>
 
 
   <div id="loginPopup" class="popup-container">
@@ -68,58 +57,17 @@
         </div>
         <div class="con-icons">
           <a href="#" class="icons"><img src="media/fb-color.png" alt="fb" title="Connect with Facebook"></a>
-          <a href="#" class="icons"><img src="media/gmail.webp" alt="gmail" title="Connect with Google"></a>
+          <a href="#" class="  icons"><img src="media/gmail.webp" alt="gmail" title="Connect with Google"></a>
         </div>
       </form>
     </div>
   </div>
 
-    <footer>
-        <div class="footer-container">
-          <!-- About Us Section -->
-          <div class="footer-section">
-            <h3>About Us</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor nec nulla eu malesuada.</p>
-          </div>
-          
-          <!-- Contact Information -->
-          <div class="footer-section">
-            <h3>Contact Us</h3>
-            <ul>
-              <li>Email: info@example.com</li>
-              <li>Phone: +977 1234567</li>
-              <li>Address: Chabahil, 06 Kathmandu, Nepal</li>
-            </ul>
-          </div>
-      
-          <!-- Useful Links -->
-          <div class="footer-section">
-            <h3>Useful Links</h3>
-            <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Help Center</a></li>
-            </ul>
-          </div>
-      
-          <!-- Social Media -->
-          <div class="footer-section">
-            <h3>Follow Us</h3>
-            <div class="social-icons">
-              <a href="#" class="social-icon"><img src="media/fb.png" alt="fb-logo"></a>
-              <a href="#" class="social-icon"><img src="media/x.png" alt="x-logo"></a>
-              <a href="#" class="social-icon"><img src="media/insta.png" alt="insta-logo"></a>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="footer-bottom">
-          <p>&copy; 2024 Your Company. All Rights Reserved.</p>
-          <p>Designed and Developed by Rabin and Kushal.</p>
-        </div>
-      </footer>
+  <?php
+require("layout/footer.php");
+?>
 
-      <script>
+      <!-- <script>
         window.onload = function() {
     setTimeout(showPopup, 2000);
 
@@ -134,7 +82,7 @@
 function showPopup() {
     document.getElementById("loginPopup").style.display = "flex";
 }
-      </script>
+      </script> -->
 
     
 </body>

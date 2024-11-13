@@ -1,67 +1,38 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    background-color: rgb(0, 61, 122);
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #fff;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.nav-menu li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.2rem;
-}
-
-.nav-menu li a:hover {
-    color: #24ccff;
-}
-
-.contact {
+.contact-form {
+  width: 50vw;
+  max-width: 450px;
   background-color: #fff;
-  text-align: center;
   padding: 20px;
   margin: 20px auto;
-  margin-top: 40px;
-  max-width: 500px;
+  /* margin-top: 40px; */
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.contact h1 {
-  font-family:'Bree Serif', serif ;
-  padding: 10px;
-  font-size: 40px;
-  margin-bottom: 10px;
+.contact-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.contact p {
-  font-size: 16px;
-  margin-bottom: 20px;
+.contact-image{
+  margin: 20px auto;
+  padding-top: 20px;
 }
+
+.contact-image img{
+  width: 50vw;
+  height: auto;
+}
+
+.contact-form h1 {
+  text-align: center;
+  /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ; */
+  padding: 10px;
+  font-size: 40px;
+  /* margin-bottom: 10px; */
+}
+
 
 .contact-form {
   text-align: left;
@@ -70,11 +41,12 @@ nav ul {
 .contact-form label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
+.contact-form input[type=text],
+.contact-form input[type=number],
+.contact-form input[type=email],
 .contact-form textarea {
   width: 100%;
   padding: 10px;
@@ -101,25 +73,6 @@ nav ul {
 .contact-form button:hover {
   background-color: #003060;
 
-}
-
-.contact-info {
-  margin-top: 10px;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(80, 80, 80, 0.418);
-}
-
-.contact-info h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.contact-info p {
-  font-size: 16px;
-  margin-bottom: 10px;
 }
 
 
@@ -191,7 +144,7 @@ nav ul {
     text-align: center;
   }
   
-  input[type=text],[type=password]{
+  .form-container input[type=text],[type=password]{
     display: flex;
     width: 100%;
     height: 40px;
@@ -285,97 +238,3 @@ nav ul {
     background-color: #003060;
   }
   
-
-
-
-
-
-
-
-
-
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .footer-section {
-    flex: 1;
-    min-width: 250px;
-    margin: 20px;
-  }
-  
-  .footer-section h3 {
-    font-size: 18px;
-    color: white;
-    margin-bottom: 15px;
-  }
-  
-  .footer-section p, 
-  .footer-section ul {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section li {
-    margin-bottom: 8px;
-  }
-  
-  .footer-section a {
-    color: #aaa;
-    text-decoration: none;
-  }
-  
-  .footer-section a:hover {
-    color: white;
-  }
-  
-  .social-icons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .social-icon img {
-    padding: 10px;
-    border-radius: 50%;
-    text-align: center;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-  }
-  
-  .social-icon:hover {
-    background-color: #66666681;
-    border-radius: 50%;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 14px;
-    color: #d6d6d6;
-  }
-  
-  footer hr{
-    border: 1px solid grey;
-    margin: 0 15px;
-  }
