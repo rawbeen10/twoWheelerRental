@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container-two{
+    width: 80%;
+}
+
+.container {
+    display: flex;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-grow: 1; /* Allow navbar to take all available space */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.navbar h1 {
+    color: white; /* Make the text white */
+    margin: 0; /* Remove default margin */
+    font-size: 24px; /* Adjust font size */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.navbar .right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Add spacing between buttons */
+    white-space: nowrap; /* Prevent items from wrapping */
+}
+
+.navbar button {
+    background-color: #3c9eff; /* Button background */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center; /* Align text and icon vertically */
+    gap: 5px; /* Add space between icon and text if needed */
+    transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+    background-color: #2f96eb; /* Hover effect */
+}
+
+.navbar button svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+.main-content {
+    margin-top: 0;
+    margin-left: 5px;
+    flex: 1;
+    padding: 20px;
+    background-color: #2c3e50;
+}
+

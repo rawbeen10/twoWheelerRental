@@ -22,14 +22,22 @@ $result = mysqli_query($conn, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Vehicles</title>
-    <link rel="stylesheet" href="../styles/view_vehicle.css">
+    <link rel="stylesheet" href="styles/view_vehicle.css">
+    <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>
 <body>
 
-<h2>View Vehicles</h2>
+<div class="main-container">
+<div class="container-one">
+    <?php 
+    include '../Layout/sidebar.html';
+    ?>
+    <script src="../Layout/sidebar.js"></script>
+    </div>
 
-
-<div class="show-entries">
+    <div class="container-two">
+    <h2>View Vehicles</h2>
+    <div class="show-entries">
     Show 
     <form action="view_vehicle.php" method="GET" style="display:inline;">
         <select name="limit" onchange="this.form.submit()">
@@ -74,7 +82,6 @@ $result = mysqli_query($conn, $query);
         ?>
     </tbody>
 </table>
-
 <div class="pagination">
     <?php
     for ($i = 1; $i <= $total_pages; $i++) {
@@ -82,6 +89,12 @@ $result = mysqli_query($conn, $query);
     }
     ?>
 </div>
+    </div>
+</div>
+
+
+
+
 
 </body>
 </html>

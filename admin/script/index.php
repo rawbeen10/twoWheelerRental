@@ -39,7 +39,7 @@
 
             if (username === "admin" && password === "admin") {
                
-                window.location.href = "http://localhost/twowheelerrental/admin/Layout/admin_dashboard.php"; 
+                window.location.href = "http://localhost/twowheelerrental/admin/script/admin_dashboard.php"; 
                 return false;
             } 
           

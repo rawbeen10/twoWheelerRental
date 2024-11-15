@@ -19,7 +19,7 @@ require("layout/header.php");
         <div class="home-txt">
             <h1>Welcome to UTHAOO</h1>
             <p>Explore Kathmandu on our modern bikes and scooters. The best rates, the best bikes!</p>
-            <a href="rent.html"><button id="btn" type="button">Explore</button></a>
+            <a href="rent.php"><button id="btn" type="button">Explore</button></a>
         </div>
     </section>
 

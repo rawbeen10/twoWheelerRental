@@ -58,10 +58,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Vehicle</title>
-    <link rel="stylesheet" href="../styles/manage_vehicles.css">
+    <link rel="stylesheet" href="styles/add_vehicle.css">
+    <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>
 <body>
 
+<div class="main-container">
+<div class="container-one">
+    <?php 
+    include '../Layout/sidebar.html';
+    ?>
+    <script src="../Layout/sidebar.js"></script>
+    </div>
+ 
+
+    <div class="container-two">
     <h2>Add New Vehicle</h2>
     <form action="add_vehicle.php" method="POST" enctype="multipart/form-data">
         <label for="vehicle_name">Vehicle Name:</label>
@@ -77,13 +88,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
         <select name="category" id="category" required>
             <option value="bike">Bike</option>
             <option value="scooter">Scooter</option>
-        </select><br><br>
+        </select>
 
         <label for="vehicle_image">Vehicle Image:</label>
         <input type="file" name="vehicle_image" id="vehicle_image" required>
 
         <button type="submit" name="add_vehicle">Add Vehicle</button>
     </form>
+    </div>
+</div>
+
+
+
+
 
 </body>
 </html>
