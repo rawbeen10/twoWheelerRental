@@ -1,21 +1,24 @@
 <?php
-// Step 1: Connect to the database
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "twowheelerrental";  // Replace with your actual database name
+$dbname = "twowheelerrental";
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Step 2: Fetch vehicle data from the database
-$sql = "SELECT * FROM vehicles";  // Replace 'vehicles' with your table name
+
+$sql = "SELECT * FROM vehicles";  
 $result = $conn->query($sql);
+
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,58 +28,70 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rent</title>
     <link rel="stylesheet" href="styles/rent.css">
-    <link rel="stylesheet" href="./layout/layout.css">
+    <link rel="stylesheet" href="layout/layout.css">
     <link rel="stylesheet" href="styles/fonts.css">
-
 </head>
 <body>
-<?php
-require("layout/header.php");
-?>
-    <section id="rent">
-      <h1>Rent Your Ride</h1>
-      <div class="bike-container">
-          <?php
-          // Step 3: Display the vehicle data
-          if ($result->num_rows > 0) {
-              // Output each vehicle data as a bike item
-              while($row = $result->fetch_assoc()) {
-                  echo "<div class='bike-item'>";
-                  echo "<img src='admin/uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img'>";
-
-                  echo "<h3>" . $row['vehicle_name'] . "</h3>";
-                  echo "<p>Description: " . $row['category'] . "</p>"; 
-                  echo "<button class='btn rent-btn'>Rent</button>";
-                  echo "<button class='btn view-more-btn'>View More</button>";
-                  echo "</div>";
-              }
-          } else {
-              echo "<p>No vehicles available for rent at the moment.</p>";
-          }
-          $conn->close();
-          ?>
-      </div>
-  </section>
-
     <?php
-require("layout/footer.php");
-?>
+    require("layout/header.php");
+    ?>
 
-      <script>
-        window.onload = function() {
-            setTimeout(showPopup, 2000);
+<section id="rent">
+    <h1>Rent Your Ride</h1>
+    <div class="bike-container">
+        <?php
+      
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                
+                $pricePerDay = isset($row['price_per_day']) && !empty($row['price_per_day']) ? htmlspecialchars($row['price_per_day']) : 'N/A';
 
-            const closeBtn = document.getElementById("closeBtn");
-            const popup = document.getElementById("loginPopup");
-
-            closeBtn.addEventListener("click", function() {
-                popup.style.display = "none";
-            });
+                echo "<div class='bike-item'>";
+                echo "<img src='admin/uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img'>";
+                echo "<h3>" . htmlspecialchars($row['vehicle_name']) . "</h3>";
+                echo "<a href='#' class='btn rent-btn'>Rent</a>";  
+                
+                echo "<a href='#' class='btn view-more-btn' onclick='openPopup(\"" . htmlspecialchars($row['vehicle_name']) . "\", \"" . htmlspecialchars($row['category']) . "\", \"$pricePerDay\", \"" . htmlspecialchars($row['description']) . "\", \"" . htmlspecialchars($row['image']) . "\")'>View More</a>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>No vehicles available for rent at the moment.</p>";
         }
+        $conn->close();
+        ?>
+    </div>
+</section>
 
-        function showPopup() {
-            document.getElementById("loginPopup").style.display = "flex";
-        }
-      </script>
+<!-- Popup -->
+<div id="viewMorePopup" class="popup-container">
+    <div class="popup-content">
+        <img id="popupImage" class="popup-image" src="" alt="Vehicle Image">
+        <h2>Vehicle Details</h2>
+        <p><strong>Vehicle Name:</strong> <span id="popupVehicleName"></span></p>
+        <p><strong>Category:</strong> <span id="popupCategory"></span></p>
+        <p><strong>Price per Day:</strong> ₹<span id="popupPricePerDay"></span></p>
+        <p><strong>Description:</strong> <span id="popupDescription"></span></p>
+        <p><strong>Vehicle Number:</strong> (Not available)</p>
+        <button class="btn cancel-btn" onclick="closePopup()">Cancel</button>
+    </div>
+</div>
+
+<script>
+   
+    function openPopup(vehicleName, category, pricePerDay, description, imageUrl) {
+        document.getElementById('popupVehicleName').textContent = vehicleName;
+        document.getElementById('popupCategory').textContent = category;
+        document.getElementById('popupPricePerDay').textContent = pricePerDay;
+        document.getElementById('popupDescription').textContent = description;
+        document.getElementById('viewMorePopup').classList.add('show');
+        document.getElementById('popupImage').src = 'admin/uploads/' + imageUrl; 
+    }
+
+    
+    function closePopup() {
+        document.getElementById('viewMorePopup').classList.remove('show');
+    }
+</script>
+
 </body>
 </html>

@@ -1,238 +1,112 @@
-
-
-h1{
-    /* margin-top: 10px; */
-    font-size: 4rem;
-    text-align: center;
-    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
 }
 
+#rent {
+  padding: 20px;
+  text-align: center;
+}
 
 .bike-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
-  margin: 20px 0;
 }
 
 .bike-item {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 300px;
-  padding: 20px;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
   text-align: center;
-  background-color: #f9f9f9;
 }
 
 .bike-img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+  height: auto;
+  border-radius: 8px;
 }
 
-.bike-item h3 {
-  margin: 15px 0 10px;
-  font-size: 20px;
+h3 {
+  margin-top: 10px;
 }
 
-.bike-item p {
-  font-size: 16px;
-  color: #555;
-}
-
-/* Buttons for "Rent" and "View More" */
 .btn {
-  margin: 10px 5px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
+  display: inline-block;
+  padding: 10px 20px;  /* Added uniform padding for buttons */
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+  margin: 10px;
   cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.3s;
+  text-align: center;
 }
 
 .rent-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.rent-btn:hover {
-  background-color: #218838;
+  background-color: green;
 }
 
 .view-more-btn {
-  background-color: #007bff;
-  color: white;
+  background-color: #0044cc; /* Hard Blue */
 }
 
-.view-more-btn:hover {
-  background-color: #0056b3;
-}
-
-
-
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
-}
-
+/* Popup Styles */
 .popup-container {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
 }
 
-.form-container {
-  margin: 20px auto;
-  border: 1px solid rgb(184, 184, 184);
-  border-radius: 13px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
+.popup-content {
   background-color: white;
   padding: 20px;
-  position: relative; /* For the close button */
+  width: 40%;  /* Adjusted popup width */
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  max-height: 80%; /* Prevents overflow */
+  overflow-y: auto; /* Adds scroll if needed */
 }
 
+.popup-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px; /* Adds space below the image */
+}
+
+.popup-container.show {
+  display: flex;
+}
+
+.cancel-btn {
+  background-color: red;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+/* Remove close button as per request */
 .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  cursor: pointer;
+  display: none; /* Hide the close button */
 }
 
-.close-btn:hover {
-  color: red;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .popup-content {
+      width: 80%;
+  }
 }
 
-.form-container{
-  margin: 20px auto;
-  border: 1px solid rgb(184, 184, 184);
-  border-radius: 13px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 20px;
-  }
-  
-  .form-container h2{
-    font-size: 30px;
-    text-align: center;
-  }
-  
-  input[type=text],[type=password]{
-    display: flex;
-    width: 100%;
-    height: 40px;
-    margin: 15px 0;
-    padding-left: 10px;
-    font-size: 14px;
-    border-radius: 7px;
-    border: 0.5px solid gray;
-  }
-  
-  input[type=checkbox]{
-    display: inline;
-    margin-right: 7px;  
-  }
-  
-  .center-text{
-    text-align: center;
-  }
-  
-  .sign{
-    font-size: 20px;
-    margin: 10px;
-  }
-  
-  #forgot, #sign{
-    text-decoration: none;
-    color: #0A58CD;
-  }
-  #forgot, #sign:hover{
-    color: #007de4;
-  }
-  
-  .center-text {
-    /* margin: 7px 0; */
-    position: relative;
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  .connect-with {
-    font-size: 17px;
-    position: relative;
-    z-index: 2; 
-    background-color: white; 
-    padding: 0 10px; 
-  }
-  
-  .line {
-    position: absolute;
-    top: 50%; 
-    left: 0;
-    right: 0;
-    height: 1px;
-    border: none;
-    background-color: rgb(92, 92, 92); 
-    z-index: 1; 
-  }
-  
-  
-  
-  .con-icons{
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-  }
-  
-  .icons img{
-    height: 40px;
-    width: 40px;
-  }
-  
-  
-  
-  
-  button {
-    margin:10px 0;
-    padding: 9px;
-    background-color: #015db9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #003060;
-  }
-  
 
 
 
@@ -241,4 +115,22 @@ h1{
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

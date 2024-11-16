@@ -1,3 +1,13 @@
+<?php
+session_start(); 
+
+
+if (isset($_SESSION['success_message'])) {
+    echo "<script>showPopup('" . $_SESSION['success_message'] . "');</script>";
+    unset($_SESSION['success_message']); 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +31,7 @@ require("layout/header.php");
     
     <div class="contact-form">
         <h1>CONTACT US</h1>
-          <form action="#" method="post">
+        <form action="submit_contact.php" method="post">
               <label for="name">Name:</label>
               <input type="text" id="name" name="name" required>
 

@@ -1,18 +1,17 @@
 <?php
-include('db_connect.php');
+include('db_connect.php'); 
 
-// Pagination variables
 $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $limit;
 
-// Count total rows in the vehicles table
-$total_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM vehicles");
+
+$total_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM contacts");
 $total_row = mysqli_fetch_assoc($total_result);
 $total_pages = ceil($total_row['total'] / $limit);
 
-// Fetch vehicle data from the database
-$query = "SELECT * FROM vehicles LIMIT $start, $limit";
+
+$query = "SELECT * FROM contacts LIMIT $start, $limit";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -21,8 +20,8 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Vehicles</title>
-    <link rel="stylesheet" href="styles/view_vehicle.css">
+    <title>Manage Contacts</title>
+    <link rel="stylesheet" href="styles/manage_contacts.css">
     <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>
 <body>
@@ -36,11 +35,11 @@ $result = mysqli_query($conn, $query);
     </div>
 
     <div class="container-two">
-        <h2>View Vehicles</h2>
+        <h2>Manage Contacts</h2>
 
         <div class="show-entries">
             Show 
-            <form action="view_vehicle.php" method="GET" style="display:inline;">
+            <form action="manage_contacts.php" method="GET" style="display:inline;">
                 <select name="limit" onchange="this.form.submit()">
                     <option value="10" <?php echo $limit == 10 ? 'selected' : ''; ?>>10</option>
                     <option value="20" <?php echo $limit == 20 ? 'selected' : ''; ?>>20</option>
@@ -55,11 +54,10 @@ $result = mysqli_query($conn, $query);
             <thead>
                 <tr>
                     <th>SN</th>
-                    <th>Vehicle Name</th>
-                    <th>Description</th>
-                    <th>Price per Day</th>
-                    <th>Category</th>
-                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Message</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -69,14 +67,13 @@ $result = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
                     echo "<td>" . $sn++ . "</td>";
-                    echo "<td>" . htmlspecialchars($row['vehicle_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['description']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['price_per_day']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['category']) . "</td>";
-                    echo "<td><img src='../uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img' width='50'></td>";
+                    echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['message']) . "</td>";
                     echo "<td class='action-buttons'>
-                              <a href='edit_vehicle.php?id=" . $row['id'] . "' class='edit-btn'>Edit</a> | 
-                              <a href='delete_vehicle.php?id=" . $row['id'] . "' class='delete-btn'>Delete</a>
+                              
+                              <a href='delete_contacts.php?id=" . $row['id'] . "' class='delete-btn'>Read</a>
                           </td>";
                     echo "</tr>";
                 }
@@ -86,9 +83,9 @@ $result = mysqli_query($conn, $query);
 
         <div class="pagination">
             <?php
-            // Display pagination links
+            
             for ($i = 1; $i <= $total_pages; $i++) {
-                echo "<a href='view_vehicle.php?page=$i&limit=$limit' class='pagination-link'>$i</a>";
+                echo "<a href='manage_contacts.php?page=$i&limit=$limit'>$i</a>";
             }
             ?>
         </div>

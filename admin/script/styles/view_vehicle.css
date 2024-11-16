@@ -1,20 +1,32 @@
-*{
+/* Global Reset */
+* {
     margin: 0;
     padding: 0;
 }
 
-.main-container{
+.main-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.container-one{
-   background-color:#2c3e50;
+.container-one {
+    background-color: #2c3e50;
 }
 
-.container-two{
+.container-two {
     width: 80%;
     padding-left: 5px;
+}
+
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.show-entries {
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 table {
@@ -27,32 +39,24 @@ table, th, td {
     border: 1px solid #ddd;
 }
 
-h2{
-    font-size: 24px;
-    text-align: center;
+th {
+    background-color: #2c8d2f;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
 }
 
-
 td {
+    background-color: #f9f9f9;
     padding: 10px;
     text-align: left;
     font-size: 16px;
 }
 
-td img{
+td img {
     height: 120px;
     width: 150px;
-}
-
-th {
-    background-color: #f4f4f4;
-    padding: 10px;
-    text-align: left;
-    font-size: 19px;
-}
-
-td {
-    background-color: #f9f9f9;
 }
 
 .action-buttons {
@@ -68,7 +72,7 @@ td {
 }
 
 .edit-btn {
-    background-color: #2c8d2f; 
+    background-color: #2c8d2f;
 }
 
 .edit-btn:hover {
@@ -91,16 +95,17 @@ td {
 .pagination a {
     padding: 8px 16px;
     margin: 0 5px;
-    background-color: #f4f4f4;
+    background-color: #2c8d2f;
     text-decoration: none;
-    color: #333;
+    color: white;
+    border-radius: 4px;
 }
 
 .pagination a:hover {
-    background-color: #ddd;
+    background-color: #45a049;
 }
 
-.show-entries {
-    text-align: left;
-    margin-bottom: 10px;
+.pagination a.active {
+    background-color: #45a049;
+    color: white;
 }
