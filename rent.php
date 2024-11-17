@@ -68,10 +68,10 @@ if (!$result) {
         <img id="popupImage" class="popup-image" src="" alt="Vehicle Image">
         <h2>Vehicle Details</h2>
         <p><strong>Vehicle Name: </strong> <span id="popupVehicleName"></span></p>
+        <p><strong>Vehicle Number: </strong> <span id="popupVehicleNo"></span></p>
         <p><strong>Category: </strong> <span id="popupCategory"></span></p>
-        <p><strong>Price per Day: </strong> ₹<span id="popupPricePerDay"></span></p>
+        <p><strong>Price per Day: </strong> Rs. <span id="popupPricePerDay"></span></p>
         <p><strong>Description: </strong> <span id="popupDescription"></span></p>
-        <p><strong>Vehicle Number: </strong> (Not available)</p>
         <button class="btn cancel-btn" onclick="closePopup()">Cancel</button>
     </div>
 </div>
@@ -82,8 +82,9 @@ if (!$result) {
 
 <script>
    
-    function openPopup(vehicleName, category, pricePerDay, description, imageUrl) {
+    function openPopup(vehicleName, vehicleNo, category, pricePerDay, description, imageUrl) {
         document.getElementById('popupVehicleName').textContent = vehicleName;
+        document.getElementById('popupVehicleNo').textContent = vehicleNo;
         document.getElementById('popupCategory').textContent = category;
         document.getElementById('popupPricePerDay').textContent = pricePerDay;
         document.getElementById('popupDescription').textContent = description;

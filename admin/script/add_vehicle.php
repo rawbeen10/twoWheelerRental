@@ -93,8 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
             <label for="vehicle_name">Vehicle Name:</label>
             <input type="text" name="vehicle_name" id="vehicle_name" required>
 
+            <label for="vehicle_no">Vehicle Number:</label>
+            <input type="text" name="vehicle_no" id="vehicle_no" required>
+
             <label for="description">Description:</label>
             <textarea name="description" id="description" required></textarea>
+            
 
             <label for="price">Price per Hour:</label>
             <input type="number" step="0.01" name="price" id="price" required>
