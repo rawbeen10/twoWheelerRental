@@ -1,19 +1,20 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.main-container{
+.main-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.container-two{
-    width: 80%;
+.container-one {
+    background-color: #2c3e50;
 }
 
-.container {
-    display: flex;
+.container-two {
+    width: 80%;
+    padding-left: 5px;
 }
 
 
