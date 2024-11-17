@@ -92,10 +92,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_vehicle'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Vehicle</title>
-    <link rel="stylesheet" href="../styles/view_vehicle.css">
+    <link rel="stylesheet" href="styles/add_vehicle.css">
+    <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>
 <body>
 
+<div class="main-container">
+<div class="container-one">
+        <?php include '../Layout/sidebar.html'; ?>
+        <script src="../Layout/sidebar.js"></script>
+    </div>
+
+    <div class="container-two">
     <h2>Edit Vehicle</h2>
     <form action="edit_vehicle.php?id=<?php echo $vehicle_id; ?>" method="POST" enctype="multipart/form-data">
         <label for="vehicle_name">Vehicle Name:</label>
@@ -118,6 +126,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_vehicle'])) {
 
         <button type="submit" name="update_vehicle">Update Vehicle</button>
     </form>
+    </div>
+
+</div>
+
+
+
 
 </body>
 </html>

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
        
-        echo "Contact information has been saved!";
+        echo "Your message has been sent. Our team will get back to you soon!";
     } else {
         
         echo "Error: " . $sql . "<br>" . $conn->error;

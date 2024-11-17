@@ -42,7 +42,7 @@ require("layout/header.php");
               <input type="email" id="email" name="email" placeholder="abc@xyz.com" required>
 
               <label for="message">Message:</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea id="message" name="message" rows="5" maxlength="200" required></textarea>
 
               <center><button type="submit">Submit</button></center>
           </form>
