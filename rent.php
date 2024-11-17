@@ -67,14 +67,18 @@ if (!$result) {
     <div class="popup-content">
         <img id="popupImage" class="popup-image" src="" alt="Vehicle Image">
         <h2>Vehicle Details</h2>
-        <p><strong>Vehicle Name:</strong> <span id="popupVehicleName"></span></p>
-        <p><strong>Category:</strong> <span id="popupCategory"></span></p>
-        <p><strong>Price per Day:</strong> ₹<span id="popupPricePerDay"></span></p>
-        <p><strong>Description:</strong> <span id="popupDescription"></span></p>
-        <p><strong>Vehicle Number:</strong> (Not available)</p>
+        <p><strong>Vehicle Name: </strong> <span id="popupVehicleName"></span></p>
+        <p><strong>Category: </strong> <span id="popupCategory"></span></p>
+        <p><strong>Price per Day: </strong> ₹<span id="popupPricePerDay"></span></p>
+        <p><strong>Description: </strong> <span id="popupDescription"></span></p>
+        <p><strong>Vehicle Number: </strong> (Not available)</p>
         <button class="btn cancel-btn" onclick="closePopup()">Cancel</button>
     </div>
 </div>
+
+<?php
+    require("layout/footer.php");
+    ?>
 
 <script>
    

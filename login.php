@@ -46,8 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="layout/layout.css">
 </head>
 <body>
+
+<?php
+    require("layout/header.php");
+    ?>
+
+   <span id="admin-login"><a href="admin/script/index.php">Admin Login</a></span> 
+
     <div class="container">
         <h1>Login</h1>
         <form action="login.php" method="POST">
@@ -58,5 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4>Don't have an account? <a href="signup.php">Sign Up</a></h4>
         </form>
     </div>
+
+    <?php
+    require("layout/footer.php");
+    ?>
 </body>
 </html>

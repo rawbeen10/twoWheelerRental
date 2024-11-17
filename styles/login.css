@@ -126,9 +126,21 @@ body{
     width: 40px;
   }
   
-  
-  
-  
+  #admin-login a{
+    margin: 5px 2px;
+    float: right;
+    font-size: 19px;
+    text-decoration: none;
+    background-color: maroon;
+    color: white;
+    padding: 9px;
+    border-radius: 7px;
+  }
+
+  #admin-login a:hover{
+    background-color: rgb(189, 7, 7);
+  }
+
   button {
     margin:10px 0;
     padding: 9px;
@@ -144,6 +156,7 @@ body{
   button:hover {
     background-color: #003060;
   }
+
   
   
   
