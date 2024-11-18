@@ -1,0 +1,81 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+}
+
+button {
+    padding: 12px;
+    background-color: #00b4db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0083b0;
+}
+
+.profile-info {
+    margin-top: 30px;
+    color: #fff;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+select[disabled] {
+    background-color: #f0f0f0;
+    color: #ccc;
+}
+
+input[type="file"] {
+    padding: 5px;
+    color: #333;
+}

@@ -1,0 +1,88 @@
+/* Manage Users Styles (manage_users.css) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.main-container {
+    display: flex;
+}
+
+.container-one {
+    width: 20%;
+}
+
+.container-two {
+    width: 80%;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.show-entries {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.delete-btn:hover {
+    background-color: #e41b0b;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #45a049;
+}
+
+.pagination a.active {
+    background-color: #45a049;
+}

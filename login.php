@@ -1,15 +1,15 @@
 <?php
 
-session_start();
+session_start(); // Start the session
 
-
-include('admin/script/db_connect.php');
-
+include('admin/script/db_connect.php'); // Database connection file
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Collecting the input from the form
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Query to fetch user based on email
     $query = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $email);
@@ -17,26 +17,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        
+        // If a user is found, verify the password
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
         
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email'];
+        if (password_verify($password, $user['password'])) {
+            // If password matches, set session variables
+            $_SESSION['user_id'] = $user['id'];  // Store the user ID in session
+            $_SESSION['username'] = $user['username'];  // Store the username in session
+            $_SESSION['email'] = $user['email'];  // Store the email in session
 
-            header("Location: index.php");
+            // Redirect to profile page or any other page
+            header("Location: profile.php"); // Redirect to the profile page
             exit();
         } else {
+            // Incorrect password message
             echo "Incorrect password!";
         }
     } else {
+        // No user found with the provided email
         echo "No user found with that email!";
     }
 
+    // Close statement and connection
     $stmt->close();
     $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
