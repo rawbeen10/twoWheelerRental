@@ -32,7 +32,7 @@
                             <path d="M10 21h4v2H10z"></path>
                         </svg>
                     </button>
-                    <button id="logout-btn" onclick="window.location.href='../../login.php'">Logout</button>
+                    <button id="logout-btn" onclick="window.location.href='index.php'">Logout</button>
                 </div>
             </div>
             <div class="content">

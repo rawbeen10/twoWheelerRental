@@ -1,7 +1,3 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-}
 
 #rent {
   padding: 20px;
@@ -12,6 +8,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .bike-item {
@@ -88,11 +85,16 @@ h3 {
 }
 
 .cancel-btn {
-  background-color: red;
+  border: none;
+  background-color: rgb(247, 40, 40);
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   color: white;
+}
+
+.cancel-btn:hover{
+  background-color:rgb(192, 16, 16) ;
 }
 
 /* Remove close button as per request */

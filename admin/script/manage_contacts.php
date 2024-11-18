@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Contacts</title>
+    <title>Messages</title>
     <link rel="stylesheet" href="styles/manage_contacts.css">
     <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>
@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $query);
     </div>
 
     <div class="container-two">
-        <h2>Manage Contacts</h2>
+        <h2>Messages</h2>
 
         <div class="show-entries">
             Show 
