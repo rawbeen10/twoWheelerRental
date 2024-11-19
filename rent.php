@@ -77,40 +77,7 @@ if (!$result) {
     </div>
 </div>
 
-    <!-- Rent Form Popup -->
-    <div id="rentFormPopup" class="popup-container">
-        <div class="popup-content">
-            <button class="cancel-btn" onclick="closeRentForm()">Close</button>
-            <h2>Rental Form</h2>
-            <form action="submit_rental.php" method="POST" enctype="multipart/form-data" class="rent-form">
-                <label for="vehicle">Vehicle Name:</label>
-                <input type="text" id="vehicleName" name="vehicle_name" readonly>
-
-                <label for="fullname">Full Name:</label>
-                <input type="text" name="fullname" placeholder="Full Name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" name="email" placeholder="example@gmail.com" required>
-
-                <label for="phone">Phone Number:</label>
-                <input type="text" name="phone" placeholder="Your Phone Number" required>
-
-                <label for="id_type">Type of ID:</label>
-                <select name="id_type" required>
-                    <option value="citizenship">Citizenship</option>
-                    <option value="license">Driving License</option>
-                    <option value="nid">National ID</option>
-                    <option value="voter">Voter Card</option>
-                    <option value="others">Others</option>
-                </select>
-
-                <label for="id_upload">Upload ID:</label>
-                <input type="file" name="id_upload" required>
-
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
+ 
 
 
 

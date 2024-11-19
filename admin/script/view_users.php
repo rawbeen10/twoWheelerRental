@@ -6,12 +6,12 @@ $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $limit;
 
-// Get total number of users for pagination
+
 $total_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM users");
 $total_row = mysqli_fetch_assoc($total_result);
 $total_pages = ceil($total_row['total'] / $limit);
 
-// Fetch users for current page with the limit
+
 $query = "SELECT * FROM users LIMIT $start, $limit";
 $result = mysqli_query($conn, $query);
 
