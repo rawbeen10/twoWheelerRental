@@ -1,4 +1,4 @@
-
+/* General Styles */
 #rent {
   padding: 20px;
   text-align: center;
@@ -32,7 +32,7 @@ h3 {
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;  /* Added uniform padding for buttons */
+  padding: 10px 20px;  
   text-decoration: none;
   color: white;
   border-radius: 4px;
@@ -46,7 +46,7 @@ h3 {
 }
 
 .view-more-btn {
-  background-color: #0044cc; /* Hard Blue */
+  background-color: #0044cc;
 }
 
 /* Popup Styles */
@@ -60,79 +60,74 @@ h3 {
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-}
-
-.popup-content {
-  background-color: white;
-  padding: 20px;
-  width: 40%;  /* Adjusted popup width */
-  border-radius: 8px;
-  text-align: center;
-  position: relative;
-  max-height: 80%; /* Prevents overflow */
-  overflow-y: auto; /* Adds scroll if needed */
-}
-
-.popup-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px; /* Adds space below the image */
+  z-index: 1000;
 }
 
 .popup-container.show {
   display: flex;
 }
 
+.popup-content {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 40%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.popup-content h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.popup-content label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
 .cancel-btn {
-  border: none;
-  background-color: rgb(247, 40, 40);
+  background-color: #f44336;
   padding: 10px 20px;
   border-radius: 5px;
-  text-decoration: none;
   color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.cancel-btn:hover{
-  background-color:rgb(192, 16, 16) ;
-}
-
-/* Remove close button as per request */
-.close-btn {
-  display: none; /* Hide the close button */
+.rent-btn {
+  background-color: green;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .popup-content {
-      width: 80%;
+    width: 90%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,4 @@
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
@@ -15,4 +16,122 @@
 .container-two {
     width: 80%;
     padding-left: 5px;
+}
+
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.show-entries {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #2c8d2f;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+td {
+    background-color: #f9f9f9;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+}
+
+td img {
+    height: 50px;
+    width: 50px;
+}
+
+.action-buttons {
+    text-align: center;
+}
+
+.approve-btn, .cancel-btn {
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.approve-btn {
+    background-color: #27ae60;
+}
+
+.approve-btn:hover {
+    background-color: #2ecc71;
+}
+
+.cancel-btn {
+    background-color: #c22b20;
+}
+
+.cancel-btn:hover {
+    background-color: #e53935;
+}
+
+.status-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.status-btn.pending {
+    background-color: #f39c12;
+    color: white;
+}
+
+.status-btn.pending:hover {
+    background-color: #e67e22;
+}
+
+.status-btn.approved {
+    background-color: #27ae60;
+    color: white;
+}
+
+.status-btn.approved:hover {
+    background-color: #2ecc71;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #2c8d2f;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #45a049;
+}
+
+.pagination a.active {
+    background-color: #45a049;
+    color: white;
 }
