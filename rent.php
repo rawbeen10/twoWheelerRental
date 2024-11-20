@@ -67,7 +67,7 @@ if (!$result) {
         <p><strong>Category:</strong> <span id="popupCategory"></span></p>
         <p><strong>Price per Day:</strong> Rs. <span id="popupPricePerDay"></span></p>
         <p><strong>Description:</strong> <span id="popupDescription"></span></p>
-        <button class="btn cancel-btn" onclick="closePopup()">Close</button>
+        <button class="btn cancel-btn" onclick="closePopup()">x</button>
     </div>
 </div>
 

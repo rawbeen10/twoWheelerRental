@@ -37,6 +37,7 @@ if (isset($_GET['delete_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
+    
     <link rel="stylesheet" href="styles/view_users.css">
     <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>

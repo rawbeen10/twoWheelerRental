@@ -33,38 +33,29 @@ if (isset($_SESSION['new_notification'])) {
             <li><a href="rent.php">Rent</a></li>
             <li><a href="contact.php">Contact</a></li>
             <li><a href="login.php">Login</a></li>
+            
+            
         </ul>
     </nav>
 
-    <!-- Notification Icon with SVG -->
-    <div class="notification-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M12 22c1.104 0 2-.896 2-2H10c0 1.104.896 2 2 2zm6-6V9c0-3.314-2.686-6-6-6-1.184 0-2.285.386-3.214 1.032C8.474 3.532 8 4.853 8 6h8v10h2zM5 15V6c0-1.147.474-2.468 1.214-3.032C6.285 2.386 7.184 2 8 2c-3.314 0-6 2.686-6 6v9h2z"/>
-        </svg>
-        <span class="notification-count" id="notification-count">0</span>
-    </div>
+    
+   
 </header>
 
-<!-- Popup Modal -->
-<div class="popup" id="popup" style="display: none;">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">×</span>
-        <h2 id="popup-message">Your rent has been approved! Visit the office for further processing.</h2>
-    </div>
-</div>
+
 
 <script>
-    // Example logic to check for rent approval or cancellation
-    let notificationCount = 0; // Start with 0 notifications
 
-    // Update notification count dynamically (this would be based on actual data)
+    let notificationCount = 0; 
+
+    
     function updateNotificationCount() {
-        // For example, if there's a new rent approval or cancellation:
+        
         notificationCount++;
         document.getElementById('notification-count').textContent = notificationCount;
     }
 
-    // Show the popup message when the notification is clicked
+    
     document.querySelector('.notification-icon').addEventListener('click', function() {
         if (notificationCount > 0) {
             showPopup('Your rent has been approved! Visit the office for further processing.');
@@ -82,9 +73,7 @@ if (isset($_SESSION['new_notification'])) {
         document.getElementById('popup').style.display = 'none';
     }
 
-    // You can call `updateNotificationCount()` based on actions like approval or cancellation.
-    // Example: Call this function when a rent is approved or canceled.
-    // updateNotificationCount(); // Uncomment when an approval/cancellation happens.
+    
 </script>
 
 <!-- Popup Modal CSS -->

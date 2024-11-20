@@ -54,7 +54,7 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-    <div id="loginPopup" class="popup-container" style="display: <?php echo $showPopup ? 'flex' : 'none'; ?>;">
+    <!-- <div id="loginPopup" class="popup-container" style="display: <?php echo $showPopup ? 'flex' : 'none'; ?>;">
         <div class="form-container">
             <span class="close-btn" id="closeBtn">&times;</span>
             <h2>Login</h2>
@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <!-- Footer -->
     <?php require("layout/footer.php"); ?>

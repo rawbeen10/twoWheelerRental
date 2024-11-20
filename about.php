@@ -22,13 +22,13 @@
                   <img src="https://codemasalabytes.com/wp-content/uploads/2024/04/a-photorealistic-image-of-a-programmer-managing-hi-mUW7fXLcTim5Bp5IduKzoA-ZKfEhJ8wSR6zpHxRbnI59w.jpeg" alt="Person 1">
                   <h3>Rabin Dhakal</h3>
                   <p>Co-Founder & CEO</p>
-                  <p>John brings over 10 years of experience in the automotive industry and a vision to revolutionize the car rental market with a customer-first approach.</p>
+                  <p>Rabin brings over 10 years of experience in the automotive industry and a vision to revolutionize the car rental market with a customer-first approach.</p>
               </div>
               <div class="member">
                   <img src="https://pathao.com/np/wp-content/uploads/sites/7/2018/12/Earn-with-your-Bike_Image.jpg" alt="Person 2">
                   <h3>Kushal Bhattarai</h3>
                   <p>Co-Founder & Operations Manager</p>
-                  <p>Jane is the operational brain behind DriveEase, ensuring that every customer has access to the best vehicles and seamless service.</p>
+                  <p>Kushal is the operational brain behind DriveEase, ensuring that every customer has access to the best vehicles and seamless service.</p>
               </div>
           </div>
       </div>
