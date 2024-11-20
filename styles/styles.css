@@ -1,282 +1,211 @@
-
-/* .front{
-    width: 100%;
-    display: flex;
-} */
-
-
-.home-txt {
-    width: 100%;
-    height: 500px;
-    text-align: center;
-    padding: 15px;
-    color: white;
-    background-image: url('../media/pic.webp'); /* Set the image as the background */
-    background-size:cover; /* Make sure the image covers the entire section */
-    background-position:center; /* Center the image */
-    background-repeat:repeat-y; /* Prevent the image from repeating */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center the text */
+/* General Styles */
+body {
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  color: #000000;
 }
 
-.home-txt h1 {
-    font-size: 5rem;
-    background-color: rgba(0, 0, 0, 0.637); /* Add a semi-transparent background to improve readability */
-    padding: 10px;
-    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+#home {
+  position: relative;
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden;
+  display: flex;
+  align-items: center; /* Vertically center the text */
+  justify-content: center; /* Horizontally center the text */
 }
 
-.home-txt p {
-    font-size: 2.5rem;
-    background-color: rgba(0, 0, 0, 0.637); /* Same for the paragraph */
-    padding: 10px;
-}
-
-.home-txt button{
-    width: fit-content;
-    background-color: #004080e7;
-    border: none;
-    border-radius: 7px;
-    padding: 10px 20px;
-    color: white;
-    cursor: pointer;
-    margin: 5px auto;
-    transition: background-color 0.3s;
-
-}
-
-#btn:hover{
-    background-color:#003060 ;
-}
-
-.booking-section {
-    padding: 20px;
-}
-
-.booking-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.418);
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-h3 {
-    margin-bottom: 20px;
-    color: #004080;
-}
-
-.form-inline {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    flex: 1;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-input {
-    /* width: calc(100% - 10px); */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #004080;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #003060;
-}
-
-.error {
-    color: red;
-    margin-top: 10px;
-}
-
-
-
-.open-button {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
-}
-
-.popup-container {
-  display: none; /* Hidden by default */
-  position: fixed;
+#home img {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  object-fit: cover; /* Ensures the image covers the whole div */
+  z-index: -1; /* Ensures the image stays behind the text */
 }
 
-.form-container {
-  margin: 20px auto;
-  border: 1px solid rgb(184, 184, 184);
-  border-radius: 13px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 20px;
-  position: relative; /* For the close button */
+.home-txt {
+  width: 50%;
+  color: white;
+  text-align: left;
+  z-index: 1; 
+  position: relative;
+  bottom: 60;
+  right: 200;
 }
 
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  cursor: pointer;
+.home-txt h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
 }
 
-.close-btn:hover {
-  color: red;
+.home-txt p {
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-.form-container{
-  margin: 20px auto;
-  border: 1px solid rgb(184, 184, 184);
-  border-radius: 13px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  padding: 20px;
-  }
-  
-  .form-container h2{
-    font-size: 30px;
-    text-align: center;
-  }
-  
-  input[type=text],[type=password]{
-    display: flex;
-    width: 100%;
-    height: 40px;
-    margin: 15px 0;
-    padding-left: 10px;
-    font-size: 14px;
-    border-radius: 7px;
-    border: 0.5px solid gray;
-  }
-  
-  input[type=checkbox]{
-    display: inline;
-    margin-right: 7px;  
-  }
-  
-  .center-text{
-    text-align: center;
-  }
-  
-  .sign{
-    font-size: 20px;
-    margin: 10px;
-  }
-  
-  #forgot, #sign{
-    text-decoration: none;
-    color: #0A58CD;
-  }
-  #forgot, #sign:hover{
-    color: #007de4;
-  }
-  
-  .center-text {
-    /* margin: 7px 0; */
-    position: relative;
-    text-align: center;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  .connect-with {
-    font-size: 17px;
-    position: relative;
-    z-index: 2; 
-    background-color: white; 
-    padding: 0 10px; 
-  }
-  
-  .line {
-    position: absolute;
-    top: 50%; 
-    left: 0;
-    right: 0;
-    height: 1px;
-    border: none;
-    background-color: rgb(92, 92, 92); 
-    z-index: 1; 
-  }
-  
-  
-  
-  .con-icons{
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-  }
-  
-  .icons img{
-    height: 40px;
-    width: 40px;
-  }
-  
-  
-  
-  
-  button {
-    margin:10px 0;
-    padding: 9px;
-    background-color: #015db9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
+#btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+}
+
+
+.btn-primary {
+  padding: 12px 30px;
+  background-color: #006bdde1;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 9px;
+  transition: 0.3s;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#why-choose {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+#why-choose h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.image-container {
+  width: 50%;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 90%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.content {
+  width: 70%;
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.7;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+      flex-direction: column;
+      text-align: center;
   }
   
-  button:hover {
-    background-color: #003060;
+  .image-container,
+  .content {
+      width: 100%;
   }
-  
+
+  .image-container img {
+      height: 250px;
+  }
+}
+
+
+
+/* Carousel Section */
+.carousel {
+  position: relative;
+  padding: 40px 20px;
+  background-color: #fff;
+  overflow: hidden; /* Prevent scrolling outside of visible area */
+}
+
+.carousel h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #444;
+}
+
+.carousel-container {
+  display: flex;
+  overflow: hidden; /* Hide content that goes outside */
+}
+
+.carousel-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 80%; /* Adjusted to show a smaller width for the images */
+  position: relative;
+  text-align: center;
+  margin: 0 10%; /* Adds space between images */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 500px; /* Increased height */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
 
 
 

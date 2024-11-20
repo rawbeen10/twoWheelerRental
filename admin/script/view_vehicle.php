@@ -77,7 +77,7 @@ $result = mysqli_query($conn, $query);
                     echo "<td>" . htmlspecialchars($row['category']) . "</td>";
                     echo "<td><img src='../uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img' width='50'></td>";
                     echo "<td class='action-buttons'>
-                              <a href='edit_vehicle.php?id=" . $row['id'] . "' class='edit-btn'>Edit</a> | 
+                              <a href='edit_vehicle.php?id=" . $row['id'] . "' class='edit-btn'>Edit</a> 
                               <a href='delete_vehicle.php?id=" . $row['id'] . "' class='delete-btn'>Delete</a>
                           </td>";
                     echo "</tr>";

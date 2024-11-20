@@ -3,7 +3,7 @@
           <!-- About Us Section -->
           <div class="footer-section">
             <h3>About Us</h3>
-            <p> At <strong>Uthaoo</strong>, our mission is to provide an affordable, convenient, and eco-friendly two-wheeler rental service that empowers locals and tourists alike to explore the beautiful landscapes and vibrant culture of Kathmandu and beyond.</p>
+            <p> At <strong>Uthaoo</strong>, our mission is to provide an affordable, convenient, and eco-friendly two-wheeler <a href="about.php">See more...</a></p>
           </div>
           
           <!-- Contact Information -->
