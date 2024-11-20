@@ -5,6 +5,7 @@ include('db_connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
     $vehicle_name = $_POST['vehicle_name'];
+    $vehicle_number = $_POST['vehicle_no']; // Added vehicle_number
     $description = $_POST['description'];
     $price_per_day = $_POST['price'];
     $category = $_POST['category'];
@@ -27,10 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
             $upload_path = $upload_dir . $new_image_name;
 
             if (move_uploaded_file($image_tmp_name, $upload_path)) {
-                $stmt = mysqli_prepare($conn, "INSERT INTO vehicles (vehicle_name, description, price_per_day, category, image) 
-                                               VALUES (?, ?, ?, ?, ?)");
+                // Updated query to include vehicle_number
+                $stmt = mysqli_prepare($conn, "INSERT INTO vehicles (vehicle_name, vehicle_number, description, price_per_day, category, image) 
+                                               VALUES (?, ?, ?, ?, ?, ?)");
                 if ($stmt) {
-                    mysqli_stmt_bind_param($stmt, "ssdss", $vehicle_name, $description, $price_per_day, $category, $new_image_name);
+                    // Added vehicle_number to the parameter binding
+                    mysqli_stmt_bind_param($stmt, "sssdss", $vehicle_name, $vehicle_number, $description, $price_per_day, $category, $new_image_name);
 
                     if (mysqli_stmt_execute($stmt)) {
                         $_SESSION['success_message'] = "Vehicle has been added successfully!";
@@ -99,8 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
             <label for="description">Description:</label>
             <textarea name="description" id="description" required></textarea>
             
-
-            <label for="price">Price per Hour:</label>
+            <label for="price">Price per Day:</label>
             <input type="number" step="0.01" name="price" id="price" required>
 
             <label for="category">Category:</label>

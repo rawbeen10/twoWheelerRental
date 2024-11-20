@@ -47,7 +47,7 @@ if (!$result) {
                 echo "<img src='admin/uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img'>";
                 echo "<h3>" . htmlspecialchars($row['vehicle_name']) . "</h3>";
                 echo "<a href='rent_form.php?vehicle_name=" . urlencode($row['vehicle_name']) . "&category=" . urlencode($row['category']) . "&price_per_day=" . urlencode($pricePerDay) . "&image=" . urlencode($row['image']) . "' class='btn rent-btn'>Rent</a>";  
-                echo "<a href='#' class='btn view-more-btn' onclick='openPopup(\"" . htmlspecialchars($row['vehicle_name']) . "\", \"" . htmlspecialchars($row['category']) . "\", \"$pricePerDay\", \"" . htmlspecialchars($row['description']) . "\", \"" . htmlspecialchars($row['image']) . "\")'>View More</a>";
+                echo "<a href='#' class='btn view-more-btn' onclick='openPopup(\"" . htmlspecialchars($row['vehicle_name']) . "\", \"" . htmlspecialchars($row['category']) . "\", \"$pricePerDay\", \"" . htmlspecialchars($row['description']) . "\", \"" . htmlspecialchars($row['vehicle_number']) . "\", \"" . htmlspecialchars($row['image']) . "\")'>View More</a>";
                 echo "</div>";
             }
         } else {
@@ -66,6 +66,7 @@ if (!$result) {
         <p><strong>Vehicle Name:</strong> <span id="popupVehicleName"></span></p>
         <p><strong>Category:</strong> <span id="popupCategory"></span></p>
         <p><strong>Price per Day:</strong> Rs. <span id="popupPricePerDay"></span></p>
+        <p><strong>Vehicle Number:</strong> <span id="popupVehicleNumber"></span></p>
         <p><strong>Description:</strong> <span id="popupDescription"></span></p>
         <button class="btn cancel-btn" onclick="closePopup()">x</button>
     </div>
@@ -77,10 +78,11 @@ if (!$result) {
 
 <script>
     // Open the "View More" popup
-    function openPopup(vehicleName, category, pricePerDay, description, imageUrl) {
+    function openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl) {
         document.getElementById('popupVehicleName').textContent = vehicleName;
         document.getElementById('popupCategory').textContent = category;
         document.getElementById('popupPricePerDay').textContent = pricePerDay;
+        document.getElementById('popupVehicleNumber').textContent = vehicleNumber;
         document.getElementById('popupDescription').textContent = description;
         document.getElementById('popupImage').src = 'admin/uploads/' + imageUrl;
         document.getElementById('viewMorePopup').classList.add('show');

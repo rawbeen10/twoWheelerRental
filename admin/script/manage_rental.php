@@ -11,9 +11,19 @@ $total_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM rent");
 $total_row = mysqli_fetch_assoc($total_result);
 $total_pages = ceil($total_row['total'] / $limit);
 
-// Fetch rental data from the database
-$query = "SELECT * FROM rent LIMIT $start, $limit";
-$result = mysqli_query($conn, $query);
+// Fetch rental data from the rent table
+$query_rent = "SELECT * FROM rent LIMIT $start, $limit";
+$result_rent = mysqli_query($conn, $query_rent);
+
+// Fetch vehicle data (this will be done for each rent entry)
+$vehicle_data = [];
+$query_vehicle = "SELECT id, vehicle_name, vehicle_number FROM vehicles";
+$result_vehicle = mysqli_query($conn, $query_vehicle);
+
+// Store vehicle data in an array, indexed by the vehicle_id
+while ($row_vehicle = mysqli_fetch_assoc($result_vehicle)) {
+    $vehicle_data[$row_vehicle['id']] = $row_vehicle;
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +66,8 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <th>SN</th>
                     <th>Full Name</th>
+                    <th>Vehicle Name</th>
+                    <th>Vehicle Number</th>
                     <th>Phone Number</th>
                     <th>Email</th>
                     <th>Rent From</th>
@@ -69,24 +81,39 @@ $result = mysqli_query($conn, $query);
             <tbody>
                 <?php
                 $sn = $start + 1; 
-                while ($row = mysqli_fetch_assoc($result)) {
-                   
-                    $status = isset($row['status']) ? htmlspecialchars($row['status']) : 'pending';
+                while ($row_rent = mysqli_fetch_assoc($result_rent)) {
+                    // Check if vehicle_id exists in the current rent row
+                    $vehicle_id = isset($row_rent['vehicle_id']) ? $row_rent['vehicle_id'] : null;
+
+                    // Debugging: Print the vehicle_id for each rent entry
+                    echo "<!-- Debugging: Vehicle ID: " . $vehicle_id . " -->";
+
+                    // Fetch vehicle name and number, or set as 'N/A' if not found
+                    $vehicle_name = 'N/A';
+                    $vehicle_number = 'N/A';
+                    if ($vehicle_id && isset($vehicle_data[$vehicle_id])) {
+                        $vehicle_name = $vehicle_data[$vehicle_id]['vehicle_name'];
+                        $vehicle_number = $vehicle_data[$vehicle_id]['vehicle_number'];
+                    }
+
+                    $status = isset($row_rent['status']) ? htmlspecialchars($row_rent['status']) : 'pending';
                     $status_label = ($status == 'approved') ? 'Approved' : 'Pending';
                     echo "<tr>";
                     echo "<td>" . $sn++ . "</td>";
-                    echo "<td>" . htmlspecialchars($row['full_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['phone_number']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['rent_time_from']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['rent_time_to']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['document_type']) . "</td>";
-                    echo "<td><img src='../uploads/" . htmlspecialchars($row['id_image']) . "' alt='ID Image' class='id-img' width='50'></td>"; // Fetch and display id_image
+                    echo "<td>" . htmlspecialchars($row_rent['full_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($vehicle_name) . "</td>"; 
+                    echo "<td>" . htmlspecialchars($vehicle_number) . "</td>";  
+                    echo "<td>" . htmlspecialchars($row_rent['phone_number']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row_rent['email']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row_rent['rent_time_from']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row_rent['rent_time_to']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row_rent['document_type']) . "</td>";
+                    echo "<td><img src='../uploads/" . htmlspecialchars($row_rent['id_image']) . "' alt='ID Image' class='id-img' width='50'></td>";
                     echo "<td class='action-buttons'>
-                              <a href='approve_rent.php?id=" . $row['id'] . "' class='approve-btn'>Approve</a> | 
-                              <a href='cancel_rent.php?id=" . $row['id'] . "' class='cancel-btn'>Cancel</a>
-                          </td>";
-                    echo "<td><button class='status-btn $status'>$status_label</button></td>"; // Status column with dynamic label
+                             <a href='approve_rent.php?id=" . $row_rent['id'] . "' class='approve-btn'>Approve</a> | 
+                             <a href='cancel_rent.php?id=" . $row_rent['id'] . "' class='cancel-btn'>Cancel</a>
+                         </td>";
+                    echo "<td><button class='status-btn $status'>$status_label</button></td>";
                     echo "</tr>";
                 }
                 ?>

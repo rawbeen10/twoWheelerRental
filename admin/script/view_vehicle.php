@@ -56,6 +56,7 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <th>SN</th>
                     <th>Vehicle Name</th>
+                    <th>Vehicle Number</th> <!-- Added vehicle_number column -->
                     <th>Description</th>
                     <th>Price per Day</th>
                     <th>Category</th>
@@ -70,6 +71,7 @@ $result = mysqli_query($conn, $query);
                     echo "<tr>";
                     echo "<td>" . $sn++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['vehicle_name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['vehicle_number']) . "</td>"; // Display vehicle_number
                     echo "<td>" . htmlspecialchars($row['description']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['price_per_day']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['category']) . "</td>";
