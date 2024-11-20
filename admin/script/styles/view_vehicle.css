@@ -19,6 +19,7 @@
 }
 
 h2 {
+    margin-top: 20px;
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
@@ -32,26 +33,33 @@ h2 {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #2c8d2f;
-    color: white;
-    padding: 10px;
-    text-align: left;
-    font-size: 18px;
+    background-color: white;
+    box-shadow: 2px 5px 8px 3px rgba(0,0,0,0.57);
 }
 
 td {
-    background-color: #f9f9f9;
-    padding: 10px;
     text-align: left;
-    font-size: 16px;
+    padding: 10px 20px;
+    height: fit-content;
+    max-width: 200px;
+    border-left: 1px solid rgba(128, 128, 128, 0.568);
+    text-wrap: 1;
+}
+
+th {
+    border-left: 1px solid rgba(255, 255, 255, 0.479);
+    background-color:#2C3E50 ;
+    color: white;
+    text-align: left;
+    padding: 10px 20px;
+    font-weight: bold;
+    max-width: fit-content;
+    
+
+}
+
+th, td{
+    border-bottom: 2px solid rgba(46,46,46,0.78);
 }
 
 td img {
@@ -95,17 +103,17 @@ td img {
 .pagination a {
     padding: 8px 16px;
     margin: 0 5px;
-    background-color: #2c8d2f;
+    background-color: #0e71d4;
     text-decoration: none;
     color: white;
     border-radius: 4px;
 }
 
 .pagination a:hover {
-    background-color: #45a049;
+    background-color: #0e71d4;
 }
 
 .pagination a.active {
-    background-color: #45a049;
+    background-color: #2C3E50;
     color: white;
 }
