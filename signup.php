@@ -2,44 +2,55 @@
 
 include('admin/script/db_connect.php');
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-   
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $errors = [];
 
-   
-    $check_email_query = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($check_email_query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        echo "This email is already registered!";
-    } else {
-     
-        $insert_query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-        $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-        if ($stmt->execute()) {
-            echo "Account created successfully!";
-           
-            header("Location: index.php");
-            exit();
-        } else {
-            echo "Error: " . $stmt->error;
-        }
+    // Server-side validation
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format!";
+    }
+    if (strlen($password) < 8) {
+        $errors['password'] = "Password must be at least 8 characters long!";
+    }
+    if ($password !== $confirm_password) {
+        $errors['confirm_password'] = "Passwords do not match!";
     }
 
-    
-    $stmt->close();
-    $conn->close();
+    if (empty($errors)) {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Check if the email already exists
+        $check_email_query = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($check_email_query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $errors['email'] = "This email is already registered!";
+        } else {
+            // Insert new user into the database
+            $insert_query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($insert_query);
+            $stmt->bind_param("sss", $username, $email, $hashed_password);
+
+            if ($stmt->execute()) {
+                header("Location: index.php");
+                exit();
+            } else {
+                $errors['general'] = "Error: " . $stmt->error;
+            }
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
 }
 ?>
 
@@ -52,32 +63,94 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="layout/layout.css">
-
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
 
-<?php
-    require("layout/header.php");
-    ?>
+<?php require("layout/header.php"); ?>
 
-    <div class="container">
-        <h1>Signup</h1>
-        <form action="signup.php" method="POST">
+<div class="container">
+    <h1>Signup</h1>
+    <form action="signup.php" method="POST" id="signup-form">
+        <div>
             <input type="text" name="username" id="username" placeholder="Username" required>
+            <div class="error-message" id="username-error"></div>
+        </div>
+        <div>
             <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+            <div class="error-message" id="email-error"><?php echo $errors['email'] ?? ''; ?></div>
+        </div>
+        <div>
             <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+            <div class="error-message" id="password-error"><?php echo $errors['password'] ?? ''; ?></div>
+        </div>
+        <div>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter Your Password" required>
-
+            <div class="error-message" id="confirm-password-error"><?php echo $errors['confirm_password'] ?? ''; ?></div>
+        </div>
+        <div>
             <input type="checkbox" name="terms" id="terms" required>
-            I agree to the <a href="#">Terms and Conditions</a> <br>
+            I agree to the <a href="#">Terms and Conditions</a>
+            <div class="error-message" id="terms-error"></div>
+        </div>
+        <button type="submit">Sign Up</button>
+        <h4>Already have an account? <a href="login.php">Log in</a></h4>
+    </form>
+</div>
 
-            <button type="submit">Sign Up</button>
-            <h4>Already have an account? <a href="login.php">Log in</a></h4>
-        </form>
-    </div>
+<?php require("layout/footer.php"); ?>
 
-    <?php
-    require("layout/footer.php");
-    ?>
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function (event) {
+        let hasError = false;
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        const terms = document.getElementById('terms').checked;
+
+        // Reset error messages
+        document.getElementById('email-error').textContent = '';
+        document.getElementById('password-error').textContent = '';
+        document.getElementById('confirm-password-error').textContent = '';
+        document.getElementById('terms-error').textContent = '';
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('email-error').textContent = "Please enter a valid email address.";
+            hasError = true;
+        }
+
+        // Password validation
+        if (password.length < 8) {
+            document.getElementById('password-error').textContent = "Password must be at least 8 characters long.";
+            hasError = true;
+        }
+
+        // Confirm password validation
+        if (password !== confirmPassword) {
+            document.getElementById('confirm-password-error').textContent = "Passwords do not match.";
+            hasError = true;
+        }
+
+        // Terms and conditions validation
+        if (!terms) {
+            document.getElementById('terms-error').textContent = "You must agree to the terms and conditions.";
+            hasError = true;
+        }
+
+        if (hasError) {
+            event.preventDefault();
+        }
+    });
+</script>
+
 </body>
 </html>

@@ -4,6 +4,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
+
 if (isset($_SESSION['new_notification'])) {
     // Determine the message based on notification type
     if ($_SESSION['new_notification'] == 'approved') {
@@ -20,8 +23,6 @@ if (isset($_SESSION['new_notification'])) {
 }
 ?>
 
-
-
 <header>
     <div class="logo">
         <h1>Uthaoo</h1>
@@ -32,97 +33,96 @@ if (isset($_SESSION['new_notification'])) {
             <li><a href="about.php">About</a></li>
             <li><a href="rent.php">Rent</a></li>
             <li><a href="contact.php">Contact</a></li>
-            <li><a href="login.php">Login</a></li>
-            
-            
+            <?php if ($isLoggedIn): ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <?php echo htmlspecialchars($_SESSION['username']); ?>
+                        <svg class="arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.php">Profile</a></li>
+                        <li><a href="history.php">History</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </li>
+            <?php else: ?>
+                <li><a href="login.php">Login</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
-
-    
-   
 </header>
 
-
-
 <script>
+    // Dropdown toggle logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
 
-    let notificationCount = 0; 
+        if (dropdownToggle && dropdownMenu) {
+            dropdownToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
 
-    
-    function updateNotificationCount() {
-        
-        notificationCount++;
-        document.getElementById('notification-count').textContent = notificationCount;
-    }
-
-    
-    document.querySelector('.notification-icon').addEventListener('click', function() {
-        if (notificationCount > 0) {
-            showPopup('Your rent has been approved! Visit the office for further processing.');
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!dropdownMenu.contains(event.target) && !dropdownToggle.contains(event.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
         }
     });
-
-    // Function to display the popup
-    function showPopup(message) {
-        document.getElementById('popup-message').textContent = message;
-        document.getElementById('popup').style.display = 'block';
-    }
-
-    // Function to close the popup
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
-    }
-
-    
 </script>
 
-<!-- Popup Modal CSS -->
 <style>
-    .popup {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .popup-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-    }
-
-    .close-btn {
-        font-size: 20px;
-        color: black;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-    }
-
-    .notification-icon {
+    .dropdown {
         position: relative;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: rgb(0, 61, 122); /* Updated background color */
+        border: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+        border-radius: 5px;
+        z-index: 1000;
+    }
+
+    .dropdown-menu.show {
+        display: block;
+    }
+
+    .dropdown-menu li {
+        padding: 5px 10px;
+    }
+
+    .dropdown-menu li a {
+        text-decoration: none;
+        color: #fff; /* Updated text color */
+    }
+
+    .dropdown-menu li:hover {
+        background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+    }
+
+    .dropdown-toggle {
         cursor: pointer;
     }
 
-    .notification-count {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background-color: red;
-        color: white;
-        border-radius: 50%;
-        padding: 5px;
-        font-size: 12px;
+    .arrow {
+        margin-left: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu.show ~ .arrow {
+        transform: rotate(180deg);
     }
 </style>

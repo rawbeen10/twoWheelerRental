@@ -1,43 +1,67 @@
 <?php
-// Include the database connection file
-require_once('admin/script/db_connect.php');
+include('admin/script/db_connect.php'); 
 
-// Get data from the form submission
+// Retrieve data from the form
+$vehicle_id = $_POST['id']; // Get vehicle ID from the form
 $full_name = $_POST['full_name'];
 $phone_number = $_POST['phone_number'];
 $email = $_POST['email'];
+$rent_from = $_POST['rent_from'];
+$rent_to = $_POST['rent_to'];
 $document_type = $_POST['document_type'];
 
-// Handle file upload for document image (id_image)
+// ID Image Upload
 $id_image = $_FILES['id_image']['name'];
 $id_image_tmp = $_FILES['id_image']['tmp_name'];
-$id_image_path = "admin/uploads/" . $id_image; // specify the directory for storing the file
-
-// Move the uploaded document image to the desired location
+$id_image_path = "admin/uploads/" . $id_image; 
 move_uploaded_file($id_image_tmp, $id_image_path);
 
-// Get the rent start and end time (from the form input)
-$rent_time_from = $_POST['rent_time_from'];
-$rent_time_to = $_POST['rent_time_to'];
+// Calculate rent duration
+$rent_from_date = new DateTime($rent_from);
+$rent_to_date = new DateTime($rent_to);
+$duration = $rent_from_date->diff($rent_to_date)->days;
 
-// Prepare the SQL query to insert the data into the rent table
-$sql = "INSERT INTO rent (full_name, phone_number, email, rent_time_from, rent_time_to, document_type, id_image) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+// Fetch vehicle details from the vehicles table using the id
+$sql_vehicle = "SELECT vehicle_name, vehicle_number, category, price_per_day, image FROM vehicles WHERE id = ?";
+$stmt_vehicle = $conn->prepare($sql_vehicle);
+$stmt_vehicle->bind_param("i", $vehicle_id); // Bind the vehicle ID
+$stmt_vehicle->execute();
+$stmt_vehicle->bind_result($vehicle_name, $vehicle_number, $category, $price_per_day, $vehicle_image);
+$stmt_vehicle->fetch();
+$stmt_vehicle->close();
 
-// Prepare the statement
-$stmt = $conn->prepare($sql);
-
-// Bind the parameters to the statement
-$stmt->bind_param("sssssss", $full_name, $phone_number, $email, $rent_time_from, $rent_time_to, $document_type, $id_image);
-
-// Execute the statement
-if ($stmt->execute()) {
-    echo "Rent record added successfully!";
-} else {
-    echo "Error: " . $stmt->error;
+if (!$vehicle_name) {
+    die("No vehicle found with the given ID.");
 }
 
-// Close the prepared statement and the database connection
-$stmt->close();
+// Calculate the total amount
+$grand_total = $duration * $price_per_day;
+
+// Insert rental details into the rent table
+$sql_rent = "INSERT INTO rent (full_name, phone_number, email, rent_from, rent_to, document_type, id_image) 
+             VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt_rent = $conn->prepare($sql_rent);
+$stmt_rent->bind_param("sssssss", $full_name, $phone_number, $email, $rent_from, $rent_to, $document_type, $id_image);
+
+if ($stmt_rent->execute()) {
+    // Redirect to billing page with all necessary details
+    header("Location: billing.php?full_name=" . urlencode($full_name) . 
+           "&phone_number=" . urlencode($phone_number) . 
+           "&email=" . urlencode($email) . 
+           "&vehicle_name=" . urlencode($vehicle_name) . 
+           "&vehicle_number=" . urlencode($vehicle_number) . 
+           "&category=" . urlencode($category) . 
+           "&price_per_day=" . urlencode($price_per_day) . 
+           "&rent_from=" . urlencode($rent_from) . 
+           "&rent_to=" . urlencode($rent_to) . 
+           "&id_image=" . urlencode($id_image) . 
+           "&grand_total=" . $grand_total . 
+           "&vehicle_image=" . urlencode($vehicle_image));  // Pass vehicle image
+    exit;
+} else {
+    echo "Error: " . $stmt_rent->error;
+}
+
+$stmt_rent->close();
 $conn->close();
 ?>

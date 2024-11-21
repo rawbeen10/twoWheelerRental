@@ -1,4 +1,5 @@
 <?php
+session_start(); // Start the session to track user login state
 
 $servername = "localhost";
 $username = "root";
@@ -46,9 +47,16 @@ if (!$result) {
                 echo "<div class='bike-item'>";
                 echo "<img src='admin/uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img'>";
                 echo "<h3>" . htmlspecialchars($row['vehicle_name']) . "</h3>";
-                echo "<a href='rent_form.php?vehicle_name=" . urlencode($row['vehicle_name']) . "&category=" . urlencode($row['category']) . "&price_per_day=" . urlencode($pricePerDay) . "&image=" . urlencode($row['image']) . "' class='btn rent-btn'>Rent</a>";  
+
+                if (isset($_SESSION['user_id'])) {
+                    echo "<a href='rent_form.php?id=" . urlencode($row['id']) . "' class='btn rent-btn'>Rent</a>";
+                } else {
+                    echo "<a href='login.php' class='btn rent-btn'>Rent</a>";
+                }
+                
                 echo "<a href='#' class='btn view-more-btn' onclick='openPopup(\"" . htmlspecialchars($row['vehicle_name']) . "\", \"" . htmlspecialchars($row['category']) . "\", \"$pricePerDay\", \"" . htmlspecialchars($row['description']) . "\", \"" . htmlspecialchars($row['vehicle_number']) . "\", \"" . htmlspecialchars($row['image']) . "\")'>View More</a>";
                 echo "</div>";
+                
             }
         } else {
             echo "<p>No vehicles available for rent at the moment.</p>";
