@@ -25,7 +25,7 @@ require("layout/header.php");
 </section>
 
 <section id="why-choose">
-    <h2>Why Choose UTHAOO</h2>
+    <h2>Why Choose UTHAOO ?</h2>
     <div class="content-wrapper">
         <div class="image-container">
             <img src="media/redvespa.jpg" alt="Why Choose UTHAOO Image">
