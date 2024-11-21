@@ -96,9 +96,13 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="styles/edit_profile.css"> <!-- External CSS file -->
+    <link rel="stylesheet" href="styles/edit_profile.css">
+    <link rel="stylesheet" href="layout/layout.css">
+    <link rel="stylesheet" href="styles/fonts.css">
 </head>
 <body>
+
+<?php include "layout/header.php";?>
     <div class="profile-container">
         <h2>Edit Profile</h2>
         <form action="edit_profile.php" method="POST" enctype="multipart/form-data">
@@ -111,7 +115,7 @@ $conn->close();
             <label for="bio">Bio:</label>
             <textarea id="bio" name="bio"><?php echo htmlspecialchars($bio); ?></textarea>
 
-            <label for="profile_image">Profile Image:</label>
+            <label for="profile_image">Profile Image: (jpg, jpeg, png, gif)</label>
             <input type="file" id="profile_image" name="profile_image">
 
             <label for="gender">Gender:</label>
@@ -133,5 +137,6 @@ $conn->close();
             <?php endif; ?>
         </div>
     </div>
+    <?php include "layout/footer.php";?>
 </body>
 </html>

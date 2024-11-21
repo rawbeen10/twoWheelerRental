@@ -73,3 +73,81 @@
     background-color: #2c3e50;
 }
 
+#info-head{
+    text-align: left;
+    margin: 5px;    
+    font-size: 2.5em;
+}
+
+.info-dashboard {
+    margin-left: 5px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+
+
+
+  .info-box {
+    min-width: 150px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .info-box h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #111111;
+  }
+
+  .info-box p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+   a{
+    text-decoration: none;
+  }
+
+  .pending{
+    background-color: rgb(252, 137, 30);
+  }
+
+  .approved{
+    background-color: rgb(0, 167, 42);
+  }
+
+  .cancelled{
+    background-color: rgb(224, 27, 27);
+  }
+
+  .pending h3, .approved h3, .cancelled h3 {
+    color: white;
+    font-size: 1.5rem;
+  }
+  .pending p, .approved p, .cancelled p, .users-link p {
+    color: white;
+  }
+
+  .users-link{
+    background-color: #36a5ff;
+  }
+  .users-link svg{
+    color: #ffffff;
+  }
+
+

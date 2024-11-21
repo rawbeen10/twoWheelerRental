@@ -1,6 +1,5 @@
 <?php
 session_start();
-require("layout/header.php");
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +13,8 @@ require("layout/header.php");
     <link rel="stylesheet" href="layout/layout.css">
 </head>
 <body>
+    
+    <?php require("layout/header.php");?>
 
 <section id="home">
     <img src="media/bg123.jpg" alt="Hero Image">

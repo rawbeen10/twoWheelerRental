@@ -41,6 +41,15 @@ nav ul {
   color: #24ccff;
 }
 
+.profile-box{
+  background-color: #6d798ba9;
+  border-radius: 40%;
+  padding: 0 3px;
+}
+
+.profile-box:hover{
+  background-color: #5c99e969;
+}
 
 
 

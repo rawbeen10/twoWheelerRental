@@ -37,8 +37,13 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="layout/layout.css">
 </head>
 <body>
+<?php
+    require("layout/header.php");
+    ?>
     <div class="profile-container">
         <div class="profile-card">
             <div class="profile-header">
@@ -63,5 +68,8 @@ $conn->close();
             <a href="edit_profile.php" class="edit-btn">Edit Profile</a>
         </div>
     </div>
+    <?php
+    require("layout/footer.php");
+    ?>
 </body>
 </html>
