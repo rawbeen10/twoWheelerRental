@@ -11,6 +11,7 @@ $vehicle_image = isset($_GET['vehicle_image']) ? $_GET['vehicle_image'] : '';
 $rent_from = isset($_GET['rent_from']) ? $_GET['rent_from'] : '';
 $rent_to = isset($_GET['rent_to']) ? $_GET['rent_to'] : '';
 $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
+$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Get status
 
 ?>
 
@@ -35,7 +36,7 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
         <p><strong>Price per Day:</strong> Rs. <?php echo htmlspecialchars($price_per_day); ?></p>
         <p><strong>Rent From:</strong> <?php echo htmlspecialchars($rent_from); ?></p>
         <p><strong>Rent To:</strong> <?php echo htmlspecialchars($rent_to); ?></p>
-        
+
         <h2>Vehicle Image</h2>
         <?php if ($vehicle_image): ?>
             <img src="admin/uploads/<?php echo htmlspecialchars($vehicle_image); ?>" alt="Vehicle Image" width="200">
@@ -44,6 +45,11 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
         <?php endif; ?>
 
         <p><strong>Grand Total:</strong> Rs. <?php echo htmlspecialchars($grand_total); ?></p>
+        
+        <h2>Status</h2>
+        <p>Status: <strong class="<?php echo ($status == 'approved') ? 'approved' : ($status == 'cancelled' ? 'cancelled' : 'pending'); ?>">
+            <?php echo ucfirst($status); ?>
+        </strong></p>
     </div>
 </body>
 </html>

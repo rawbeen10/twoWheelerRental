@@ -12,7 +12,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM vehicles";  
+// Handle filter
+$filter = isset($_GET['category']) ? $_GET['category'] : '';
+
+$sql = "SELECT * FROM vehicles";
+if ($filter && in_array($filter, ['bike', 'scooter'])) {
+    $sql .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
+}
+
 $result = $conn->query($sql);
 
 if (!$result) {
@@ -25,7 +32,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent</title>
+    <title>Rent Your Ride</title>
     <link rel="stylesheet" href="styles/rent.css">
     <link rel="stylesheet" href="layout/layout.css">
     <link rel="stylesheet" href="styles/fonts.css">
@@ -36,8 +43,21 @@ if (!$result) {
     require("layout/header.php");
     ?>
 
-<section id="rent">
+<section id="rent" class="container">
     <h1>Rent Your Ride</h1>
+
+    <!-- Filter Section -->
+    <div class="filter-container">
+        <form action="rent.php" method="GET" id="filter-form">
+            <label for="category" class="filter-label">Filter by Category:</label>
+            <select name="category" id="category" class="filter-select" onchange="document.getElementById('filter-form').submit();">
+                <option value="">All</option>
+                <option value="bike" <?= $filter === 'bike' ? 'selected' : '' ?>>Bike</option>
+                <option value="scooter" <?= $filter === 'scooter' ? 'selected' : '' ?>>Scooter</option>
+            </select>
+        </form>
+    </div>
+
     <div class="bike-container">
         <?php
         if ($result->num_rows > 0) {
@@ -46,17 +66,16 @@ if (!$result) {
 
                 echo "<div class='bike-item'>";
                 echo "<img src='admin/uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img'>";
-                echo "<h3>" . htmlspecialchars($row['vehicle_name']) . "</h3>";
+                echo "<h3 class='bike-title'>" . htmlspecialchars($row['vehicle_name']) . "</h3>";
 
                 if (isset($_SESSION['user_id'])) {
-                    echo "<a href='rent_form.php?id=" . urlencode($row['id']) . "' class='btn rent-btn'>Rent</a>";
+                    echo "<a href='rent_form.php?id=" . urlencode($row['id']) . "' class='btn rent-btn'>Rent Now</a>";
                 } else {
-                    echo "<a href='login.php' class='btn rent-btn'>Rent</a>";
+                    echo "<a href='login.php' class='btn rent-btn'>Login to Rent</a>";
                 }
-                
+
                 echo "<a href='#' class='btn view-more-btn' onclick='openPopup(\"" . htmlspecialchars($row['vehicle_name']) . "\", \"" . htmlspecialchars($row['category']) . "\", \"$pricePerDay\", \"" . htmlspecialchars($row['description']) . "\", \"" . htmlspecialchars($row['vehicle_number']) . "\", \"" . htmlspecialchars($row['image']) . "\")'>View More</a>";
                 echo "</div>";
-                
             }
         } else {
             echo "<p>No vehicles available for rent at the moment.</p>";

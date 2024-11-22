@@ -29,8 +29,13 @@ if (!$vehicle_name) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Form</title>
     <link rel="stylesheet" href="styles/rent_form.css">
+    <link rel="stylesheet" href="layout/layout.css">
+    <link rel="stylesheet" href="styles/fonts.css">
 </head>
 <body>
+<?php
+    require("layout/header.php");
+    ?>
 
 <div class="container">
     <h2>Rental Form</h2>
@@ -43,9 +48,8 @@ if (!$vehicle_name) {
 
         <!-- Vehicle Category (Read-only dropdown) -->
         <label for="category">Category</label>
-        <select id="category" name="category" disabled>
-            <option value="bike" <?php echo ($category == 'bike') ? 'selected' : ''; ?>>Bike</option>
-            <option value="scooter" <?php echo ($category == 'scooter') ? 'selected' : ''; ?>>Scooter</option>
+        <input type="text" id="category" name="category" value="<?php echo htmlspecialchars($category); ?>" readonly />
+
         </select>
 
         <!-- Price per Day (Read-only) -->
@@ -81,11 +85,11 @@ if (!$vehicle_name) {
 
         <!-- Document Type -->
         <label for="document_type">Document Type</label>
-        <select id="document_type" name="document_type">
-            <option value="citizenship">Citizenship</option>
-            <option value="driving_license">Driving License</option>
-            <option value="national_id">National ID</option>
-            <option value="voter_id">Voter ID</option>
+        <select name="document_type" id="document_type" required>
+                <option value="citizenship">Citizenship</option>
+                <option value="driving licence">Driving Licence</option>
+            <option value="national id">National ID</option>
+            <option value="voterid">Voter ID</option>
             <option value="other">Other</option>
         </select>
 
