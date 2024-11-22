@@ -74,7 +74,17 @@ if (!$result) {
                     echo "<a href='login.php' class='btn rent-btn'>Login to Rent</a>";
                 }
 
-                echo "<a href='#' class='btn view-more-btn' onclick='openPopup(\"" . htmlspecialchars($row['vehicle_name']) . "\", \"" . htmlspecialchars($row['category']) . "\", \"$pricePerDay\", \"" . htmlspecialchars($row['description']) . "\", \"" . htmlspecialchars($row['vehicle_number']) . "\", \"" . htmlspecialchars($row['image']) . "\")'>View More</a>";
+                echo "<a href='#' 
+    class='btn view-more-btn' 
+    data-name='" . htmlspecialchars($row['vehicle_name']) . "' 
+    data-category='" . htmlspecialchars($row['category']) . "' 
+    data-price='" . $pricePerDay . "' 
+    data-description='" . htmlspecialchars($row['description']) . "' 
+    data-number='" . htmlspecialchars($row['vehicle_number']) . "' 
+    data-image='" . htmlspecialchars($row['image']) . "'>
+    View More
+</a>";
+
                 echo "</div>";
             }
         } else {
@@ -99,26 +109,76 @@ if (!$result) {
     </div>
 </div>
 
+
 <?php
     require("layout/footer.php");
 ?>
 
 <script>
-    // Open the "View More" popup
-    function openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl) {
-        document.getElementById('popupVehicleName').textContent = vehicleName;
-        document.getElementById('popupCategory').textContent = category;
-        document.getElementById('popupPricePerDay').textContent = pricePerDay;
-        document.getElementById('popupVehicleNumber').textContent = vehicleNumber;
-        document.getElementById('popupDescription').textContent = description;
-        document.getElementById('popupImage').src = 'admin/uploads/' + imageUrl;
-        document.getElementById('viewMorePopup').classList.add('show');
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+    // Select all the "View More" buttons
+    const viewMoreButtons = document.querySelectorAll(".view-more-btn");
 
-    // Close the "View More" popup
-    function closePopup() {
-        document.getElementById('viewMorePopup').classList.remove('show');
-    }
+    // Attach click event listeners to each button
+    viewMoreButtons.forEach((button) => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent the default anchor action
+
+            // Retrieve data attributes from the clicked button
+            const vehicleName = this.dataset.name;
+            const category = this.dataset.category;
+            const pricePerDay = this.dataset.price;
+            const description = this.dataset.description;
+            const vehicleNumber = this.dataset.number;
+            const imageUrl = this.dataset.image;
+
+            console.log("Button clicked with data:", {
+                vehicleName,
+                category,
+                pricePerDay,
+                description,
+                vehicleNumber,
+                imageUrl,
+            });
+
+            // Open the popup with the provided data
+            openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl);
+        });
+    });
+
+    // Add event listener to close the popup when clicking outside the container
+    document.addEventListener("click", function (e) {
+        const popupContainer = document.getElementById("viewMorePopup");
+        const popupContent = popupContainer.querySelector(".popup-content");
+
+        // Close the popup if the click is outside the popup content
+        if (
+            popupContainer.classList.contains("show") && // Popup is visible
+            !popupContent.contains(e.target) && // Click is outside popup content
+            !e.target.classList.contains("view-more-btn") // Click is not a "View More" button
+        ) {
+            closePopup();
+        }
+    });
+});
+
+// Function to open the popup with vehicle details
+function openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl) {
+    document.getElementById("popupVehicleName").textContent = vehicleName;
+    document.getElementById("popupCategory").textContent = category;
+    document.getElementById("popupPricePerDay").textContent = pricePerDay;
+    document.getElementById("popupVehicleNumber").textContent = vehicleNumber;
+    document.getElementById("popupDescription").textContent = description;
+    document.getElementById("popupImage").src = "admin/uploads/" + imageUrl;
+    document.getElementById("viewMorePopup").classList.add("show");
+}
+
+// Function to close the popup
+function closePopup() {
+    document.getElementById("viewMorePopup").classList.remove("show");
+}
+
+
 </script>
 
 </body>

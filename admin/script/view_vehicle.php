@@ -90,7 +90,8 @@ $result = mysqli_query($conn, $query);
             <?php
             // Display pagination links
             for ($i = 1; $i <= $total_pages; $i++) {
-                echo "<a href='view_vehicle.php?page=$i&limit=$limit' class='pagination-link'>$i</a>";
+                $is_active = ($page == $i) ? 'class="active"' : '';
+                echo "<a href='view_vehicle.php?page=$i&limit=$limit' $is_active>$i</a>";
             }
             ?>
         </div>
