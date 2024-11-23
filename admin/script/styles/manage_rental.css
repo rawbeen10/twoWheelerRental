@@ -135,3 +135,60 @@ td img {
     background-color: #45a049;
     color: white;
 }
+
+/* Filter Form Container */
+form {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Filter Label */
+form label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+/* Filter Dropdown */
+form select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus Effect on Dropdown */
+form select:focus {
+    border-color: #4CAF50;
+    background-color: #f1f1f1;
+}
+
+/* NoScript Button */
+form noscript button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Button Hover Effect */
+form noscript button:hover {
+    background-color: #45a049;
+}
+
+/* Space between Dropdown and Button */
+form select + noscript {
+    margin-left: 10px;
+}

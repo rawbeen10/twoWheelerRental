@@ -11,8 +11,13 @@ $vehicle_image = isset($_GET['vehicle_image']) ? $_GET['vehicle_image'] : '';
 $rent_from = isset($_GET['rent_from']) ? $_GET['rent_from'] : '';
 $rent_to = isset($_GET['rent_to']) ? $_GET['rent_to'] : '';
 $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
-$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Get status
 
+
+$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Default to 'pending' if no status is set
+$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Default to 'pending' if no status is set
+
+// Determine the status label (capitalized) and the status class
+$status_label = ucfirst($status); // Capitalize the first letter for display
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +52,10 @@ $status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Get status
         <p><strong>Grand Total:</strong> Rs. <?php echo htmlspecialchars($grand_total); ?></p>
         
         <h2>Status</h2>
-        <p>Status: <strong class="<?php echo ($status == 'approved') ? 'approved' : ($status == 'cancelled' ? 'cancelled' : 'pending'); ?>">
-            <?php echo ucfirst($status); ?>
-        </strong></p>
+        <p>
+            <button class="status-btn <?php echo $status; ?>">
+                <?php echo $status_label; ?>
+            </button>
     </div>
 </body>
 </html>

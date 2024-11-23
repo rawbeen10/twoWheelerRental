@@ -1,17 +1,17 @@
 <?php
 include('db_connect.php');
 
-// Pagination variables
+
 $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $limit;
 
-// Count total rows in the vehicles table
+
 $total_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM vehicles");
 $total_row = mysqli_fetch_assoc($total_result);
 $total_pages = ceil($total_row['total'] / $limit);
 
-// Fetch vehicle data from the database
+
 $query = "SELECT * FROM vehicles LIMIT $start, $limit";
 $result = mysqli_query($conn, $query);
 ?>
@@ -56,7 +56,7 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <th>SN</th>
                     <th>Vehicle Name</th>
-                    <th>Vehicle Number</th> <!-- Added vehicle_number column -->
+                    <th>Vehicle Number</th> 
                     <th>Description</th>
                     <th>Price per Day</th>
                     <th>Category</th>
@@ -71,7 +71,7 @@ $result = mysqli_query($conn, $query);
                     echo "<tr>";
                     echo "<td>" . $sn++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['vehicle_name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['vehicle_number']) . "</td>"; // Display vehicle_number
+                    echo "<td>" . htmlspecialchars($row['vehicle_number']) . "</td>"; 
                     echo "<td>" . htmlspecialchars($row['description']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['price_per_day']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['category']) . "</td>";
@@ -88,7 +88,7 @@ $result = mysqli_query($conn, $query);
 
         <div class="pagination">
             <?php
-            // Display pagination links
+    
             for ($i = 1; $i <= $total_pages; $i++) {
                 $is_active = ($page == $i) ? 'class="active"' : '';
                 echo "<a href='view_vehicle.php?page=$i&limit=$limit' $is_active>$i</a>";
