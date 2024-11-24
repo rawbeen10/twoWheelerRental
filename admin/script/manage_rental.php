@@ -60,7 +60,7 @@ $total_pages = ceil($total_records / $limit);
         <script src="../Layout/sidebar.js"></script>
     </div>
 
-    <div class="container">
+    <div class="container container-two">
         <h1>Manage Rentals</h1>
 <!-- Filter Dropdown -->
 <form method="GET" action="manage_rental.php">
@@ -131,7 +131,8 @@ $total_pages = ceil($total_records / $limit);
         <div class="pagination">
             <?php
             for ($i = 1; $i <= $total_pages; $i++) {
-                echo "<a href='manage_rentals.php?page=$i&status=$status_filter'>$i</a> ";
+                $is_active = ($page == $i) ? 'class="active"' : '';
+                echo "<a href='manage_rental.php?page=$i&limit=$limit' $is_active>$i</a>";
             }
             ?>
         </div>

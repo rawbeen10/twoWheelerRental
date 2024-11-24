@@ -30,7 +30,7 @@ h2 {
 }
 
 table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin: 20px 0;
 }
@@ -40,7 +40,7 @@ table, th, td {
 }
 
 th {
-    background-color: #2c8d2f;
+    background-color:#2C3E50 ;
     color: white;
     padding: 10px;
     text-align: left;
@@ -114,26 +114,25 @@ td img {
 }
 
 .pagination {
-    text-align: center;
-    margin-top: 20px;
+    margin: 20px;
+    display: flex;
+    gap: 10px;
 }
 
 .pagination a {
-    padding: 8px 16px;
-    margin: 0 5px;
-    background-color: #2c8d2f;
+    padding: 8px 12px;
     text-decoration: none;
+    background-color:#1460d3 ;
     color: white;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .pagination a:hover {
-    background-color: #45a049;
+    background-color: #1460d3;
 }
 
 .pagination a.active {
-    background-color: #45a049;
-    color: white;
+    background-color:#2C3E50;
 }
 
 /* Filter Form Container */
@@ -145,6 +144,7 @@ form {
     background-color: #f4f4f9;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
 }
 
 /* Filter Label */

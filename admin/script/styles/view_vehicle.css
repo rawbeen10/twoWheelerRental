@@ -30,38 +30,38 @@ table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-    box-shadow: 2px 5px 8px 3px rgba(0,0,0,0.57);
+    box-shadow: 2px 5px 8px 3px rgba(0, 0, 0, 0.57);
 }
 
 td {
     text-align: left;
     padding: 10px 20px;
     height: fit-content;
-    max-width: 200px;
+    max-width: 100px;
     border-left: 1px solid rgba(128, 128, 128, 0.568);
-    text-wrap: 1;
+    word-wrap: break-word; /* Enable wrapping */
+    overflow-wrap: break-word; /* Alternative property for better support */
 }
 
 th {
     border-left: 1px solid rgba(255, 255, 255, 0.479);
-    background-color:#2C3E50 ;
+    background-color: #2C3E50;
     color: white;
     text-align: left;
     padding: 10px 20px;
     font-weight: bold;
     max-width: fit-content;
-    
-
 }
 
-th, td{
-    border-bottom: 2px solid rgba(46,46,46,0.78);
+th, td {
+    border-bottom: 2px solid rgba(46, 46, 46, 0.78);
 }
 
 td img {
-    height: 120px;
-    width: 150px;
+    height: 80px;
+    width: 80px;
 }
+
 
 .action-buttons a{
     text-align: center;

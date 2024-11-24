@@ -85,7 +85,8 @@ $result = mysqli_query($conn, $query);
             <?php
             
             for ($i = 1; $i <= $total_pages; $i++) {
-                echo "<a href='manage_contacts.php?page=$i&limit=$limit'>$i</a>";
+                $is_active = ($page == $i) ? 'class="active"' : '';
+                echo "<a href='manage_contacts.php?page=$i&limit=$limit' $is_active>$i</a>";
             }
             ?>
         </div>
