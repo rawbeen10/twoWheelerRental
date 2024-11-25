@@ -117,7 +117,7 @@ $total_pages = ceil($total_records / $limit);
                     echo "<td>" . htmlspecialchars($row_rent['document_type']) . "</td>";
                     echo "<td><img src='../uploads/" . htmlspecialchars($row_rent['id_image']) . "' alt='ID Image' class='id-img' width='50'></td>";
                     echo "<td class='action-buttons'>
-                             <a href='approve_rent.php?id=" . $row_rent['id'] . "' class='approve-btn'>Approve</a> | 
+                             <a href='approve_rent.php?id=" . $row_rent['id'] . "' class='approve-btn'>Approve</a> <br> <br>
                              <a href='cancel_rent.php?id=" . $row_rent['id'] . "' class='cancel-btn'>Cancel</a>
                          </td>";
                     echo "<td><button class='status-btn $status'>$status_label</button></td>";
