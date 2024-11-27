@@ -10,8 +10,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the whole div */
-  z-index: -1; /* Ensures the image stays behind the text */
+  object-fit: cover; 
+  z-index: -1; 
 }
 
 .home-txt {
@@ -123,12 +123,11 @@
 
 
 
-/* Carousel Section */
 .carousel {
   position: relative;
   padding: 40px 20px;
   background-color: #fff;
-  overflow: hidden; /* Prevent scrolling outside of visible area */
+  overflow: hidden; 
 }
 
 .carousel h2 {
@@ -140,7 +139,7 @@
 
 .carousel-container {
   display: flex;
-  overflow: hidden; /* Hide content that goes outside */
+  overflow: hidden; 
 }
 
 .carousel-slider {
@@ -149,15 +148,15 @@
 }
 
 .carousel-item {
-  min-width: 80%; /* Adjusted to show a smaller width for the images */
+  min-width: 80%; 
   position: relative;
   text-align: center;
-  margin: 0 10%; /* Adds space between images */
+  margin: 0 10%; 
 }
 
 .carousel-item img {
   width: 100%;
-  height: 500px; /* Increased height */
+  height: 500px; 
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -175,7 +174,6 @@
   font-size: 2.5rem;
 }
 
-/* Carousel Navigation Buttons */
 .carousel-btn {
   position: absolute;
   top: 50%;

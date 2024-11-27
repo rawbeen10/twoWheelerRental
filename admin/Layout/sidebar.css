@@ -44,17 +44,16 @@
     color: #3498db;
 }
 
-/* Dropdown */
 .dropdown {
-    display: none; /* Hidden by default */
-    position: absolute; /* Position relative to parent */
-    left: 100%; /* Move to the right of the parent menu */
+    display: none; 
+    position: absolute; 
+    left: 100%; 
     top: 0;
     background-color: #34495e;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    z-index: 100; /* Ensure dropdown is on top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 100; 
 }
 
 .dropdown li {
@@ -74,7 +73,6 @@
     color: white;
 }
 
-/* Arrow Styling */
 .arrow {
     transition: transform 0.3s ease;
 }

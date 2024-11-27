@@ -1,4 +1,3 @@
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -11,7 +10,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Billing Container */
 .billing-container {
     width: 80%;
     margin: 0 auto;
@@ -26,7 +24,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Table Styles */
 .billing-table {
     width: 100%;
     border-collapse: collapse;
@@ -48,7 +45,6 @@ h2 {
     background-color: #fafafa;
 }
 
-/* Vehicle Image */
 .vehicle-img {
     display: block;
     margin: 0 auto;
@@ -58,7 +54,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Button Styles */
 .btn {
     display: block;
     width: 200px;

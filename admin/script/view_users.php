@@ -1,7 +1,6 @@
 <?php
 include('db_connect.php'); 
 
-// Set the limit and page values
 $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $limit;
@@ -15,7 +14,6 @@ $total_pages = ceil($total_row['total'] / $limit);
 $query = "SELECT * FROM users LIMIT $start, $limit";
 $result = mysqli_query($conn, $query);
 
-// Handling delete action
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
     $delete_query = "DELETE FROM users WHERE id = ?";

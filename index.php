@@ -70,18 +70,6 @@ session_start();
 </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Footer -->
     <?php require("layout/footer.php"); ?>
     <script src="styles/script/index.js"></script>
 </body>

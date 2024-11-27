@@ -23,40 +23,40 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    flex-grow: 1; /* Allow navbar to take all available space */
-    box-sizing: border-box; /* Include padding in width calculations */
+    flex-grow: 1; 
+    box-sizing: border-box;
 }
 
 .navbar h1 {
-    color: white; /* Make the text white */
-    margin: 0; /* Remove default margin */
-    font-size: 24px; /* Adjust font size */
-    white-space: nowrap; /* Prevent text wrapping */
+    color: white; 
+    margin: 0; 
+    font-size: 24px; 
+    white-space: nowrap; 
 }
 
 .navbar .right {
     display: flex;
     align-items: center;
-    gap: 15px; /* Add spacing between buttons */
-    white-space: nowrap; /* Prevent items from wrapping */
+    gap: 15px; 
+    white-space: nowrap; 
 }
 
 .navbar button {
-    background-color: #3c9eff; /* Button background */
-    color: white; /* Button text color */
+    background-color: #3c9eff; 
+    color: white; 
     border: none;
     border-radius: 5px;
     padding: 8px 15px;
     cursor: pointer;
     font-size: 16px;
     display: flex;
-    align-items: center; /* Align text and icon vertically */
-    gap: 5px; /* Add space between icon and text if needed */
+    align-items: center; 
+    gap: 5px; 
     transition: background-color 0.3s ease;
 }
 
 .navbar button:hover {
-    background-color: #2f96eb; /* Hover effect */
+    background-color: #2f96eb; 
 }
 
 .navbar button svg {

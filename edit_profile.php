@@ -1,20 +1,16 @@
 <?php
 session_start();
 
-// Include the database connection file
 include('admin/script/db_connect.php');
 
-// Check if user is logged in, if not redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-// Initialize variables
 $user_id = $_SESSION['user_id'];
 $username = $email = $dob = $gender = $bio = $profile_image = "";
 
-// Fetch the user's current profile details from the database
 $query = "SELECT * FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
@@ -24,42 +20,40 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     $username = $user['username'];
-    $email = $user['email']; // Email cannot be changed
+    $email = $user['email']; 
     $dob = $user['dob'];
-    $gender = $user['gender']; // Gender is editable anytime
+    $gender = $user['gender']; 
     $bio = $user['bio'];
-    $profile_image = $user['profile_image']; // Profile image path
+    $profile_image = $user['profile_image']; 
 } else {
     echo "User profile not found.";
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the updated values from the form
+    
     $updated_username = $_POST['username'];
     $updated_dob = $_POST['dob'];
     $updated_bio = $_POST['bio'];
     $updated_gender = $_POST['gender'];
-    $updated_profile_image = $profile_image; // Default to current profile image
+    $updated_profile_image = $profile_image; 
 
-    // Handle profile image upload
+ 
     if (isset($_FILES['profile_image']['name']) && $_FILES['profile_image']['name'] != "") {
         $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
         $image_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
-        $upload_dir = __DIR__ . '/admin/uploads/'; // Directory for uploads
+        $upload_dir = __DIR__ . '/admin/uploads/'; 
 
-        // Ensure the upload directory exists
         if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true); // Create the directory if it doesn't exist
+            mkdir($upload_dir, 0777, true); 
         }
 
         if (in_array(strtolower($image_extension), $allowed_extensions)) {
             $new_file_name = time() . "_" . basename($_FILES['profile_image']['name']);
             $target_file = $upload_dir . $new_file_name;
 
-            // Move uploaded file to the server
             if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_file)) {
-                $updated_profile_image = 'admin/uploads/' . $new_file_name; // Save relative path to database
+                $updated_profile_image = 'admin/uploads/' . $new_file_name;
             } else {
                 echo "Error uploading file.";
                 exit();
@@ -70,14 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Update the profile details in the database
     $update_query = "UPDATE users SET username = ?, dob = ?, bio = ?, gender = ?, profile_image = ? WHERE id = ?";
     $update_stmt = $conn->prepare($update_query);
     $update_stmt->bind_param("sssssi", $updated_username, $updated_dob, $updated_bio, $updated_gender, $updated_profile_image, $user_id);
 
     if ($update_stmt->execute()) {
-        // Successfully updated profile
-        header("Location: profile.php"); // Redirect to the profile page after update
+        header("Location: profile.php");
         exit();
     } else {
         echo "Error updating profile: " . $conn->error;
@@ -86,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_stmt->close();
 }
 
-// Close the database connection
+
 $conn->close();
 ?>
 

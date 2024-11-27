@@ -62,10 +62,7 @@ td img {
     width: 150px;
 }
 
-/* .action-buttons {
-    display: flex;
-    gap: 10px;
-} */
+
 
 .view-btn, .delete-btn {
     text-decoration: none;

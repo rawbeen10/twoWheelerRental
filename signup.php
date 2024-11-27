@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
 
-    // Server-side validation
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email format!";
     }
@@ -22,10 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        // Hash the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Check if the email already exists
         $check_email_query = "SELECT * FROM users WHERE email = ?";
         $stmt = $conn->prepare($check_email_query);
         $stmt->bind_param("s", $email);
@@ -35,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows > 0) {
             $errors['email'] = "This email is already registered!";
         } else {
-            // Insert new user into the database
             $insert_query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
             $stmt = $conn->prepare($insert_query);
             $stmt->bind_param("sss", $username, $email, $hashed_password);
@@ -115,32 +111,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const confirmPassword = document.getElementById('confirm_password').value;
         const terms = document.getElementById('terms').checked;
 
-        // Reset error messages
         document.getElementById('email-error').textContent = '';
         document.getElementById('password-error').textContent = '';
         document.getElementById('confirm-password-error').textContent = '';
         document.getElementById('terms-error').textContent = '';
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             document.getElementById('email-error').textContent = "Please enter a valid email address.";
             hasError = true;
         }
 
-        // Password validation
         if (password.length < 8) {
             document.getElementById('password-error').textContent = "Password must be at least 8 characters long.";
             hasError = true;
         }
 
-        // Confirm password validation
         if (password !== confirmPassword) {
             document.getElementById('confirm-password-error').textContent = "Passwords do not match.";
             hasError = true;
         }
 
-        // Terms and conditions validation
         if (!terms) {
             document.getElementById('terms-error').textContent = "You must agree to the terms and conditions.";
             hasError = true;
@@ -151,6 +142,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     });
 </script>
-
 </body>
 </html>

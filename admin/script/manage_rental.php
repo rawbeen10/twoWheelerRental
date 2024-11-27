@@ -5,10 +5,8 @@ $limit = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;  
 $start = ($page - 1) * $limit;  
 
-// Fetch status filter from GET request
 $status_filter = isset($_GET['status']) ? $_GET['status'] : 'all';
 
-// Modify query based on filter
 if ($status_filter == 'pending') {
     $query_rent = "SELECT * FROM rent WHERE status = 'pending' LIMIT $start, $limit";
 } elseif ($status_filter == 'approved') {
@@ -19,7 +17,6 @@ if ($status_filter == 'pending') {
 
 $result_rent = mysqli_query($conn, $query_rent);
 
-// Fetch vehicle data
 $vehicle_data = [];
 $query_vehicle = "SELECT id, vehicle_name, vehicle_number FROM vehicles";
 $result_vehicle = mysqli_query($conn, $query_vehicle);
@@ -62,8 +59,8 @@ $total_pages = ceil($total_records / $limit);
 
     <div class="container container-two">
         <h1>Manage Rentals</h1>
-<!-- Filter Dropdown -->
-<form method="GET" action="manage_rental.php">
+
+        <form method="GET" action="manage_rental.php">
             <label for="status-filter">Filter by Status:</label>
             <select name="status" id="status-filter" onchange="this.form.submit()">
                 <option value="all" <?php if ($status_filter == 'all') echo 'selected'; ?>>All</option>
@@ -72,7 +69,6 @@ $total_pages = ceil($total_records / $limit);
             </select>
             <noscript><button type="submit">Apply</button></noscript>
         </form>
-        <!-- Rentals Table -->
         <table>
             <thead>
                 <tr>
@@ -127,7 +123,6 @@ $total_pages = ceil($total_records / $limit);
             </tbody>
         </table>
 
-        <!-- Pagination -->
         <div class="pagination">
             <?php
             for ($i = 1; $i <= $total_pages; $i++) {
@@ -143,10 +138,9 @@ $total_pages = ceil($total_records / $limit);
     document.addEventListener('DOMContentLoaded', function () {
     const filterSelect = document.getElementById('status-filter');
 
-    // Check if a filter value is already selected
     if (filterSelect) {
         filterSelect.addEventListener('change', function () {
-            this.form.submit(); // Automatically submit the form when the selection changes
+            this.form.submit(); 
         });
     }
 });

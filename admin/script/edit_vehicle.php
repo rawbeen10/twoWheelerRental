@@ -5,7 +5,6 @@ include('db_connect.php');
 if (isset($_GET['id'])) {
     $vehicle_id = $_GET['id'];
 
-    // Fetch the vehicle details
     $query = "SELECT * FROM vehicles WHERE id = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "i", $vehicle_id);
@@ -56,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_vehicle'])) {
             if (move_uploaded_file($image_tmp_name, $upload_path)) {
                 $old_image_path = $upload_dir . $image;
                 if (file_exists($old_image_path)) {
-                    unlink($old_image_path); // Remove the old image
+                    unlink($old_image_path); 
                 }
                 $image = $new_image_name;
             } else {

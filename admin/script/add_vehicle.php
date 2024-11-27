@@ -5,7 +5,7 @@ include('db_connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
     $vehicle_name = $_POST['vehicle_name'];
-    $vehicle_number = $_POST['vehicle_no']; // Added vehicle_number
+    $vehicle_number = $_POST['vehicle_no']; 
     $description = $_POST['description'];
     $price_per_day = $_POST['price'];
     $category = $_POST['category'];
@@ -28,11 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
             $upload_path = $upload_dir . $new_image_name;
 
             if (move_uploaded_file($image_tmp_name, $upload_path)) {
-                // Updated query to include vehicle_number
                 $stmt = mysqli_prepare($conn, "INSERT INTO vehicles (vehicle_name, vehicle_number, description, price_per_day, category, image) 
                                                VALUES (?, ?, ?, ?, ?, ?)");
                 if ($stmt) {
-                    // Added vehicle_number to the parameter binding
                     mysqli_stmt_bind_param($stmt, "sssdss", $vehicle_name, $vehicle_number, $description, $price_per_day, $category, $new_image_name);
 
                     if (mysqli_stmt_execute($stmt)) {
@@ -122,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_vehicle'])) {
 <?php
 if (isset($_SESSION['success_message'])) {
     echo "<script>showPopup('" . $_SESSION['success_message'] . "');</script>";
-    unset($_SESSION['success_message']); // Clear the message after displaying
+    unset($_SESSION['success_message']); 
 }
 ?>
 </body>

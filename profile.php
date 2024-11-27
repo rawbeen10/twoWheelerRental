@@ -1,15 +1,13 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Redirect to login page if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-include('admin/script/db_connect.php'); // Database connection
+include('admin/script/db_connect.php'); 
 
-// Fetch user data based on session user_id
 $user_id = $_SESSION['user_id']; 
 
 $query = "SELECT * FROM users WHERE id = ?";
@@ -25,7 +23,6 @@ if ($result->num_rows > 0) {
     exit();
 }
 
-// Close the statement and connection
 $stmt->close();
 $conn->close();
 ?>
@@ -53,7 +50,6 @@ $conn->close();
 
             <div class="profile-details">
                 <div class="profile-image">
-                    <!-- Display updated profile image or fallback to default -->
                     <img src="<?php echo !empty($user['profile_image']) && file_exists($user['profile_image']) ? htmlspecialchars($user['profile_image']) : 'admin/uploads/default.png'; ?>" 
                          alt="Profile Image">
                 </div>
@@ -64,7 +60,6 @@ $conn->close();
                 </div>
             </div>
 
-            <!-- Button to edit the profile -->
             <a href="edit_profile.php" class="edit-btn">Edit Profile</a>
         </div>
     </div>

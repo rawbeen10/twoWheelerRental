@@ -2,7 +2,6 @@ body{
   background-image: url("../media/bg2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-position: center; */
 }
 
 .container{
@@ -19,7 +18,6 @@ body{
   .container h1{
     font-size: 2.5rem;
     text-align: center;
-    /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   }
   
   input[type=text],[type=password],[type=email]{
@@ -85,7 +83,6 @@ body{
   }
   
   .center-text {
-    /* margin: 7px 0; */
     position: relative;
     text-align: center;
     display: inline-block;

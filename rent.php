@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session to track user login state
+session_start(); 
 
 $servername = "localhost";
 $username = "root";
@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle filter
 $filter = isset($_GET['category']) ? $_GET['category'] : '';
 
 $sql = "SELECT * FROM vehicles";
@@ -46,7 +45,6 @@ if (!$result) {
 <section id="rent" class="container">
     <h1>Rent Your Ride</h1>
 
-    <!-- Filter Section -->
     <div class="filter-container">
         <form action="rent.php" method="GET" id="filter-form">
             <label for="category" class="filter-label">Filter by Category:</label>
@@ -95,7 +93,6 @@ if (!$result) {
     </div>
 </section>
 
-<!-- View More Popup -->
 <div id="viewMorePopup" class="popup-container">
     <div class="popup-content">
         <img id="popupImage" class="popup-image" src="" alt="Vehicle Image">
@@ -116,15 +113,12 @@ if (!$result) {
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-    // Select all the "View More" buttons
     const viewMoreButtons = document.querySelectorAll(".view-more-btn");
 
-    // Attach click event listeners to each button
     viewMoreButtons.forEach((button) => {
         button.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent the default anchor action
+            e.preventDefault(); 
 
-            // Retrieve data attributes from the clicked button
             const vehicleName = this.dataset.name;
             const category = this.dataset.category;
             const pricePerDay = this.dataset.price;
@@ -141,28 +135,24 @@ if (!$result) {
                 imageUrl,
             });
 
-            // Open the popup with the provided data
             openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl);
         });
     });
 
-    // Add event listener to close the popup when clicking outside the container
     document.addEventListener("click", function (e) {
         const popupContainer = document.getElementById("viewMorePopup");
         const popupContent = popupContainer.querySelector(".popup-content");
 
-        // Close the popup if the click is outside the popup content
         if (
-            popupContainer.classList.contains("show") && // Popup is visible
-            !popupContent.contains(e.target) && // Click is outside popup content
-            !e.target.classList.contains("view-more-btn") // Click is not a "View More" button
+            popupContainer.classList.contains("show") && 
+            !popupContent.contains(e.target) && 
+            !e.target.classList.contains("view-more-btn") 
         ) {
             closePopup();
         }
     });
 });
 
-// Function to open the popup with vehicle details
 function openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl) {
     document.getElementById("popupVehicleName").textContent = vehicleName;
     document.getElementById("popupCategory").textContent = category;
@@ -173,13 +163,11 @@ function openPopup(vehicleName, category, pricePerDay, description, vehicleNumbe
     document.getElementById("viewMorePopup").classList.add("show");
 }
 
-// Function to close the popup
 function closePopup() {
     document.getElementById("viewMorePopup").classList.remove("show");
 }
 
 
 </script>
-
 </body>
 </html>

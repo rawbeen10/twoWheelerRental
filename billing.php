@@ -13,11 +13,11 @@ $rent_to = isset($_GET['rent_to']) ? $_GET['rent_to'] : '';
 $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
 
 
-$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Default to 'pending' if no status is set
-$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; // Default to 'pending' if no status is set
+$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; 
+$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; 
 
-// Determine the status label (capitalized) and the status class
-$status_label = ucfirst($status); // Capitalize the first letter for display
+
+$status_label = ucfirst($status); 
 ?>
 
 <!DOCTYPE html>

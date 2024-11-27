@@ -56,7 +56,6 @@
     background-color: #0056b3;
 }
 
-/* Popup Styles */
 .popup-container {
     display: none;
     position: fixed;
@@ -105,7 +104,6 @@
     background: #d32f2f;
 }
 
-/* Rent Form Styles */
 .rent-form {
     margin: 30px auto;
     padding: 20px;
