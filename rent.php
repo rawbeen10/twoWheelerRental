@@ -13,17 +13,34 @@ if ($conn->connect_error) {
 }
 
 $filter = isset($_GET['category']) ? $_GET['category'] : '';
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Get current page, default is 1
+$limit = 12; // Number of vehicles per page
+$offset = ($page - 1) * $limit; // Calculate offset for the query
 
+// Prepare the SQL query with pagination
 $sql = "SELECT * FROM vehicles";
 if ($filter && in_array($filter, ['bike', 'scooter'])) {
     $sql .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
 }
+$sql .= " LIMIT $limit OFFSET $offset"; // Limit the results based on the current page
 
 $result = $conn->query($sql);
 
 if (!$result) {
     die("Query failed: " . $conn->error);
 }
+
+// Calculate total number of pages
+$totalQuery = "SELECT COUNT(*) as total FROM vehicles";
+if ($filter && in_array($filter, ['bike', 'scooter'])) {
+    $totalQuery .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
+}
+$totalResult = $conn->query($totalQuery);
+$totalRow = $totalResult->fetch_assoc();
+$totalVehicles = $totalRow['total'];
+$totalPages = ceil($totalVehicles / $limit); // Calculate the total number of pages
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -88,31 +105,31 @@ if (!$result) {
         } else {
             echo "<p>No vehicles available for rent at the moment.</p>";
         }
-        $conn->close();
         ?>
     </div>
-</section>
 
-<div id="viewMorePopup" class="popup-container">
-    <div class="popup-content">
-        <img id="popupImage" class="popup-image" src="" alt="Vehicle Image">
-        <h2>Vehicle Details</h2>
-        <p><strong>Vehicle Name:</strong> <span id="popupVehicleName"></span></p>
-        <p><strong>Category:</strong> <span id="popupCategory"></span></p>
-        <p><strong>Price per Day:</strong> Rs. <span id="popupPricePerDay"></span></p>
-        <p><strong>Vehicle Number:</strong> <span id="popupVehicleNumber"></span></p>
-        <p><strong>Description:</strong> <span id="popupDescription"></span></p>
-        <button class="btn cancel-btn" onclick="closePopup()">X</button>
+    <!-- Pagination -->
+    <div class="pagination">
+        <?php if ($page > 1): ?>
+            <a href="rent.php?page=<?= $page - 1 ?>" class="btn pagination-btn">Previous</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="rent.php?page=<?= $i ?>&category=<?= urlencode($filter) ?>" class="btn pagination-btn <?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="rent.php?page=<?= $page + 1 ?>" class="btn pagination-btn">Next</a>
+        <?php endif; ?>
     </div>
-</div>
-
+</section>
 
 <?php
     require("layout/footer.php");
 ?>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     const viewMoreButtons = document.querySelectorAll(".view-more-btn");
 
     viewMoreButtons.forEach((button) => {
@@ -167,7 +184,7 @@ function closePopup() {
     document.getElementById("viewMorePopup").classList.remove("show");
 }
 
-
 </script>
+
 </body>
 </html>

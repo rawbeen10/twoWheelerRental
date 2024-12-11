@@ -92,7 +92,7 @@ if (isset($_GET['delete_id'])) {
                   
 
 $profile_image = !empty($row['profile_image']) ? $row['profile_image'] : 'default.png';
-echo "<td><img src='../uploads/" . htmlspecialchars($profile_image) . "' alt='Profile Image' class='user-img' width='50' height='50'></td>";
+echo "<td><img src='http://localhost/twoWheelerRental/" . htmlspecialchars($profile_image) . "' alt='Profile Image' class='user-img' width='50' height='50'></td>";
 
 
 

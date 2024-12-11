@@ -217,3 +217,26 @@ body {
     opacity: 1;
   }
 }
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination .btn {
+    padding: 8px 16px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.pagination .btn:hover {
+    background-color: #555;
+}
+
+.pagination .active {
+    background-color: #007BFF;
+    pointer-events: none;
+}

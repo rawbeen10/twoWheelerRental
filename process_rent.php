@@ -32,13 +32,13 @@ if (!$vehicle_name) {
 
 $grand_total = $duration * $price_per_day;
 
-$sql_rent = "INSERT INTO rent (full_name, phone_number, email, rent_from, rent_to, document_type, id_image) 
-             VALUES (?, ?, ?, ?, ?, ?, ?)";
+// Include vehicle_id in the INSERT query
+$sql_rent = "INSERT INTO rent (vehicle_id, full_name, phone_number, email, rent_from, rent_to, document_type, id_image) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt_rent = $conn->prepare($sql_rent);
-$stmt_rent->bind_param("sssssss", $full_name, $phone_number, $email, $rent_from, $rent_to, $document_type, $id_image);
+$stmt_rent->bind_param("isssssss", $vehicle_id, $full_name, $phone_number, $email, $rent_from, $rent_to, $document_type, $id_image);
 
 if ($stmt_rent->execute()) {
-
     header("Location: billing.php?full_name=" . urlencode($full_name) . 
            "&phone_number=" . urlencode($phone_number) . 
            "&email=" . urlencode($email) . 

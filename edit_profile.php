@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $target_file = $upload_dir . $new_file_name;
 
             if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_file)) {
-                $updated_profile_image = 'admin/uploads/' . $new_file_name;
+                $updated_profile_image = '/admin/uploads/' . $new_file_name;
             } else {
                 echo "Error uploading file.";
                 exit();

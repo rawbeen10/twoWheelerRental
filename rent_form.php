@@ -78,7 +78,7 @@ if (!$vehicle_name) {
                 <option value="citizenship">Citizenship</option>
                 <option value="driving licence">Driving Licence</option>
             <option value="national id">National ID</option>
-            <option value="voterid">Voter ID</option>
+            <option value="voter id">Voter ID</option>
             <option value="other">Other</option>
         </select>
 
