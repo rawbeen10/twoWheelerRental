@@ -1,95 +1,87 @@
+/* Basic styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 20px;
+    margin: 20px;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+/* Container for the entire billing section */
+.billing-details {
+    display: flex;
+    flex-direction: column;
 }
 
-.billing-container {
-    width: 80%;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Flex container for placing the table and vehicle image side by side */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px; /* Reduced gap between the table and vehicle image */
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
+/* Table styling for rental information */
 .billing-table {
-    width: 100%;
+    width: 50%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    text-align: left;
 }
 
 .billing-table th, .billing-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .billing-table th {
-    background-color: #f1f1f1;
-    font-weight: bold;
+    background-color: #f4f4f4;
 }
 
 .billing-table td {
-    background-color: #fafafa;
+    background-color: #fff;
 }
 
+/* Styling for the Grand Total row */
+.grand-total th, .grand-total td {
+    font-weight: bold;
+    color: #000;
+    background-color: #fceb53; /* Light yellow background to make it stand out */
+}
+
+/* Styling for the vehicle image section */
 .vehicle-img {
-    display: block;
-    margin: 0 auto;
-    max-width: 300px;
-    max-height: 300px;
-    object-fit: contain;
-    margin-bottom: 20px;
+    width: 50%;
+    text-align: center;
 }
 
-.btn {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+.vehicle-img img {
+    max-width: 100%;
+    height: auto;
+    width: 600px; /* Made the vehicle image bigger */
 }
 
-.btn:hover {
-    background-color: #45a049;
+/* Status section */
+.status {
+    /* margin-top: 20px; */
+    text-align: left; /* Align the status button to the left */
 }
 
 .status-btn {
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 8px 16px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
-.approved {
-    color: green;
-    font-weight: bold;
+.status-btn.pending {
+    background-color: orange;
+    color: white;
 }
 
-.pending {
-    color: orange;
-    font-weight: bold;
+.status-btn.approved {
+    background-color: green;
+    color: white;
 }
 
-.cancelled {
-    color: red;
-    font-weight: bold;
+.status-btn.rejected {
+    background-color: red;
+    color: white;
 }
-

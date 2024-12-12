@@ -135,7 +135,7 @@ $conn->close();
     viewMoreButtons.forEach((button) => {
         button.addEventListener("click", function (e) {
             e.preventDefault(); 
-
+            console.log("hi")
             const vehicleName = this.dataset.name;
             const category = this.dataset.category;
             const pricePerDay = this.dataset.price;

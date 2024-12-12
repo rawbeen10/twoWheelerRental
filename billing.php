@@ -14,9 +14,6 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
 
 
 $status = isset($_GET['status']) ? $_GET['status'] : 'pending'; 
-$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; 
-
-
 $status_label = ucfirst($status); 
 ?>
 
@@ -31,31 +28,74 @@ $status_label = ucfirst($status);
 <body>
     <h1>Billing Details</h1>
     <div class="billing-details">
-        <h2>Rental Information</h2>
-        <p><strong>Full Name:</strong> <?php echo htmlspecialchars($full_name); ?></p>
-        <p><strong>Phone Number:</strong> <?php echo htmlspecialchars($phone_number); ?></p>
-        <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
-        <p><strong>Vehicle Name:</strong> <?php echo htmlspecialchars($vehicle_name); ?></p>
-        <p><strong>Vehicle Number:</strong> <?php echo htmlspecialchars($vehicle_number); ?></p>
-        <p><strong>Category:</strong> <?php echo htmlspecialchars($category); ?></p>
-        <p><strong>Price per Day:</strong> Rs. <?php echo htmlspecialchars($price_per_day); ?></p>
-        <p><strong>Rent From:</strong> <?php echo htmlspecialchars($rent_from); ?></p>
-        <p><strong>Rent To:</strong> <?php echo htmlspecialchars($rent_to); ?></p>
+        <div class="flex-container">
+            <!-- Table Section for Billing Details -->
+            <div class="billing-table">
+                <h2>Rental Information</h2>
+                <table>
+                    <tr>
+                        <th>Full Name</th>
+                        <td><?php echo htmlspecialchars($full_name); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td><?php echo htmlspecialchars($phone_number); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><?php echo htmlspecialchars($email); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Vehicle Name</th>
+                        <td><?php echo htmlspecialchars($vehicle_name); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Vehicle Number</th>
+                        <td><?php echo htmlspecialchars($vehicle_number); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td><?php echo htmlspecialchars($category); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Price per Day</th>
+                        <td>Rs. <?php echo htmlspecialchars($price_per_day); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Rent From</th>
+                        <td><?php echo htmlspecialchars($rent_from); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Rent To</th>
+                        <td><?php echo htmlspecialchars($rent_to); ?></td>
+                    </tr>
+                    <!-- Make Grand Total Row Bold -->
+                    <tr class="grand-total">
+                        <th>Grand Total</th>
+                        <td>Rs. <?php echo htmlspecialchars($grand_total); ?></td>
+                    </tr>
+                </table>
+            </div>
 
-        <h2>Vehicle Image</h2>
-        <?php if ($vehicle_image): ?>
-            <img src="admin/uploads/<?php echo htmlspecialchars($vehicle_image); ?>" alt="Vehicle Image" width="200">
-        <?php else: ?>
-            <p>No image available.</p>
-        <?php endif; ?>
+            <!-- Vehicle Image Section -->
+            <div class="vehicle-img">
+                <h2>Vehicle Image</h2>
+                <?php if ($vehicle_image): ?>
+                    <img src="admin/uploads/<?php echo htmlspecialchars($vehicle_image); ?>" alt="Vehicle Image" width="400">
+                <?php else: ?>
+                    <p>No image available.</p>
+                <?php endif; ?>
+            </div>
+        </div>
 
-        <p><strong>Grand Total:</strong> Rs. <?php echo htmlspecialchars($grand_total); ?></p>
-        
-        <h2>Status</h2>
-        <p>
-            <button class="status-btn <?php echo $status; ?>">
-                <?php echo $status_label; ?>
-            </button>
+        <!-- Status Section below the table -->
+        <div class="status">
+            <p><strong>Status:</strong> 
+                <button class="status-btn <?php echo $status; ?>">
+                    <?php echo $status_label; ?>
+                </button>
+            </p>
+        </div>
     </div>
 </body>
 </html>
