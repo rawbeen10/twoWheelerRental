@@ -5,17 +5,7 @@ $limit = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;  
 $start = ($page - 1) * $limit;  
 
-$status_filter = isset($_GET['status']) ? $_GET['status'] : 'all';
-
-// Set the appropriate query based on status filter
-if ($status_filter == 'pending') {
-    $query_rent = "SELECT * FROM rent WHERE status = 'pending' LIMIT $start, $limit";
-} elseif ($status_filter == 'approved') {
-    $query_rent = "SELECT * FROM rent WHERE status = 'approved' LIMIT $start, $limit";
-} else {
-    $query_rent = "SELECT * FROM rent LIMIT $start, $limit";
-}
-
+$query_rent = "SELECT * FROM rent WHERE status = 'pending' LIMIT $start, $limit";
 $result_rent = mysqli_query($conn, $query_rent);
 
 // Fetch all vehicle data with vehicle name and number into an associative array
@@ -31,14 +21,7 @@ while ($row_vehicle = mysqli_fetch_assoc($result_vehicle)) {
 }
 
 // Fetch total number of records for pagination
-if ($status_filter == 'pending') {
-    $query_total_rent = "SELECT COUNT(*) as total FROM rent WHERE status = 'pending'";
-} elseif ($status_filter == 'approved') {
-    $query_total_rent = "SELECT COUNT(*) as total FROM rent WHERE status = 'approved'";
-} else {
-    $query_total_rent = "SELECT COUNT(*) as total FROM rent";
-}
-
+$query_total_rent = "SELECT COUNT(*) as total FROM rent WHERE status = 'pending'";
 $result_total_rent = mysqli_query($conn, $query_total_rent);
 $row_total_rent = mysqli_fetch_assoc($result_total_rent);
 $total_records = $row_total_rent['total'];
@@ -65,16 +48,6 @@ $total_pages = ceil($total_records / $limit);
     <div class="container container-two">
         <h1>Manage Rentals</h1>
 
-        <form method="GET" action="manage_rental.php">
-            <label for="status-filter">Filter by Status:</label>
-            <select name="status" id="status-filter" onchange="this.form.submit()">
-                <option value="all" <?php if ($status_filter == 'all') echo 'selected'; ?>>All</option>
-                <option value="pending" <?php if ($status_filter == 'pending') echo 'selected'; ?>>Pending</option>
-                <option value="approved" <?php if ($status_filter == 'approved') echo 'selected'; ?>>Approved</option>
-            </select>
-            <noscript><button type="submit">Apply</button></noscript>
-        </form>
-
         <table>
             <thead>
                 <tr>
@@ -97,13 +70,9 @@ $total_pages = ceil($total_records / $limit);
                 $sn = $start + 1; 
                 while ($row_rent = mysqli_fetch_assoc($result_rent)) {
                     $vehicle_id = $row_rent['vehicle_id'] ?? null;
-                    
-                    // Fetch vehicle details
-                    $vehicle_name = isset($vehicle_data[$vehicle_id]) ? $vehicle_data[$vehicle_id]['vehicle_name'] : 'Unknown';
-                    $vehicle_number = isset($vehicle_data[$vehicle_id]) ? $vehicle_data[$vehicle_id]['vehicle_number'] : 'Unknown';
 
-                    $status = htmlspecialchars($row_rent['status']);
-                    $status_label = ($status == 'approved') ? 'Approved' : 'Pending';
+                    $vehicle_name = $vehicle_data[$vehicle_id]['vehicle_name'] ?? 'Unknown';
+                    $vehicle_number = $vehicle_data[$vehicle_id]['vehicle_number'] ?? 'Unknown';
 
                     echo "<tr>";
                     echo "<td>" . $sn++ . "</td>";
@@ -120,7 +89,7 @@ $total_pages = ceil($total_records / $limit);
                              <a href='approve_rent.php?id=" . $row_rent['id'] . "' class='approve-btn'>Approve</a> <br> <br>
                              <a href='cancel_rent.php?id=" . $row_rent['id'] . "' class='cancel-btn'>Cancel</a>
                          </td>";
-                    echo "<td><button class='status-btn $status'>$status_label</button></td>";
+                    echo "<td><button class='status-btn pending'>Pending</button></td>";
                     echo "</tr>";
                 }
                 ?>
@@ -131,24 +100,12 @@ $total_pages = ceil($total_records / $limit);
             <?php
             for ($i = 1; $i <= $total_pages; $i++) {
                 $is_active = ($page == $i) ? 'class="active"' : '';
-                echo "<a href='manage_rental.php?page=$i&status=$status_filter' $is_active>$i</a>";
+                echo "<a href='manage_rental.php?page=$i' $is_active>$i</a>";
             }
             ?>
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const filterSelect = document.getElementById('status-filter');
-
-        if (filterSelect) {
-            filterSelect.addEventListener('change', function () {
-                this.form.submit(); 
-            });
-        }
-    });
-</script>
 
 </body>
 </html>

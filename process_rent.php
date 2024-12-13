@@ -1,6 +1,14 @@
 <?php
 include('admin/script/db_connect.php'); 
 
+// Ensure user is logged in and user_id is available in session
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    die("You must be logged in to rent a vehicle.");
+}
+
+$user_id = $_SESSION['user_id'];  // Get user_id from the session
+
 $vehicle_id = $_POST['id']; 
 $full_name = $_POST['full_name'];
 $phone_number = $_POST['phone_number'];
@@ -30,16 +38,25 @@ if (!$vehicle_name) {
     die("No vehicle found with the given ID.");
 }
 
-$grand_total = $duration * $price_per_day;
+$grand_total = $duration * $price_per_day; // Calculate the grand total
 
-// Include vehicle_id in the INSERT query
-$sql_rent = "INSERT INTO rent (vehicle_id, full_name, phone_number, email, rent_from, rent_to, document_type, id_image) 
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+// Set the initial status to 'pending' for the new rental
+$status = 'pending';
+
+// Insert rent data into the rent table, including the user_id and the initial status
+$sql_rent = "INSERT INTO rent (user_id, vehicle_id, full_name, phone_number, email, rent_from, rent_to, document_type, id_image, status) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt_rent = $conn->prepare($sql_rent);
-$stmt_rent->bind_param("isssssss", $vehicle_id, $full_name, $phone_number, $email, $rent_from, $rent_to, $document_type, $id_image);
+
+// Bind parameters with the correct types (i - integer, s - string)
+$stmt_rent->bind_param("iissssssss", $user_id, $vehicle_id, $full_name, $phone_number, $email, $rent_from, $rent_to, $document_type, $id_image, $status);
 
 if ($stmt_rent->execute()) {
-    header("Location: billing.php?full_name=" . urlencode($full_name) . 
+    $rent_id = $stmt_rent->insert_id; // Get the last inserted rent ID
+
+    // Redirect to billing.php with rent_id, grand_total, and other relevant details
+    header("Location: billing.php?id=" . $rent_id . 
+           "&full_name=" . urlencode($full_name) . 
            "&phone_number=" . urlencode($phone_number) . 
            "&email=" . urlencode($email) . 
            "&vehicle_name=" . urlencode($vehicle_name) . 
@@ -49,8 +66,8 @@ if ($stmt_rent->execute()) {
            "&rent_from=" . urlencode($rent_from) . 
            "&rent_to=" . urlencode($rent_to) . 
            "&id_image=" . urlencode($id_image) . 
-           "&grand_total=" . $grand_total . 
-           "&vehicle_image=" . urlencode($vehicle_image));  
+           "&vehicle_image=" . urlencode($vehicle_image) . 
+           "&grand_total=" . urlencode($grand_total));  // Include grand_total in the URL
     exit;
 } else {
     echo "Error: " . $stmt_rent->error;

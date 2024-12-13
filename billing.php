@@ -1,5 +1,28 @@
 <?php
-// Retrieve query parameters
+// Include database connection
+include('admin/script/db_connect.php');
+
+// Retrieve the rent ID from query parameters
+$rent_id = isset($_GET['id']) ? $_GET['id'] : '';
+
+// Default status (for when no status is found)
+$status = 'pending';
+
+// Fetch status from the rent table based on the rent ID
+if ($rent_id) {
+    $query_status = "SELECT status FROM rent WHERE id = ?";
+    $stmt = $conn->prepare($query_status);
+    $stmt->bind_param("i", $rent_id);
+    $stmt->execute();
+    $stmt->bind_result($status);
+    $stmt->fetch();
+    $stmt->close();
+}
+
+// Set the label for the status
+$status_label = ucfirst($status); // Capitalize first letter
+
+// Now, retrieve the remaining query parameters (for displaying other data)
 $full_name = isset($_GET['full_name']) ? $_GET['full_name'] : '';
 $phone_number = isset($_GET['phone_number']) ? $_GET['phone_number'] : '';
 $email = isset($_GET['email']) ? $_GET['email'] : '';
@@ -11,10 +34,6 @@ $vehicle_image = isset($_GET['vehicle_image']) ? $_GET['vehicle_image'] : '';
 $rent_from = isset($_GET['rent_from']) ? $_GET['rent_from'] : '';
 $rent_to = isset($_GET['rent_to']) ? $_GET['rent_to'] : '';
 $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
-
-
-$status = isset($_GET['status']) ? $_GET['status'] : 'pending'; 
-$status_label = ucfirst($status); 
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +43,13 @@ $status_label = ucfirst($status);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billing Details</title>
     <link rel="stylesheet" href="styles/billing.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="layout/layout.css">
 </head>
 <body>
+<?php require("layout/header.php");?>
+
     <h1>Billing Details</h1>
     <div class="billing-details">
         <div class="flex-container">
@@ -97,5 +121,7 @@ $status_label = ucfirst($status);
             </p>
         </div>
     </div>
+    <?php require("layout/footer.php"); ?>
+    <script src="styles/script/index.js"></script>
 </body>
 </html>

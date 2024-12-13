@@ -59,7 +59,6 @@ body {
 
 /* Status section */
 .status {
-    /* margin-top: 20px; */
     text-align: left; /* Align the status button to the left */
 }
 
@@ -71,6 +70,7 @@ body {
     border-radius: 5px;
 }
 
+/* Status button colors based on rental status */
 .status-btn.pending {
     background-color: orange;
     color: white;
@@ -81,7 +81,7 @@ body {
     color: white;
 }
 
-.status-btn.rejected {
+.status-btn.cancelled {
     background-color: red;
     color: white;
 }
