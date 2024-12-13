@@ -196,17 +196,21 @@ body {
   object-fit: contain;
 }
 
-* Cancel button */
-.cancel-btn {
-  background-color: #dc3545;
-  padding: 5px 15px;
-  border: none;
-  border-radius: 4px;
+/* Close button for the popup */
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  color: #333;
   cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
 }
 
-.cancel-btn:hover {
-  background-color: #c82333;
+.close-popup:hover {
+  color: #007bff; /* Change color on hover */
 }
 
 @keyframes fadeIn {

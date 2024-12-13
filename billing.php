@@ -50,8 +50,8 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
 <body>
 <?php require("layout/header.php");?>
 
-    <h1>Billing Details</h1>
-    <div class="billing-details">
+<div class="billing-details">
+        <h1>Billing Details</h1>
         <div class="flex-container">
             <!-- Table Section for Billing Details -->
             <div class="billing-table">

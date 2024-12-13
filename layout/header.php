@@ -51,7 +51,7 @@ if (isset($_SESSION['new_notification'])) {
                     </ul>
                 </li>
             <?php else: ?>
-                <li><a href="login.php">Login</a></li>
+                <li><a href="login.php" id="login">Login</a></li>
             <?php endif; ?>
         </ul>
     </nav>

@@ -13,24 +13,18 @@ if ($conn->connect_error) {
 }
 
 $filter = isset($_GET['category']) ? $_GET['category'] : '';
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Get current page, default is 1
-$limit = 12; // Number of vehicles per page
-$offset = ($page - 1) * $limit; // Calculate offset for the query
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+$limit = 12; 
+$offset = ($page - 1) * $limit;
 
-// Prepare the SQL query with pagination
 $sql = "SELECT * FROM vehicles";
 if ($filter && in_array($filter, ['bike', 'scooter'])) {
     $sql .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
 }
-$sql .= " LIMIT $limit OFFSET $offset"; // Limit the results based on the current page
+$sql .= " LIMIT $limit OFFSET $offset";
 
 $result = $conn->query($sql);
 
-if (!$result) {
-    die("Query failed: " . $conn->error);
-}
-
-// Calculate total number of pages
 $totalQuery = "SELECT COUNT(*) as total FROM vehicles";
 if ($filter && in_array($filter, ['bike', 'scooter'])) {
     $totalQuery .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
@@ -38,7 +32,7 @@ if ($filter && in_array($filter, ['bike', 'scooter'])) {
 $totalResult = $conn->query($totalQuery);
 $totalRow = $totalResult->fetch_assoc();
 $totalVehicles = $totalRow['total'];
-$totalPages = ceil($totalVehicles / $limit); // Calculate the total number of pages
+$totalPages = ceil($totalVehicles / $limit);
 
 $conn->close();
 ?>
@@ -55,9 +49,7 @@ $conn->close();
     <link rel="stylesheet" href="styles/rentForm.css">
 </head>
 <body>
-    <?php
-    require("layout/header.php");
-    ?>
+    <?php require("layout/header.php"); ?>
 
 <section id="rent" class="container">
     <h1>Rent Your Ride</h1>
@@ -89,16 +81,15 @@ $conn->close();
                     echo "<a href='login.php' class='btn rent-btn'>Login to Rent</a>";
                 }
 
-                echo "<a href='#' 
-    class='btn view-more-btn' 
-    data-name='" . htmlspecialchars($row['vehicle_name']) . "' 
-    data-category='" . htmlspecialchars($row['category']) . "' 
-    data-price='" . $pricePerDay . "' 
-    data-description='" . htmlspecialchars($row['description']) . "' 
-    data-number='" . htmlspecialchars($row['vehicle_number']) . "' 
-    data-image='" . htmlspecialchars($row['image']) . "'>
-    View More
-</a>";
+                echo "<a href='#' class='btn view-more-btn' 
+                    data-name='" . htmlspecialchars($row['vehicle_name']) . "' 
+                    data-category='" . htmlspecialchars($row['category']) . "' 
+                    data-price='" . $pricePerDay . "' 
+                    data-description='" . htmlspecialchars($row['description']) . "' 
+                    data-number='" . htmlspecialchars($row['vehicle_number']) . "' 
+                    data-image='" . htmlspecialchars($row['image']) . "'>
+                    View More
+                </a>";
 
                 echo "</div>";
             }
@@ -124,9 +115,20 @@ $conn->close();
     </div>
 </section>
 
-<?php
-    require("layout/footer.php");
-?>
+<?php require("layout/footer.php"); ?>
+
+<!-- Popup for "View More" -->
+<div id="viewMorePopup" class="popup-container">
+    <div class="popup-content">
+        <span class="close-popup" onclick="closePopup()">×</span>
+        <h2 id="popupVehicleName"></h2>
+        <p>Category: <span id="popupCategory"></span></p>
+        <p>Price per Day: <span id="popupPricePerDay"></span></p>
+        <p>Vehicle Number: <span id="popupVehicleNumber"></span></p>
+        <p id="popupDescription"></p>
+        <img id="popupImage" class="popup-image" src="" alt="Vehicle Image">
+    </div>
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -135,22 +137,13 @@ $conn->close();
     viewMoreButtons.forEach((button) => {
         button.addEventListener("click", function (e) {
             e.preventDefault(); 
-            console.log("hi")
+            
             const vehicleName = this.dataset.name;
             const category = this.dataset.category;
             const pricePerDay = this.dataset.price;
             const description = this.dataset.description;
             const vehicleNumber = this.dataset.number;
             const imageUrl = this.dataset.image;
-
-            console.log("Button clicked with data:", {
-                vehicleName,
-                category,
-                pricePerDay,
-                description,
-                vehicleNumber,
-                imageUrl,
-            });
 
             openPopup(vehicleName, category, pricePerDay, description, vehicleNumber, imageUrl);
         });
@@ -183,7 +176,6 @@ function openPopup(vehicleName, category, pricePerDay, description, vehicleNumbe
 function closePopup() {
     document.getElementById("viewMorePopup").classList.remove("show");
 }
-
 </script>
 
 </body>
