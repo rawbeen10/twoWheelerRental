@@ -40,7 +40,7 @@ $conn->close();
 <body>
 <?php
     require("layout/header.php");
-    ?>
+?>
     <div class="profile-container">
         <div class="profile-card">
             <div class="profile-header">
@@ -60,11 +60,20 @@ $conn->close();
                 </div>
             </div>
 
-            <a href="edit_profile.php" class="edit-btn">Edit Profile</a>
+            <div class="profile-actions">
+                <a href="edit_profile.php" class="edit-btn">Edit Profile</a>
+                <a href="change_password.php" class="change-password-btn">Change Password</a>
+
+                <!-- Delete Account Form -->
+                <form action="delete_account.php" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+                    <button type="submit" name="delete_account" class="delete-btn">Delete Account</button>
+                </form>
+            </div>
         </div>
     </div>
-    <?php
+
+<?php
     require("layout/footer.php");
-    ?>
+?>
 </body>
 </html>

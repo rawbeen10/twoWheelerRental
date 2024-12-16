@@ -1,3 +1,28 @@
+<?php
+// Connect to the database
+include('db_connect.php');
+
+// Fetch required data
+$result_vehicles = mysqli_query($conn, "SELECT COUNT(*) AS total_vehicles FROM vehicles");
+$data_vehicles = mysqli_fetch_assoc($result_vehicles);
+$total_vehicles = $data_vehicles['total_vehicles'];
+
+$result_users = mysqli_query($conn, "SELECT COUNT(*) AS total_users FROM users");
+$data_users = mysqli_fetch_assoc($result_users);
+$total_users = $data_users['total_users'];
+
+$result_pending = mysqli_query($conn, "SELECT COUNT(*) AS pending_requests FROM rent WHERE status = 'pending'");
+$data_pending = mysqli_fetch_assoc($result_pending);
+$pending_requests = $data_pending['pending_requests'];
+
+$result_approved = mysqli_query($conn, "SELECT COUNT(*) AS approved_requests FROM rent WHERE status = 'approved'");
+$data_approved = mysqli_fetch_assoc($result_approved);
+$approved_requests = $data_approved['approved_requests'];
+
+$result_cancelled = mysqli_query($conn, "SELECT COUNT(*) AS cancelled_requests FROM rent WHERE status = 'cancelled'");
+$data_cancelled = mysqli_fetch_assoc($result_cancelled);
+$cancelled_requests = $data_cancelled['cancelled_requests'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +68,7 @@
     <div class="info-dashboard vehicle-info">
         <a href="view_vehicle.php">
         <div class="info-box no-vehicles">
-            <h3>12</h3>
+            <h3><?php echo $total_vehicles; ?></h3>
             <p>Total Vehicles</p>
         </div>
         </a>
@@ -60,20 +85,20 @@
     <div class="info-dashboard rent-info">
         <a href="manage_rental.php">
         <div class="info-box pending">
-            <h3>12</h3>
+            <h3><?php echo $pending_requests; ?></h3>
             <p>Pending Requests</p>
         </div>
         </a>
 
-        <a href="view_approved_rentals.php">
+        <a href="approved.php">
         <div class="info-box approved">
-            <h3>20</h3>
+            <h3><?php echo $approved_requests; ?></h3>
             <p>Approved</p>
         </div>
         </a>
-        <a href="">
+        <a href="cancelled.php">
         <div class="info-box cancelled">
-            <h3>2</h3>
+            <h3><?php echo $cancelled_requests; ?></h3>
             <p>Cancelled</p>
         </div>
         </a>
@@ -83,7 +108,7 @@
     <div class="info-dashboard users">
         <a href="#">
         <div class="info-box no-users">
-            <h3>123</h3>
+            <h3><?php echo $total_users; ?></h3>
             <p>Total Users</p>
         </div>
         </a>

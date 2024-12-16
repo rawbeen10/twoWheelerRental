@@ -1,3 +1,44 @@
+<?php
+session_start();
+
+// Include the database connection
+include('../script/db_connect.php');
+
+// Initialize error message variable
+$error_message = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the submitted username and password
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Query to fetch the stored admin credentials
+    $query = "SELECT * FROM admins WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if the username exists
+    if ($result->num_rows > 0) {
+        // Fetch the stored admin data
+        $admin = $result->fetch_assoc();
+        
+        // Check if the entered password matches the stored password
+        if (MD5($password) === $admin['password']) {
+            // Set session and redirect to dashboard
+            $_SESSION['admin_id'] = $admin['id'];
+            header("Location: admin_dashboard.php");
+            exit();
+        } else {
+            $error_message = "Incorrect password.";
+        }
+    } else {
+        $error_message = "Username not found.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +51,12 @@
     <div class="login-container">
         <div class="login-card">
             <h2>Admin Login</h2>
-            <form id="loginForm" method="POST" action="process_login.php" onsubmit="return validateLogin()">
+            <!-- Display error message if any -->
+            <?php if (!empty($error_message)) { ?>
+                <p style="color: red;"><?php echo $error_message; ?></p>
+            <?php } ?>
+            
+            <form id="loginForm" method="POST" action="index.php">
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
@@ -26,24 +72,9 @@
     </div>
 
     <script>
-  
         function togglePassword() {
             const passwordInput = document.getElementById("password");
             passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-        }
-
-        
-        function validateLogin() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            if (username === "admin" && password === "admin") {
-               
-                window.location.href = "http://localhost/twowheelerrental/admin/script/admin_dashboard.php"; 
-                return false;
-            } 
-          
-            return true; 
         }
     </script>
 </body>

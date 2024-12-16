@@ -30,8 +30,7 @@ $start_from = ($current_page - 1) * $records_per_page;
 
 // Query for rental history of the logged-in user
 $query = "SELECT rent.id AS rent_id, rent.full_name, rent.phone_number, rent.email, rent.rent_from, rent.rent_to, rent.document_type, rent.id_image, rent.status, 
-                 vehicles.vehicle_name, vehicles.vehicle_number, vehicles.category, vehicles.price_per_day, vehicles.image AS vehicle_image,
-                 NOW() AS submission_date
+                 vehicles.vehicle_name, vehicles.vehicle_number, vehicles.category, vehicles.price_per_day, vehicles.image AS vehicle_image
           FROM rent
           INNER JOIN vehicles ON rent.vehicle_id = vehicles.id
           WHERE rent.user_id = ? 
@@ -89,7 +88,8 @@ if ($result->num_rows === 0) {
                         </div>
                         <div class="history-details">
                             <p><strong><?php echo htmlspecialchars($row['vehicle_name']); ?></strong></p>
-                            <p>From: <?php echo $formatted_rent_from; ?> To: <?php echo $formatted_rent_to; ?></p>
+                            
+                            <p class="submission-date" data-rent-id="<?php echo $row['rent_id']; ?>">Loading...</p>
                         </div>
                     </a>
 
@@ -106,7 +106,25 @@ if ($result->num_rows === 0) {
             <a href="history.php?page=<?php echo $page; ?>" class="pagination-link <?php echo $page == $current_page ? 'active' : ''; ?>"><?php echo $page; ?></a>
         <?php } ?>
     </div>
+
     <?php require("layout/footer.php"); ?>
+
     <script src="styles/script/index.js"></script>
+
+    <script>
+        // JavaScript to populate submission date for each rental history item
+        document.addEventListener("DOMContentLoaded", function() {
+            const submissionDates = document.querySelectorAll('.submission-date');
+            submissionDates.forEach(function(element) {
+                const currentDate = new Date();
+                const formattedDate = currentDate.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                element.textContent = "Submitted on: " + formattedDate;
+            });
+        });
+    </script>
 </body>
 </html>

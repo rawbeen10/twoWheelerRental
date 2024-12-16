@@ -36,16 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updated_dob = $_POST['dob'];
     $updated_bio = $_POST['bio'];
     $updated_gender = $_POST['gender'];
-    $updated_profile_image = $profile_image; 
+    $updated_profile_image = $profile_image; // Keeps the old profile image if no new one is uploaded.
 
- 
+    // Check if a new profile image has been uploaded
     if (isset($_FILES['profile_image']['name']) && $_FILES['profile_image']['name'] != "") {
         $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
         $image_extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
-        $upload_dir = __DIR__ . '/admin/uploads/'; 
+        $upload_dir = __DIR__ . '/admin/uploads/'; // Corrected upload path
 
         if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true); 
+            mkdir($upload_dir, 0777, true); // Creates the directory if it doesn't exist
         }
 
         if (in_array(strtolower($image_extension), $allowed_extensions)) {
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $target_file = $upload_dir . $new_file_name;
 
             if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_file)) {
-                $updated_profile_image = '/admin/uploads/' . $new_file_name;
+                $updated_profile_image = 'admin/uploads/' . $new_file_name; // Update profile image path
             } else {
                 echo "Error uploading file.";
                 exit();
@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Update user data in the database
     $update_query = "UPDATE users SET username = ?, dob = ?, bio = ?, gender = ?, profile_image = ? WHERE id = ?";
     $update_stmt = $conn->prepare($update_query);
     $update_stmt->bind_param("sssssi", $updated_username, $updated_dob, $updated_bio, $updated_gender, $updated_profile_image, $user_id);
@@ -77,7 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $update_stmt->close();
 }
-
 
 $conn->close();
 ?>
