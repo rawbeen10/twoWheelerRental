@@ -63,7 +63,7 @@ if ($result->num_rows === 0) {
 </head>
 <body>
 <?php require("layout/header.php");?>
-    <h1>Rental History</h1>
+    <h1 id="rental-history">Rental History</h1>
     
     <div class="history-container">
         <?php if ($no_history_message) { ?>
@@ -78,7 +78,7 @@ if ($result->num_rows === 0) {
             ?>
                 <!-- History Bar -->
                 <div class="history-item">
-                    <a href="billing.php?id=<?php echo $row['rent_id']; ?>&full_name=<?php echo urlencode($row['full_name']); ?>&phone_number=<?php echo urlencode($row['phone_number']); ?>&email=<?php echo urlencode($row['email']); ?>&vehicle_name=<?php echo urlencode($row['vehicle_name']); ?>&vehicle_number=<?php echo urlencode($row['vehicle_number']); ?>&category=<?php echo urlencode($row['category']); ?>&price_per_day=<?php echo urlencode($row['price_per_day']); ?>&vehicle_image=<?php echo urlencode($row['vehicle_image']); ?>&rent_from=<?php echo urlencode($formatted_rent_from); ?>&rent_to=<?php echo urlencode($formatted_rent_to); ?>&grand_total=<?php echo urlencode($row['price_per_day'] * $rent_from->diff($rent_to)->days); ?>">
+                    <a href="billing.php?id=<?php echo $row['rent_id']; ?>&full_name=<?php echo urlencode($row['full_name']); ?>&phone_number=<?php echo urlencode($row['phone_number']); ?>&email=<?php echo urlencode($row['email']); ?>&vehicle_name=<?php echo urlencode($row['vehicle_name']); ?>&vehicle_number=<?php echo urlencode($row['vehicle_number']); ?>&category=<?php echo urlencode($row['category']); ?>&price_per_day=<?php echo urlencode($row['price_per_day']); ?>&vehicle_image=<?php echo urlencode($row['vehicle_image']); ?>&rent_from=<?php echo urlencode($formatted_rent_from); ?>&rent_to=<?php echo urlencode($formatted_rent_to); ?>&grand_total=<?php echo urlencode($row['price_per_day'] * $rent_from->diff($rent_to)->days); ?>" class="history-link">
                         <div class="history-thumbnail">
                             <?php if ($row['vehicle_image']) { ?>
                                 <img src="admin/uploads/<?php echo htmlspecialchars($row['vehicle_image']); ?>" alt="Vehicle Image" class="vehicle-img-thumbnail">
@@ -88,13 +88,9 @@ if ($result->num_rows === 0) {
                         </div>
                         <div class="history-details">
                             <p><strong><?php echo htmlspecialchars($row['vehicle_name']); ?></strong></p>
-                            
-                            <p class="submission-date" data-rent-id="<?php echo $row['rent_id']; ?>">Loading...</p>
+                            <p class="submission-date">Submitted on: <?php echo $formatted_rent_from; ?></p>
                         </div>
                     </a>
-
-                    <!-- Delete Button -->
-                    <a href="history.php?delete_id=<?php echo $row['rent_id']; ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this rental history?');">Delete</a>
                 </div>
             <?php } ?>
         <?php } ?>
@@ -108,23 +104,7 @@ if ($result->num_rows === 0) {
     </div>
 
     <?php require("layout/footer.php"); ?>
-
+    
     <script src="styles/script/index.js"></script>
-
-    <script>
-        // JavaScript to populate submission date for each rental history item
-        document.addEventListener("DOMContentLoaded", function() {
-            const submissionDates = document.querySelectorAll('.submission-date');
-            submissionDates.forEach(function(element) {
-                const currentDate = new Date();
-                const formattedDate = currentDate.toLocaleDateString('en-GB', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                });
-                element.textContent = "Submitted on: " + formattedDate;
-            });
-        });
-    </script>
 </body>
 </html>

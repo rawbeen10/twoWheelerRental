@@ -1,14 +1,16 @@
 <?php
-
 session_start();
-
-
 include('admin/script/db_connect.php');
 
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+    echo "<script>alert('$message');</script>"; // Show an alert with the message
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $error_message = '';
 
     $query = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($query);
@@ -17,10 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
-        
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $user['username'];
@@ -29,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: index.php");
             exit();
         } else {
-            echo "Incorrect password!";
+            $error_message = "Incorrect password!";
         }
     } else {
-        echo "No user found with that email!";
+        $error_message = "No user found with that email!";
     }
 
     $stmt->close();
@@ -54,23 +54,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php
     require("layout/header.php");
-    ?>
+?>
 
-   <span id="admin-login"><a href="admin/script/index.php">Admin Login</a></span> 
+<span id="admin-login"><a href="admin/script/index.php">Admin Login</a></span> 
 
-    <div class="container">
-        <h1>Login</h1>
-        <form action="login.php" method="POST">
-            <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+<div class="container">
+    <h1>Login</h1>
+    <form action="login.php" method="POST">
+        <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+        <div class="password-field">
             <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+            <span id="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+        </div>
+        
+        <?php if (!empty($error_message)): ?>
+            <div class="error-message"><?php echo $error_message; ?></div>
+        <?php endif; ?>
 
-            <button type="submit">Login</button>
-            <h4>Don't have an account? <a href="signup.php">Sign Up</a></h4>
-        </form>
-    </div>
+        <button type="submit">Login</button>
+        <h4>Don't have an account? <a href="signup.php">Sign Up</a></h4>
+    </form>
+</div>
 
-    <?php
+<?php
     require("layout/footer.php");
-    ?>
+?>
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById('password');
+        var toggleButton = document.getElementById('toggle-password');
+        var type = passwordField.type === 'password' ? 'text' : 'password';
+        passwordField.type = type;
+        toggleButton.textContent = type === 'password' ? 'Show' : 'Hide';
+    }
+</script>
+
 </body>
 </html>

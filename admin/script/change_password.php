@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/change_password.css">
     <link rel="stylesheet" href="../Layout/sidebar.css">
 </head>
 <body>
@@ -92,32 +92,67 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php } ?>
 
                     <form method="POST" action="change_password.php">
-                        <!-- Old Password Field -->
-                        <div class="input-group">
-                            <label for="old_password">Old Password</label>
-                            <input type="password" id="old_password" name="old_password" required>
-                            <span class="error"><?php echo $old_password_error; ?></span>
-                        </div>
+                        <table>
+                            <!-- Old Password Field -->
+                            <tr>
+                                <td><label for="old_password">Old Password</label></td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="password" id="old_password" name="old_password" required>
+                                        <button type="button" class="toggle-btn" onclick="togglePassword('old_password')">Show</button>
+                                    </div>
+                                    <span class="error"><?php echo $old_password_error; ?></span>
+                                </td>
+                            </tr>
 
-                        <!-- New Password Field -->
-                        <div class="input-group">
-                            <label for="new_password">New Password</label>
-                            <input type="password" id="new_password" name="new_password" required>
-                            <span class="error"><?php echo $new_password_error; ?></span>
-                        </div>
+                            <!-- New Password Field -->
+                            <tr>
+                                <td><label for="new_password">New Password</label></td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="password" id="new_password" name="new_password" required>
+                                        <button type="button" class="toggle-btn" onclick="togglePassword('new_password')">Show</button>
+                                    </div>
+                                    <span class="error"><?php echo $new_password_error; ?></span>
+                                </td>
+                            </tr>
 
-                        <!-- Retype New Password Field -->
-                        <div class="input-group">
-                            <label for="retype_password">Retype New Password</label>
-                            <input type="password" id="retype_password" name="retype_password" required>
-                            <span class="error"><?php echo $retype_password_error; ?></span>
-                        </div>
+                            <!-- Retype New Password Field -->
+                            <tr>
+                                <td><label for="retype_password">Retype New Password</label></td>
+                                <td>
+                                    <div class="input-wrapper">
+                                        <input type="password" id="retype_password" name="retype_password" required>
+                                        <button type="button" class="toggle-btn" onclick="togglePassword('retype_password')">Show</button>
+                                    </div>
+                                    <span class="error"><?php echo $retype_password_error; ?></span>
+                                </td>
+                            </tr>
 
-                        <button type="submit">Change Password</button>
+                            <tr>
+                                <td colspan="2" style="text-align: center;">
+                                    <button type="submit" id="submit-btn">Change Password</button>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            var passwordField = document.getElementById(fieldId);
+            var toggleButton = passwordField.nextElementSibling; // the toggle button
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide"; // Change text to "Hide"
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show"; // Change text to "Show"
+            }
+        }
+    </script>
 </body>
 </html>

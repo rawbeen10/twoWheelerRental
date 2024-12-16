@@ -1,5 +1,4 @@
 <?php
-
 include('admin/script/db_connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -10,38 +9,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
 
+    // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email format!";
     }
+
+    // Validate password strength
     if (strlen($password) < 8) {
         $errors['password'] = "Password must be at least 8 characters long!";
+    } elseif (!preg_match('/[A-Z]/', $password)) {
+        $errors['password'] = "Password must contain at least 1 uppercase letter!";
+    } elseif (!preg_match('/[0-9]/', $password)) {
+        $errors['password'] = "Password must contain at least 1 number!";
+    } elseif (!preg_match('/[\W_]/', $password)) {
+        $errors['password'] = "Password must contain at least 1 special character!";
     }
+
+    // Validate if passwords match
     if ($password !== $confirm_password) {
         $errors['confirm_password'] = "Passwords do not match!";
     }
 
+    // Check if email already exists in the database
+    $check_email_query = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($check_email_query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $errors['email'] = "This email is already registered!";
+    }
+
+    // Validate terms checkbox
+    $terms = isset($_POST['terms']);
+    if (!$terms) {
+        $errors['terms'] = "You must agree to the terms and conditions!";
+    }
+
+    // If no errors, proceed with registration
     if (empty($errors)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $check_email_query = "SELECT * FROM users WHERE email = ?";
-        $stmt = $conn->prepare($check_email_query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $insert_query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($insert_query);
+        $stmt->bind_param("sss", $username, $email, $hashed_password);
 
-        if ($result->num_rows > 0) {
-            $errors['email'] = "This email is already registered!";
+        if ($stmt->execute()) {
+            header("Location: login.php");
+            exit();
         } else {
-            $insert_query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-            $stmt = $conn->prepare($insert_query);
-            $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-            if ($stmt->execute()) {
-                header("Location: index.php");
-                exit();
-            } else {
-                $errors['general'] = "Error: " . $stmt->error;
-            }
+            $errors['general'] = "Error: " . $stmt->error;
         }
 
         $stmt->close();
@@ -60,10 +78,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="layout/layout.css">
     <style>
+        .container form > div {
+            margin-bottom: 20px; /* Equal gap between fields */
+        }
+
         .error-message {
             color: red;
             font-size: 0.9em;
-            margin-top: 5px;
+            margin-top: 5px; /* Small space for error message */
+        }
+
+        .password-field {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .password-field input {
+            width: 100%;
+            padding-right: 40px; /* Add space for toggle button */
+            box-sizing: border-box;
+            height: 40px; /* Increased height for better alignment */
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%); /* Vertically center the button */
+            cursor: pointer;
+            color: #007bff;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -82,18 +142,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
             <div class="error-message" id="email-error"><?php echo $errors['email'] ?? ''; ?></div>
         </div>
-        <div>
+        <div class="password-field">
             <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+            <span class="toggle-btn" id="toggle-password" onclick="togglePasswordVisibility()">Show</span>
             <div class="error-message" id="password-error"><?php echo $errors['password'] ?? ''; ?></div>
         </div>
-        <div>
+        <div class="password-field">
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter Your Password" required>
+            <span class="toggle-btn" id="toggle-confirm-password" onclick="toggleConfirmPasswordVisibility()">Show</span>
             <div class="error-message" id="confirm-password-error"><?php echo $errors['confirm_password'] ?? ''; ?></div>
         </div>
         <div>
             <input type="checkbox" name="terms" id="terms" required>
             I agree to the <a href="#">Terms and Conditions</a>
-            <div class="error-message" id="terms-error"></div>
+            <div class="error-message" id="terms-error"><?php echo $errors['terms'] ?? ''; ?></div>
         </div>
         <button type="submit">Sign Up</button>
         <h4>Already have an account? <a href="login.php">Log in</a></h4>
@@ -126,6 +188,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById('password-error').textContent = "Password must be at least 8 characters long.";
             hasError = true;
         }
+        if (!/[A-Z]/.test(password)) {
+            document.getElementById('password-error').textContent = "Password must contain at least 1 uppercase letter.";
+            hasError = true;
+        }
+        if (!/[0-9]/.test(password)) {
+            document.getElementById('password-error').textContent = "Password must contain at least 1 number.";
+            hasError = true;
+        }
+        if (!/[\W_]/.test(password)) {
+            document.getElementById('password-error').textContent = "Password must contain at least 1 special character.";
+            hasError = true;
+        }
 
         if (password !== confirmPassword) {
             document.getElementById('confirm-password-error').textContent = "Passwords do not match.";
@@ -141,6 +215,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             event.preventDefault();
         }
     });
+
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById('password');
+        var toggleButton = document.getElementById('toggle-password');
+        var type = passwordField.type === 'password' ? 'text' : 'password';
+        passwordField.type = type;
+        toggleButton.textContent = type === 'password' ? 'Show' : 'Hide';
+    }
+
+    function toggleConfirmPasswordVisibility() {
+        var confirmPasswordField = document.getElementById('confirm_password');
+        var toggleButton = document.getElementById('toggle-confirm-password');
+        var type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+        confirmPasswordField.type = type;
+        toggleButton.textContent = type === 'password' ? 'Show' : 'Hide';
+    }
 </script>
 </body>
 </html>

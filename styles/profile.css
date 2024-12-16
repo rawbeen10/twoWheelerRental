@@ -1,4 +1,4 @@
-
+/* General Styling */
 body {
     background: linear-gradient(135deg, rgba(56, 61, 211, 1) 0%, rgba(46, 125, 50, 1) 100%);
     color: #fff;
@@ -89,7 +89,15 @@ body {
     color: #fbc02d;
 }
 
-.edit-btn {
+/* Button Styling */
+.profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.edit-btn, .change-password-btn, .delete-btn {
     display: inline-block;
     background: #fbc02d;
     color: #000;
@@ -98,12 +106,36 @@ body {
     text-align: center;
     text-decoration: none;
     font-size: 1.2rem;
-    margin-top: 30px;
+    font-family: inherit; /* Ensure buttons inherit the body font */
+    font-weight: 500;
     transition: background 0.3s ease, transform 0.3s ease;
+    margin-right: 10px;
 }
 
 .edit-btn:hover {
     background: #ffca28;
+    transform: scale(1.05);
+}
+
+.change-password-btn {
+    background: #42a5f5; /* Light blue color */
+    color: #fff;
+}
+
+.change-password-btn:hover {
+    background: #1e88e5;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    cursor: pointer;
+    border: none;
+    background: #ad0a04; /* Red for delete button */
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #c62828;
     transform: scale(1.05);
 }
 

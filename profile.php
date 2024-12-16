@@ -1,14 +1,14 @@
 <?php
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-include('admin/script/db_connect.php'); 
+include('admin/script/db_connect.php');
 
-$user_id = $_SESSION['user_id']; 
+$user_id = $_SESSION['user_id'];
 
 $query = "SELECT * FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
