@@ -1,19 +1,39 @@
 <?php
 include('db_connect.php');
 
-
 $limit = isset($_GET['limit']) ? $_GET['limit'] : 10;
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($page - 1) * $limit;
 
+// Category filter
+$category_filter = isset($_GET['category']) ? $_GET['category'] : 'all';
+$category_query = ($category_filter !== 'all') ? "WHERE category = ?" : "";
 
-$total_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM vehicles");
-$total_row = mysqli_fetch_assoc($total_result);
+// Get total count with filter
+$total_query = "SELECT COUNT(*) AS total FROM vehicles $category_query";
+$stmt_total = $conn->prepare($total_query);
+
+if ($category_filter !== 'all') {
+    $stmt_total->bind_param("s", $category_filter);
+}
+
+$stmt_total->execute();
+$total_result = $stmt_total->get_result();
+$total_row = $total_result->fetch_assoc();
 $total_pages = ceil($total_row['total'] / $limit);
 
+// Fetch filtered results with pagination
+$query = "SELECT * FROM vehicles $category_query LIMIT ?, ?";
+$stmt = $conn->prepare($query);
 
-$query = "SELECT * FROM vehicles LIMIT $start, $limit";
-$result = mysqli_query($conn, $query);
+if ($category_filter !== 'all') {
+    $stmt->bind_param("sii", $category_filter, $start, $limit);
+} else {
+    $stmt->bind_param("ii", $start, $limit);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +49,25 @@ $result = mysqli_query($conn, $query);
 
 <div class="main-container">
     <div class="container-one">
-        <?php 
-        include '../Layout/sidebar.html'; 
-        ?>
+        <?php include '../Layout/sidebar.html'; ?>
         <script src="../Layout/sidebar.js"></script>
     </div>
 
     <div class="container-two">
         <h2>View Vehicles</h2>
+
+        <!-- Filter Section -->
+        <div class="filter-container">
+            <form action="view_vehicle.php" method="GET" style="display: inline;">
+                <select name="category" onchange="this.form.submit()">
+                    <option value="all" <?php echo $category_filter == 'all' ? 'selected' : ''; ?>>All</option>
+                    <option value="Bike" <?php echo $category_filter == 'Bike' ? 'selected' : ''; ?>>Bike</option>
+                    <option value="Scooter" <?php echo $category_filter == 'Scooter' ? 'selected' : ''; ?>>Scooter</option>
+                </select>
+
+                <button type="submit">Filter</button>
+            </form>
+        </div>
 
         <div class="show-entries">
             Show 
@@ -88,10 +119,9 @@ $result = mysqli_query($conn, $query);
 
         <div class="pagination">
             <?php
-    
             for ($i = 1; $i <= $total_pages; $i++) {
                 $is_active = ($page == $i) ? 'class="active"' : '';
-                echo "<a href='view_vehicle.php?page=$i&limit=$limit' $is_active>$i</a>";
+                echo "<a href='view_vehicle.php?page=$i&limit=$limit&category=$category_filter' $is_active>$i</a>";
             }
             ?>
         </div>

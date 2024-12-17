@@ -1,114 +1,146 @@
-
-.main-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.container-one {
-    background-color: #2c3e50;
-}
-
-.container-two {
-    width: 80%;
-    padding-left: 5px;
-}
-
-h2 {
-    margin-top: 20px;
-    font-size: 24px;
+/* Filter section */
+.filter-container {
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.show-entries {
-    text-align: left;
-    margin-bottom: 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 2px 5px 8px 3px rgba(0, 0, 0, 0.57);
-}
-
-td {
-    text-align: left;
-    padding: 10px 20px;
-    height: fit-content;
-    max-width: 100px;
-    border-left: 1px solid rgba(128, 128, 128, 0.568);
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
-}
-
-th {
-    border-left: 1px solid rgba(255, 255, 255, 0.479);
-    background-color: #2C3E50;
-    color: white;
-    text-align: left;
-    padding: 10px 20px;
+    margin-bottom: 30px;
+  }
+  
+  .filter-label {
+    font-size: 1rem;
     font-weight: bold;
-    max-width: fit-content;
-}
-
-th, td {
-    border-bottom: 2px solid rgba(46, 46, 46, 0.78);
-}
-
-td img {
-    height: 80px;
-    width: 80px;
-}
-
-
-.action-buttons a{
-    text-align: center;
-    display: flex;
-}
-
-.edit-btn, .delete-btn {
-    padding: 5px 10px;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    margin: 3px;
-}
-
-.edit-btn {
-    background-color: #2c8d2f;
-}
-
-.edit-btn:hover {
-    background-color: #45a049;
-}
-
-.delete-btn {
-    background-color: #c22b20;
-}
-
-.delete-btn:hover {
-    background-color: #e53935;
-}
-
-.pagination {
-    margin: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.pagination a {
-    padding: 8px 12px;
-    text-decoration: none;
-    background-color:#1460d3 ;
-    color: white;
+    margin-right: 10px;
+    color: #333;
+    letter-spacing: 0.5px; /* Slight letter spacing for a clean look */
+  }
+  
+  .filter-select {
+    padding: 10px;
+    font-size: 1rem;
+    width: 200px;
     border-radius: 5px;
-}
-
-.pagination a:hover {
-    background-color: #1460d3;
-}
-
-.pagination a.active {
-    background-color:#2C3E50;
-}
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+    background-color: #fafafa;
+  }
+  
+  .filter-select:focus {
+    border-color: #007bff;
+    background-color: #f1f1f1; /* Light change when focused */
+  }
+  
+  /* Main container */
+  .main-container {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  
+  .container-one {
+      background-color: #2c3e50;
+  }
+  
+  .container-two {
+      width: 80%;
+      padding-left: 5px;
+  }
+  
+  h2 {
+      margin-top: 20px;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  
+  .show-entries {
+      text-align: left;
+      margin-bottom: 10px;
+  }
+  
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 2px 5px 8px 3px rgba(0, 0, 0, 0.57);
+  }
+  
+  td {
+      text-align: left;
+      padding: 10px 20px;
+      height: fit-content;
+      max-width: 100px;
+      border-left: 1px solid rgba(128, 128, 128, 0.568);
+      word-wrap: break-word; 
+      overflow-wrap: break-word; 
+  }
+  
+  th {
+      border-left: 1px solid rgba(255, 255, 255, 0.479);
+      background-color: #2C3E50;
+      color: white;
+      text-align: left;
+      padding: 10px 20px;
+      font-weight: bold;
+      max-width: fit-content;
+  }
+  
+  th, td {
+      border-bottom: 2px solid rgba(46, 46, 46, 0.78);
+  }
+  
+  td img {
+      height: 80px;
+      width: 80px;
+  }
+  
+  /* Action buttons */
+  .action-buttons a{
+      text-align: center;
+      display: flex;
+  }
+  
+  .edit-btn, .delete-btn {
+      padding: 5px 10px;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin: 3px;
+  }
+  
+  .edit-btn {
+      background-color: #2c8d2f;
+  }
+  
+  .edit-btn:hover {
+      background-color: #45a049;
+  }
+  
+  .delete-btn {
+      background-color: #c22b20;
+  }
+  
+  .delete-btn:hover {
+      background-color: #e53935;
+  }
+  
+  /* Pagination */
+  .pagination {
+      margin: 20px;
+      display: flex;
+      gap: 10px;
+  }
+  
+  .pagination a {
+      padding: 8px 12px;
+      text-decoration: none;
+      background-color:#1460d3 ;
+      color: white;
+      border-radius: 5px;
+  }
+  
+  .pagination a:hover {
+      background-color: #1460d3;
+  }
+  
+  .pagination a.active {
+      background-color:#2C3E50;
+  }
+  
