@@ -50,28 +50,8 @@ if (isset($_GET['delete_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancelled Rentals</title>
     <link rel="stylesheet" href="../Layout/sidebar.css">
+    <link rel="stylesheet" href="styles/manage_rental.css">
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        th {
-            background-color: #2C3E50;
-            color: white;
-            padding: 10px;
-        }
-
-        td {
-            padding: 10px;
-        }
-
         .status-btn {
             background-color: red;
             color: white;
@@ -90,27 +70,6 @@ if (isset($_GET['delete_id'])) {
             cursor: pointer;
         }
 
-        .pagination {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            background-color: #1460d3;
-            color: white;
-            padding: 5px 10px;
-            margin: 0 5px;
-            border-radius: 5px;
-        }
-
-        .pagination a.active {
-            background-color: #2C3E50;
-        }
-
-        .pagination a:hover {
-            background-color: #1a73e8;
-        }
     </style>
 </head>
 <body>
@@ -120,9 +79,9 @@ if (isset($_GET['delete_id'])) {
         <script src="../Layout/sidebar.js"></script>
     </div>
     <div class="container container-two">
-        <h1>Cancelled Rentals</h1>
+        <h2>Cancelled Rentals</h2>
 
-        <!-- Show Entries Dropdown -->
+        <div class="show-entries">
         <form method="GET" action="cancelled.php">
             <label for="entries">Show Entries:</label>
             <select name="entries" id="entries" onchange="this.form.submit()">
@@ -131,6 +90,8 @@ if (isset($_GET['delete_id'])) {
                 <option value="20" <?php if ($entries_per_page == 20) echo "selected"; ?>>20</option>
             </select>
         </form>
+        </div>
+
 
         <!-- Cancelled Rentals Table -->
         <table>

@@ -19,16 +19,16 @@
           <p>Welcome to <strong>Uthaoo</strong>, your go-to platform for reliable vehicle rentals. Founded by two passionate individuals, we believe in making your travel experience smooth and hassle-free. Whether you're looking for a car for a weekend getaway or a long-term rental, we’ve got you covered.</p>
           <div class="team">
               <div class="member">
-                  <img src="https://codemasalabytes.com/wp-content/uploads/2024/04/a-photorealistic-image-of-a-programmer-managing-hi-mUW7fXLcTim5Bp5IduKzoA-ZKfEhJ8wSR6zpHxRbnI59w.jpeg" alt="Person 1">
+                  <img src="media/rabin.jpg" alt="Rabin Dhakal">
                   <h3>Rabin Dhakal</h3>
                   <p>Co-Founder & CEO</p>
                   <p>Rabin brings over 10 years of experience in the automotive industry and a vision to revolutionize the car rental market with a customer-first approach.</p>
               </div>
               <div class="member">
-                  <img src="media/kushal.jpg" alt="Person 2">
+                  <img src="media/kushal.jpg" alt="Kushal Bhattarai">
                   <h3>Kushal Bhattarai</h3>
                   <p>Co-Founder & Operations Manager</p>
-                  <p>Kushal is the operational brain behind DriveEase, ensuring that every customer has access to the best vehicles and seamless service.</p>
+                  <p>Kushal is the operational brain behind Uthaoo, ensuring that every customer has access to the best vehicles and seamless service.</p>
               </div>
           </div>
       </div>

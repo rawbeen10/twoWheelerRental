@@ -46,7 +46,7 @@ $total_pages = ceil($total_records / $limit);
     </div>
 
     <div class="container container-two">
-        <h1>Manage Rentals</h1>
+        <h2>Manage Rentals</h2>
 
         <table>
             <thead>

@@ -53,15 +53,15 @@ if (isset($_GET['delete_id'])) {
         <h2>Manage Users</h2>
 
         <div class="show-entries">
-            Show 
             <form action="view_users.php" method="GET" style="display:inline;">
+                <label for="entries">Show Entries: </label>
                 <select name="limit" onchange="this.form.submit()">
                     <option value="10" <?php echo $limit == 10 ? 'selected' : ''; ?>>10</option>
                     <option value="20" <?php echo $limit == 20 ? 'selected' : ''; ?>>20</option>
                     <option value="30" <?php echo $limit == 30 ? 'selected' : ''; ?>>30</option>
                     <option value="40" <?php echo $limit == 40 ? 'selected' : ''; ?>>40</option>
                     <option value="50" <?php echo $limit == 50 ? 'selected' : ''; ?>>50</option>
-                </select> entries
+                </select>
             </form>
         </div>
 

@@ -1,7 +1,13 @@
+.select-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-direction: row-reverse;
+}
 /* Filter section */
 .filter-container {
     text-align: center;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
   
   .filter-label {
@@ -44,15 +50,14 @@
   }
   
   h2 {
-      margin-top: 20px;
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 20px;
+      margin: 20px 10px;
+      font-size: 32px;
+      text-align: left;
   }
   
   .show-entries {
       text-align: left;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
   }
   
   table {
@@ -121,26 +126,58 @@
       background-color: #e53935;
   }
   
-  /* Pagination */
   .pagination {
-      margin: 20px;
-      display: flex;
-      gap: 10px;
-  }
-  
-  .pagination a {
-      padding: 8px 12px;
-      text-decoration: none;
-      background-color:#1460d3 ;
-      color: white;
-      border-radius: 5px;
-  }
-  
-  .pagination a:hover {
-      background-color: #1460d3;
-  }
-  
-  .pagination a.active {
-      background-color:#2C3E50;
-  }
-  
+    margin: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    text-decoration: none;
+    background-color:#1460d3 ;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #2879f1;
+}
+
+.pagination a.active {
+    background-color:#2C3E50;
+}
+
+
+form {
+    display: flex;
+    align-items: center;
+    margin: 20px 10px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+form label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+form select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+form select:focus {
+    border-color: #4CAF50;
+    background-color: #f1f1f1;
+}

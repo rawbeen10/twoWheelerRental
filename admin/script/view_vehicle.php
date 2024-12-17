@@ -55,32 +55,33 @@ $result = $stmt->get_result();
 
     <div class="container-two">
         <h2>View Vehicles</h2>
-
+    <div class="select-div">
         <!-- Filter Section -->
         <div class="filter-container">
             <form action="view_vehicle.php" method="GET" style="display: inline;">
+                <label for="category">Filter By (Category):</label>
                 <select name="category" onchange="this.form.submit()">
                     <option value="all" <?php echo $category_filter == 'all' ? 'selected' : ''; ?>>All</option>
                     <option value="Bike" <?php echo $category_filter == 'Bike' ? 'selected' : ''; ?>>Bike</option>
                     <option value="Scooter" <?php echo $category_filter == 'Scooter' ? 'selected' : ''; ?>>Scooter</option>
                 </select>
-
-                <button type="submit">Filter</button>
             </form>
         </div>
 
         <div class="show-entries">
-            Show 
             <form action="view_vehicle.php" method="GET" style="display:inline;">
+            <label for="entries">Show Entries:</label>
                 <select name="limit" onchange="this.form.submit()">
                     <option value="10" <?php echo $limit == 10 ? 'selected' : ''; ?>>10</option>
                     <option value="20" <?php echo $limit == 20 ? 'selected' : ''; ?>>20</option>
                     <option value="30" <?php echo $limit == 30 ? 'selected' : ''; ?>>30</option>
                     <option value="40" <?php echo $limit == 40 ? 'selected' : ''; ?>>40</option>
                     <option value="50" <?php echo $limit == 50 ? 'selected' : ''; ?>>50</option>
-                </select> entries
+                </select> 
             </form>
         </div>
+    </div>
+
 
         <table>
             <thead>

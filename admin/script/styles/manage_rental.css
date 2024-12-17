@@ -1,11 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-}
 
 .main-container {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .container-one {
@@ -17,10 +14,11 @@
     padding-left: 5px;
 }
 
+
 h2 {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 32px;
+    text-align: left;
+    margin: 20px 10px;
 }
 
 .show-entries {
@@ -29,9 +27,10 @@ h2 {
 }
 
 table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    background-color: white;
+    box-shadow: 2px 5px 8px 3px rgba(0,0,0,0.57);
 }
 
 table, th, td {
@@ -78,12 +77,15 @@ td img {
     background-color: #2ecc71;
 }
 
-.cancel-btn {
+.cancel-btn, .delete-btn {
     background-color: #c22b20;
 }
 
 .cancel-btn:hover {
-    background-color: #e53935;
+    background-color: #db0804;
+}
+.delete-btn:hover {
+    background-color: #db0804;
 }
 
 .status-btn {
@@ -127,7 +129,7 @@ td img {
 }
 
 .pagination a:hover {
-    background-color: #1460d3;
+    background-color: #2879f1;
 }
 
 .pagination a.active {
@@ -137,12 +139,10 @@ td img {
 form {
     display: flex;
     align-items: center;
-    margin: 20px 0;
     padding: 10px;
     background-color: #f4f4f9;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 80%;
 }
 
 form label {

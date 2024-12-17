@@ -1,6 +1,5 @@
 <?php
 include('../script/db_connect.php');
-include('../Layout/sidebar.html'); // Sidebar is included here
 
 // Entries per page (default to 10 if not set)
 $entries_per_page = isset($_GET['entries']) ? intval($_GET['entries']) : 10;
@@ -35,53 +34,8 @@ $result_rent = mysqli_query($conn, $query_rent);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approved Rentals</title>
+    <link rel="stylesheet" href="styles/manage_rental.css">
     <link rel="stylesheet" href="../Layout/sidebar.css"> <!-- Sidebar CSS -->
-    <style>
-        /* Table Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-
-        th {
-            background-color: #2C3E50;
-            color: white;
-            padding: 10px;
-        }
-
-        td {
-            padding: 10px;
-        }
-
-        /* Pagination */
-        .pagination {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            background-color: #1460d3;
-            color: white;
-            padding: 5px 10px;
-            margin: 0 5px;
-            border-radius: 5px;
-        }
-
-        .pagination a.active {
-            background-color: #2C3E50;
-        }
-
-        .pagination a:hover {
-            background-color: #1a73e8;
-        }
-    </style>
 </head>
 <body>
 
@@ -91,13 +45,11 @@ $result_rent = mysqli_query($conn, $query_rent);
         <script src="../Layout/sidebar.js"></script>
     </div>
 
-<div class="main-content">
-    <h1>Approved Rentals</h1>
 
-    
-
-    <!-- Show Entries Dropdown -->
-    <form method="GET" action="approved.php">
+    <div class=" container container-two">
+        <h2>Approved Rentals</h2>
+    <div class="show-entries">
+     <form method="GET" action="approved.php" id="entries">
         <label for="entries">Show Entries:</label>
         <select name="entries" id="entries" onchange="this.form.submit()">
             <option value="5" <?php if ($entries_per_page == 5) echo "selected"; ?>>5</option>
@@ -105,8 +57,7 @@ $result_rent = mysqli_query($conn, $query_rent);
             <option value="20" <?php if ($entries_per_page == 20) echo "selected"; ?>>20</option>
         </select>
     </form>
-
-    <!-- Rentals Table -->
+     </div>
     <table>
         <thead>
             <tr>
@@ -142,7 +93,6 @@ $result_rent = mysqli_query($conn, $query_rent);
             ?>
         </tbody>
     </table>
-
     <!-- Pagination -->
     <div class="pagination">
         <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
@@ -152,6 +102,10 @@ $result_rent = mysqli_query($conn, $query_rent);
             </a>
         <?php endfor; ?>
     </div>
+    </div>
+
+
+
 </div>
 
 </body>
