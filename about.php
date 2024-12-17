@@ -25,7 +25,7 @@
                   <p>Rabin brings over 10 years of experience in the automotive industry and a vision to revolutionize the car rental market with a customer-first approach.</p>
               </div>
               <div class="member">
-                  <img src="https://pathao.com/np/wp-content/uploads/sites/7/2018/12/Earn-with-your-Bike_Image.jpg" alt="Person 2">
+                  <img src="media/kushal.jpg" alt="Person 2">
                   <h3>Kushal Bhattarai</h3>
                   <p>Co-Founder & Operations Manager</p>
                   <p>Kushal is the operational brain behind DriveEase, ensuring that every customer has access to the best vehicles and seamless service.</p>
