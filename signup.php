@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h1>Signup</h1>
     <form action="signup.php" method="POST" id="signup-form">
         <div>
-            <input type="text" name="username" id="username" placeholder="Username" required>
+            <input type="text" name="username" id="username" placeholder="Full Name" required>
             <div class="error-message" id="username-error"></div>
         </div>
         <div>

@@ -69,7 +69,7 @@ if (isset($_GET['delete_id'])) {
             <thead>
                 <tr>
                     <th>SN</th>
-                    <th>Username</th>
+                    <th>Name</th>
                     <th>Date of Birth</th>
                     <th>Bio</th>
                     <th>Gender</th>
