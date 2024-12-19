@@ -120,7 +120,10 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
                 </button>
             </p>
         </div>
-    </div>
+        <div class="print-section">
+    <button onclick="window.print()" class="print-btn">Print</button>
+</div><br>
+
     <?php require("layout/footer.php"); ?>
     <script src="styles/script/index.js"></script>
 </body>
