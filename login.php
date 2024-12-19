@@ -82,9 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <script>
     function togglePasswordVisibility() {
-        var passwordField = document.getElementById('password');
-        var toggleButton = document.getElementById('toggle-password');
-        var type = passwordField.type === 'password' ? 'text' : 'password';
+        let passwordField = document.getElementById('password');
+        let toggleButton = document.getElementById('toggle-password');
+        let type = passwordField.type === 'password' ? 'text' : 'password';
         passwordField.type = type;
         toggleButton.textContent = type === 'password' ? 'Show' : 'Hide';
     }

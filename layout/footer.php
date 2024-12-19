@@ -10,7 +10,7 @@
           <div class="footer-section">
             <h3>Contact Us</h3>
             <ul>
-              <li>Email: info@example.com</li>
+              <li>Email: info@uthaoo.com</li>
               <li>Phone: +977 1234567</li>
               <li>Address: Chabahil, 06 Kathmandu, Nepal</li>
             </ul>

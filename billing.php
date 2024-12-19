@@ -1,14 +1,10 @@
 <?php
-// Include database connection
 include('admin/script/db_connect.php');
 
-// Retrieve the rent ID from query parameters
 $rent_id = isset($_GET['id']) ? $_GET['id'] : '';
 
-// Default status (for when no status is found)
 $status = 'pending';
 
-// Fetch status from the rent table based on the rent ID
 if ($rent_id) {
     $query_status = "SELECT status FROM rent WHERE id = ?";
     $stmt = $conn->prepare($query_status);
@@ -19,10 +15,8 @@ if ($rent_id) {
     $stmt->close();
 }
 
-// Set the label for the status
-$status_label = ucfirst($status); // Capitalize first letter
+$status_label = ucfirst($status); 
 
-// Now, retrieve the remaining query parameters (for displaying other data)
 $full_name = isset($_GET['full_name']) ? $_GET['full_name'] : '';
 $phone_number = isset($_GET['phone_number']) ? $_GET['phone_number'] : '';
 $email = isset($_GET['email']) ? $_GET['email'] : '';
@@ -53,7 +47,6 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
 <div class="billing-details">
         <h1>Billing Details</h1>
         <div class="flex-container">
-            <!-- Table Section for Billing Details -->
             <div class="billing-table">
                 <h2>Rental Information</h2>
                 <table>
@@ -93,7 +86,6 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
                         <th>Rent To</th>
                         <td><?php echo htmlspecialchars($rent_to); ?></td>
                     </tr>
-                    <!-- Make Grand Total Row Bold -->
                     <tr class="grand-total">
                         <th>Grand Total</th>
                         <td>Rs. <?php echo htmlspecialchars($grand_total); ?></td>
@@ -101,7 +93,6 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
                 </table>
             </div>
 
-            <!-- Vehicle Image Section -->
             <div class="vehicle-img">
                 <h2>Vehicle Image</h2>
                 <?php if ($vehicle_image): ?>
@@ -112,7 +103,6 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
             </div>
         </div>
 
-        <!-- Status Section below the table -->
         <div class="status">
             <p><strong>Status:</strong> 
                 <button class="status-btn <?php echo $status; ?>">
@@ -120,11 +110,8 @@ $grand_total = isset($_GET['grand_total']) ? $_GET['grand_total'] : '';
                 </button>
             </p>
         </div>
-        <div class="print-section">
-    <button onclick="window.print()" class="print-btn">Print</button>
-</div><br>
+</div>
 
     <?php require("layout/footer.php"); ?>
-    <script src="styles/script/index.js"></script>
 </body>
 </html>

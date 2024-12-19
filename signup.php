@@ -9,12 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
 
-    // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email format!";
     }
 
-    // Validate password strength
     if (strlen($password) < 8) {
         $errors['password'] = "Password must be at least 8 characters long!";
     } elseif (!preg_match('/[A-Z]/', $password)) {
@@ -25,12 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['password'] = "Password must contain at least 1 special character!";
     }
 
-    // Validate if passwords match
     if ($password !== $confirm_password) {
         $errors['confirm_password'] = "Passwords do not match!";
     }
 
-    // Check if email already exists in the database
     $check_email_query = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($check_email_query);
     $stmt->bind_param("s", $email);
@@ -41,13 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['email'] = "This email is already registered!";
     }
 
-    // Validate terms checkbox
     $terms = isset($_POST['terms']);
     if (!$terms) {
         $errors['terms'] = "You must agree to the terms and conditions!";
     }
 
-    // If no errors, proceed with registration
     if (empty($errors)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -79,13 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="layout/layout.css">
     <style>
         .container form > div {
-            margin-bottom: 20px; /* Equal gap between fields */
+            margin-bottom: 20px; 
         }
 
         .error-message {
             color: red;
             font-size: 0.9em;
-            margin-top: 5px; /* Small space for error message */
+            margin-top: 5px; 
         }
 
         .password-field {
@@ -97,16 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         .password-field input {
             width: 100%;
-            padding-right: 40px; /* Add space for toggle button */
+            padding-right: 40px; 
             box-sizing: border-box;
-            height: 40px; /* Increased height for better alignment */
+            height: 40px; 
         }
 
         .toggle-btn {
             position: absolute;
             right: 10px;
             top: 50%;
-            transform: translateY(-50%); /* Vertically center the button */
+            transform: translateY(-50%); 
             cursor: pointer;
             color: #007bff;
             font-size: 1rem;

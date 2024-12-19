@@ -1,6 +1,4 @@
 
-
-/* Container for the entire billing section */
 .billing-details {
     margin: 10px;
     display: flex;
@@ -11,15 +9,13 @@
     margin-bottom: 15px;
 }
 
-/* Flex container for placing the table and vehicle image side by side */
 .flex-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 10px; /* Reduced gap between the table and vehicle image */
+    gap: 10px;
 }
 
-/* Table styling for rental information */
 .billing-table {
     width: 50%;
     border-collapse: collapse;
@@ -39,14 +35,12 @@
     background-color: #fff;
 }
 
-/* Styling for the Grand Total row */
 .grand-total th, .grand-total td {
     font-weight: bold;
     color: #000;
-    background-color: #fceb53; /* Light yellow background to make it stand out */
+    background-color: #fceb53; 
 }
 
-/* Styling for the vehicle image section */
 .vehicle-img {
     width: 50%;
     text-align: center;
@@ -55,13 +49,12 @@
 .vehicle-img img {
     max-width: 100%;
     height: auto;
-    width: 600px; /* Made the vehicle image bigger */
+    width: 600px; 
 }
 
-/* Status section */
 .status {
     margin: 10px;
-    text-align: left; /* Align the status button to the left */
+    text-align: left; 
 }
 
 .status-btn {
@@ -72,7 +65,6 @@
     border-radius: 5px;
 }
 
-/* Status button colors based on rental status */
 .status-btn.pending {
     background-color: orange;
     color: white;
@@ -88,22 +80,3 @@
     color: white;
 }
 
-.print-section {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.print-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.print-btn:hover {
-    background-color: #0056b3;
-}
