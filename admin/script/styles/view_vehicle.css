@@ -181,3 +181,26 @@ form select:focus {
     border-color: #4CAF50;
     background-color: #f1f1f1;
 }
+
+
+
+.visibility-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.visibility-btn:hover {
+    background-color: darkblue;
+}
+
+.visibility-btn:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
+}

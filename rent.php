@@ -17,17 +17,17 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 12; 
 $offset = ($page - 1) * $limit;
 
-$sql = "SELECT * FROM vehicles";
+$sql = "SELECT * FROM vehicles WHERE visibility = 'visible'";
 if ($filter && in_array($filter, ['bike', 'scooter'])) {
-    $sql .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
+    $sql .= " AND category = '" . $conn->real_escape_string($filter) . "'";
 }
 $sql .= " LIMIT $limit OFFSET $offset";
 
 $result = $conn->query($sql);
 
-$totalQuery = "SELECT COUNT(*) as total FROM vehicles";
+$totalQuery = "SELECT COUNT(*) as total FROM vehicles WHERE visibility = 'visible'";
 if ($filter && in_array($filter, ['bike', 'scooter'])) {
-    $totalQuery .= " WHERE category = '" . $conn->real_escape_string($filter) . "'";
+    $totalQuery .= " AND category = '" . $conn->real_escape_string($filter) . "'";
 }
 $totalResult = $conn->query($totalQuery);
 $totalRow = $totalResult->fetch_assoc();

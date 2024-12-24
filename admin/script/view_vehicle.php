@@ -34,6 +34,22 @@ if ($category_filter !== 'all') {
 
 $stmt->execute();
 $result = $stmt->get_result();
+
+// Handle visibility toggle
+if (isset($_GET['toggle_visibility'])) {
+    $vehicle_id = $_GET['toggle_visibility'];
+    $current_visibility = $_GET['current_visibility'];
+
+    $new_visibility = ($current_visibility === 'visible') ? 'hidden' : 'visible';
+    $update_query = "UPDATE vehicles SET visibility = ? WHERE id = ?";
+    $stmt_update = $conn->prepare($update_query);
+    $stmt_update->bind_param("si", $new_visibility, $vehicle_id);
+    $stmt_update->execute();
+
+    // Redirect to prevent duplicate actions on refresh
+    header("Location: view_vehicle.php?page=$page&limit=$limit&category=$category_filter");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,33 +71,32 @@ $result = $stmt->get_result();
 
     <div class="container-two">
         <h2>View Vehicles</h2>
-    <div class="select-div">
-        <!-- Filter Section -->
-        <div class="filter-container">
-            <form action="view_vehicle.php" method="GET" style="display: inline;">
-                <label for="category">Filter By (Category):</label>
-                <select name="category" onchange="this.form.submit()">
-                    <option value="all" <?php echo $category_filter == 'all' ? 'selected' : ''; ?>>All</option>
-                    <option value="Bike" <?php echo $category_filter == 'Bike' ? 'selected' : ''; ?>>Bike</option>
-                    <option value="Scooter" <?php echo $category_filter == 'Scooter' ? 'selected' : ''; ?>>Scooter</option>
-                </select>
-            </form>
-        </div>
+        <div class="select-div">
+            <!-- Filter Section -->
+            <div class="filter-container">
+                <form action="view_vehicle.php" method="GET" style="display: inline;">
+                    <label for="category">Filter By (Category):</label>
+                    <select name="category" onchange="this.form.submit()">
+                        <option value="all" <?php echo $category_filter == 'all' ? 'selected' : ''; ?>>All</option>
+                        <option value="Bike" <?php echo $category_filter == 'Bike' ? 'selected' : ''; ?>>Bike</option>
+                        <option value="Scooter" <?php echo $category_filter == 'Scooter' ? 'selected' : ''; ?>>Scooter</option>
+                    </select>
+                </form>
+            </div>
 
-        <div class="show-entries">
-            <form action="view_vehicle.php" method="GET" style="display:inline;">
-            <label for="entries">Show Entries:</label>
-                <select name="limit" onchange="this.form.submit()">
-                    <option value="10" <?php echo $limit == 10 ? 'selected' : ''; ?>>10</option>
-                    <option value="20" <?php echo $limit == 20 ? 'selected' : ''; ?>>20</option>
-                    <option value="30" <?php echo $limit == 30 ? 'selected' : ''; ?>>30</option>
-                    <option value="40" <?php echo $limit == 40 ? 'selected' : ''; ?>>40</option>
-                    <option value="50" <?php echo $limit == 50 ? 'selected' : ''; ?>>50</option>
-                </select> 
-            </form>
+            <div class="show-entries">
+                <form action="view_vehicle.php" method="GET" style="display:inline;">
+                    <label for="entries">Show Entries:</label>
+                    <select name="limit" onchange="this.form.submit()">
+                        <option value="10" <?php echo $limit == 10 ? 'selected' : ''; ?>>10</option>
+                        <option value="20" <?php echo $limit == 20 ? 'selected' : ''; ?>>20</option>
+                        <option value="30" <?php echo $limit == 30 ? 'selected' : ''; ?>>30</option>
+                        <option value="40" <?php echo $limit == 40 ? 'selected' : ''; ?>>40</option>
+                        <option value="50" <?php echo $limit == 50 ? 'selected' : ''; ?>>50</option>
+                    </select>
+                </form>
+            </div>
         </div>
-    </div>
-
 
         <table>
             <thead>
@@ -93,6 +108,7 @@ $result = $stmt->get_result();
                     <th>Price per Day</th>
                     <th>Category</th>
                     <th>Image</th>
+                    <th>Visibility</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -100,6 +116,7 @@ $result = $stmt->get_result();
                 <?php
                 $sn = $start + 1; 
                 while ($row = mysqli_fetch_assoc($result)) {
+                    $visibility = htmlspecialchars($row['visibility']);
                     echo "<tr>";
                     echo "<td>" . $sn++ . "</td>";
                     echo "<td>" . htmlspecialchars($row['vehicle_name']) . "</td>";
@@ -108,6 +125,7 @@ $result = $stmt->get_result();
                     echo "<td>" . htmlspecialchars($row['price_per_day']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['category']) . "</td>";
                     echo "<td><img src='../uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['vehicle_name']) . "' class='bike-img' width='50'></td>";
+                    echo "<td>" . ucfirst($visibility) . " <a href='view_vehicle.php?toggle_visibility=" . $row['id'] . "&current_visibility=$visibility&page=$page&limit=$limit&category=$category_filter' class='toggle-btn'>" . ($visibility === 'visible' ? 'Hide' : 'Show') . "</a></td>";
                     echo "<td class='action-buttons'>
                               <a href='edit_vehicle.php?id=" . $row['id'] . "' class='edit-btn'>Edit</a> 
                               <a href='delete_vehicle.php?id=" . $row['id'] . "' class='delete-btn'>Delete</a>
