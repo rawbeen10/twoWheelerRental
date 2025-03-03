@@ -162,6 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     document.getElementById('signup-form').addEventListener('submit', function (event) {
         let hasError = false;
 
+        const fullname = document.getElementById('username').value
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirm_password').value;
@@ -172,7 +173,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         document.getElementById('confirm-password-error').textContent = '';
         document.getElementById('terms-error').textContent = '';
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const fullnameRegex = /^[a-zA-Z\s]+$/;
+            if (!fullnameRegex.test(fullname)) {
+            document.getElementById('username-error').textContent = "Full Name must contain only alphabets.";
+            hasError = true;
+                } else {
+            document.getElementById('username-error').textContent = "";
+                    }
+
+        const emailRegex = /^[a-zA-Z][\w.-]*@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             document.getElementById('email-error').textContent = "Please enter a valid email address.";
             hasError = true;

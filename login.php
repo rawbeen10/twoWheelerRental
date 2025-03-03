@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require("layout/header.php");
 ?>
 
-<span id="admin-login"><a href="admin/script/index.php">Admin Login</a></span> 
 
 <div class="container">
     <h1>Login</h1>

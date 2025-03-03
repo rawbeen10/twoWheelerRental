@@ -1,12 +1,11 @@
 <footer>
         <div class="footer-container">
-          <!-- About Us Section -->
+          
           <div class="footer-section">
             <h3>About Us</h3>
             <p> At <strong>Uthaoo</strong>, our mission is to provide an affordable, convenient, and eco-friendly two-wheeler <a href="about.php">See more...</a></p>
           </div>
           
-          <!-- Contact Information -->
           <div class="footer-section">
             <h3>Contact Us</h3>
             <ul>
@@ -15,8 +14,7 @@
               <li>Address: Chabahil, 06 Kathmandu, Nepal</li>
             </ul>
           </div>
-      
-          <!-- Useful Links -->
+    
           <div class="footer-section">
             <h3>Useful Links</h3>
             <ul>
@@ -25,14 +23,13 @@
               <li><a href="#">Help Center</a></li>
             </ul>
           </div>
-      
-          <!-- Social Media -->
+    
           <div class="footer-section">
             <h3>Follow Us</h3>
             <div class="social-icons">
-              <a href="#" class="social-icon"><img src="media/fb.png" alt="fb-logo"></a>
-              <a href="#" class="social-icon"><img src="media/x.png" alt="x-logo"></a>
-              <a href="#" class="social-icon"><img src="media/insta.png" alt="insta-logo"></a>
+              <a href="https://www.facebook.com/" class="social-icon" target="_blank"><img src="media/fb.png" alt="fb-logo"></a>
+              <a href="https://x.com/?lang=en" class="social-icon" target="_blank"><img src="media/x.png" alt="x-logo"></a>
+              <a href="https://www.instagram.com/" class="social-icon" target="_blank"><img src="media/insta.png" alt="insta-logo"></a>
             </div>
           </div>
         </div>
